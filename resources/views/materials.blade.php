@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    {{ $active_menu = 'products' }}
+    {{ $active_menu = 'materials' }}
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 
             <div class="page-header">
                 <div class="page-title">
-                    <h3>Products</h3>
+                    <h3>Materials</h3>
                 </div>
             </div>
 
@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-content widget-content-area">
+                        <div class="widget-content widget-content-area searchable-container">
                             <div class="table-responsive">
                                 <table class="table table-bordered mb-4">
                                     <thead>
@@ -33,7 +33,7 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="searchable-items">
                                         <tr>
                                             <td>Shaun Park</td>
                                             <td>10/08/2021</td>
@@ -126,4 +126,5 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

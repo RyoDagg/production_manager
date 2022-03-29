@@ -4,8 +4,8 @@
         <ul class="menu-categories">
 
             {{-- Dashboard --}}
-            <li class="menu active">
-                <a href="{{url('/')}}" data-active="true" class="menu-toggle">
+            <li class="menu {{ $active_menu == 'dashboard' ? 'active' : '' }}">
+                <a href="{{ url('/') }}" data-active="{{ $active_menu == 'dashboard' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -26,8 +26,8 @@
             </li>
 
             {{-- Products --}}
-            <li class="menu">
-                <a href="{{url('/products')}}" data-active="false" class="menu-toggle">
+            <li class="menu {{ $active_menu == 'products' ? 'active' : '' }}">
+                <a href="{{ url('/products') }}" data-active="{{ $active_menu == 'products' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -50,9 +50,9 @@
                 </svg>
             </li>
 
-            {{-- Raw Materiails --}}
-            <li class="menu">
-                <a href="#components" data-active="false" class="menu-toggle">
+            {{-- Raw Materials --}}
+            <li class="menu {{ $active_menu == 'materials' ? 'active' : '' }}">
+                <a href="{{ url('/materials') }}" data-active="{{ $active_menu == 'materials' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -65,7 +65,7 @@
                                 <line x1="12" y1="22.08" x2="12" y2="12"></line>
                             </svg>
                         </div>
-                        <span>Raw Materiails</span>
+                        <span>Raw Materials</span>
                     </div>
                 </a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -76,8 +76,8 @@
             </li>
 
             {{-- Purchases --}}
-            <li class="menu">
-                <a href="#forms" data-active="false" class="menu-toggle">
+            <li class="menu {{ $active_menu == 'purchases' ? 'active' : '' }}">
+                <a href="{{ url('/purchases') }}" data-active="{{ $active_menu == 'purchases' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -99,8 +99,8 @@
             </li>
 
             {{-- Sales --}}
-            <li class="menu">
-                <a href="#forms" data-active="false" class="menu-toggle">
+            <li class="menu {{ $active_menu == 'sales' ? 'active' : '' }}">
+                <a href="{{ url('/sales') }}" data-active="{{ $active_menu == 'sales' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -122,8 +122,8 @@
             </li>
 
             {{-- Production --}}
-            <li class="menu">
-                <a href="#uiKit" data-active="false" class="menu-toggle">
+            <li class="menu {{ $active_menu == 'production' ? 'active' : '' }}">
+                <a href="{{ url('/production') }}" data-active="{{ $active_menu == 'production' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -141,6 +141,31 @@
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </li>
+
+            {{-- Users --}}
+            <li class="menu {{ $active_menu == 'users' ? 'active' : '' }}">
+                <a href="{{ url('/users') }}" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
+                    <div class="base-menu">
+                        <div class="base-icons">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <span>Users</span>
+                    </div>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-left">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </li>
+
 
         </ul>
     </nav>

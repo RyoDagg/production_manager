@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/products', fn() => view('products'));
+//Admin Controller GET
+
+Route::get('/products', [AdminController::class, 'get_products']);
+Route::get('/purchases', [AdminController::class, 'get_purchases']);
+Route::get('/materials', [AdminController::class, 'get_materials']);
+Route::get('/sales', [AdminController::class, 'get_sales']);
+Route::get('/production', [AdminController::class, 'get_production']);
+Route::get('/users', [AdminController::class, 'get_users']);
