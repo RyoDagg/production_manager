@@ -4,133 +4,29 @@
         <ul class="menu-categories">
 
             {{-- Dashboard --}}
-            <li class="menu {{ $active_menu == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ url('/') }}" data-active="{{ $active_menu == 'dashboard' ? 'true' : '' }}" class="menu-toggle">
+            <li class="{{ $active_menu == 'dashboard' ? 'menu active' : '' }}">
+                <a href="{{ route('dashboard') }}" data-active="{{ $active_menu == 'dashboard' ? 'true' : '' }}"
+                    class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-home">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
+                            <img src="icons/dashboard.png" width="58" height="58" alt="">
                         </div>
                         <span>Dashboard</span>
                     </div>
                 </a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-left">
+                    class="feather feather-chevron-left {{ $active_menu == 'dashboard' ? '' : 'invisible d-none' }}">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </li>
-
-            {{-- Products --}}
-            <li class="menu {{ $active_menu == 'products' ? 'active' : '' }}">
-                <a href="{{ url('/products') }}" data-active="{{ $active_menu == 'products' ? 'true' : '' }}" class="menu-toggle">
-                    <div class="base-menu">
-                        <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-box">
-                                <path
-                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                                </path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <span>Products</span>
-                    </div>
-                </a>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-left">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </li>
-
-            {{-- Raw Materials --}}
-            <li class="menu {{ $active_menu == 'materials' ? 'active' : '' }}">
-                <a href="{{ url('/materials') }}" data-active="{{ $active_menu == 'materials' ? 'true' : '' }}" class="menu-toggle">
-                    <div class="base-menu">
-                        <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-box">
-                                <path
-                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                                </path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <span>Raw Materials</span>
-                    </div>
-                </a>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-left">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </li>
-
-            {{-- Purchases --}}
-            <li class="menu {{ $active_menu == 'purchases' ? 'active' : '' }}">
-                <a href="{{ url('/purchases') }}" data-active="{{ $active_menu == 'purchases' ? 'true' : '' }}" class="menu-toggle">
-                    <div class="base-menu">
-                        <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-clipboard">
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
-                                </path>
-                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                            </svg>
-                        </div>
-                        <span>Purchases</span>
-                    </div>
-                </a>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-left">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </li>
-
-            {{-- Sales --}}
-            <li class="menu {{ $active_menu == 'sales' ? 'active' : '' }}">
-                <a href="{{ url('/sales') }}" data-active="{{ $active_menu == 'sales' ? 'true' : '' }}" class="menu-toggle">
-                    <div class="base-menu">
-                        <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-clipboard">
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
-                                </path>
-                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                            </svg>
-                        </div>
-                        <span>Sales</span>
-                    </div>
-                </a>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-left">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </li>
-
             {{-- Production --}}
             <li class="menu {{ $active_menu == 'production' ? 'active' : '' }}">
-                <a href="{{ url('/production') }}" data-active="{{ $active_menu == 'production' ? 'true' : '' }}" class="menu-toggle">
+                <a href="#productions" data-active="{{ $active_menu == 'production' ? 'true' : '' }}"
+                    class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-zap">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
+                            <img src="icons/sewing-machine.png" width="70" height="70" alt="">
                         </div>
                         <span>Production</span>
                     </div>
@@ -142,19 +38,30 @@
                 </svg>
             </li>
 
-            {{-- Users --}}
-            <li class="menu {{ $active_menu == 'users' ? 'active' : '' }}">
-                <a href="{{ url('/users') }}" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
+            {{-- Accounting --}}
+            <li class="menu {{ $active_menu == 'accounting' ? 'active' : '' }}">
+                <a href="#accountings" data-active="{{ $active_menu == 'accounting' ? 'true' : '' }}"
+                    class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-users">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
+                            <img src="icons/stat.png" width="54" height="54" alt="">
+                        </div>
+                        <span>Accounting</span>
+                    </div>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-left">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </li>
+
+            {{-- Users --}}
+            <li class="menu {{ $active_menu == 'users' ? 'active' : '' }}">
+                <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
+                    <div class="base-menu">
+                        <div class="base-icons">
+                            <img src="icons/user.png" width="65" height="65" alt="">
                         </div>
                         <span>Users</span>
                     </div>
@@ -165,10 +72,87 @@
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </li>
-
-
         </ul>
     </nav>
 
+    <div id="compact_submenuSidebar" class="submenu-sidebar">
 
+        <div class="submenu" id="productions">
+            <ul class="submenu-list" data-parent-element="#production">
+                <li>
+                    <a href="{{ route('products') }}">
+                        <span class="icon">
+                            <img src="icons/shirt.png" width="30" height="30" alt="">
+                        </span> Products </a>
+                </li>
+                <li>
+                    <a href="{{ route('materials') }}">
+                        <span class="icon">
+                            <img src="icons/textile.png" width="30" height="30" alt="">
+                        </span> Raw Materials </a>
+                </li>
+                <li>
+                    <a href="{{ route('production') }}">
+                        <span class="icon">
+                            <img src="icons/gear.png" width="30" height="30" alt="">
+                        </span> Production </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="submenu" id="accountings">
+            <ul class="submenu-list" data-parent-element="#forms">
+                <li>
+                    <a href="{{ route('sales') }}">
+                        <span class="icon">
+                            <img src="icons/sell.png" width="30" height="30" alt="">
+                        </span> Sales </a>
+                </li>
+                <li>
+                    <a href="{{ route('purchases') }}">
+                        <span class="icon">
+                            <img src="icons/buy.png" width="30" height="30" alt="">
+                        </span> Purchases </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="submenu" id="users">
+            <ul class="submenu-list" data-parent-element="#users">
+                <li>
+                    <a href="user_profile.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-circle">
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg></span> Profile </a>
+                </li>
+                <li>
+                    <a href="user_account_setting.html"><span class="icon"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-circle">
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg></span> Account Settings </a>
+                </li>
+                <li>
+                    <a href="fonticons.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-circle">
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg></span> Font Icons </a>
+                </li>
+                <li>
+                    <a href="widgets.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-circle">
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg></span> Widgets </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>

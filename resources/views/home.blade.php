@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    {{ $active_menu = 'dashboard' }}
+    <?php $active_menu = 'dashboard' ?>
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 

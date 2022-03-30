@@ -2,7 +2,7 @@
     <header class="header navbar navbar-expand-sm">
         <ul class="navbar-item flex-row">
             <li class="nav-item theme-logo">
-                <a href="{{url('/')}}">
+                <a href="{{route('dashboard')}}">
                     <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
                 </a>
             </li>

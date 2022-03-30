@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
 
 Auth::routes();
@@ -25,9 +25,9 @@ Route::get('/home', [HomeController::class, 'index']);
 
 //Admin Controller GET
 
-Route::get('/products', [AdminController::class, 'get_products']);
-Route::get('/purchases', [AdminController::class, 'get_purchases']);
-Route::get('/materials', [AdminController::class, 'get_materials']);
-Route::get('/sales', [AdminController::class, 'get_sales']);
-Route::get('/production', [AdminController::class, 'get_production']);
-Route::get('/users', [AdminController::class, 'get_users']);
+Route::get('/products', [AdminController::class, 'get_products'])->name('products');
+Route::get('/purchases', [AdminController::class, 'get_purchases'])->name('purchases');
+Route::get('/materials', [AdminController::class, 'get_materials'])->name('materials');
+Route::get('/sales', [AdminController::class, 'get_sales'])->name('sales');
+Route::get('/production', [AdminController::class, 'get_production'])->name('production');
+Route::get('/users', [AdminController::class, 'get_users'])->name('users');
