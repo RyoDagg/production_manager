@@ -1,5 +1,4 @@
 <div class="sidebar-wrapper sidebar-theme">
-
     <nav id="compactSidebar">
         <ul class="menu-categories">
 
@@ -16,7 +15,7 @@
                 </a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-chevron-left {{ $active_menu == 'dashboard' ? '' : 'invisible d-none' }}">
+                    class="feather feather-chevron-left {{ $active_menu == 'dashboard' ? '' : 'd-none' }}">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </li>
