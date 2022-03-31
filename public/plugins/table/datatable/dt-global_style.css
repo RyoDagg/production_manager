@@ -75,7 +75,8 @@ table.dataTable {
 
 .table > tbody > tr > td {
   border: none;
-  color: #888ea8;
+  font-weight: 700;
+  color: #000e4d;
   font-size: 13px;
   letter-spacing: 1px; }
 

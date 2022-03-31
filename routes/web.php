@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MaterialsController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\PurchasesController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +28,15 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index']);
 
-//Admin Controller GET
+//Tables Controllers
 
-Route::get('/products', [AdminController::class, 'get_products'])->name('products');
-Route::get('/purchases', [AdminController::class, 'get_purchases'])->name('purchases');
-Route::get('/materials', [AdminController::class, 'get_materials'])->name('materials');
-Route::get('/sales', [AdminController::class, 'get_sales'])->name('sales');
-Route::get('/production', [AdminController::class, 'get_production'])->name('production');
+Route::get('/products', [ProductController::class, 'get_products'])->name('products');
+Route::get('/purchases', [PurchasesController::class, 'get_purchases'])->name('purchases');
+Route::get('/materials', [MaterialsController::class, 'get_materials'])->name('materials');
+Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');
+Route::get('/production', [ProductionController::class, 'get_production'])->name('production');
 Route::get('/users', [AdminController::class, 'get_users'])->name('users');
+
+
+//Froms Controllers
+Route::get('/material-form', [MaterialsController::class, 'materials_form'])->name('materials_form');
