@@ -44,7 +44,8 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-        @include('items.sidebar')
+          @include('items.sidebar')
+
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
