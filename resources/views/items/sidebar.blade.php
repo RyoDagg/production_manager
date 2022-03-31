@@ -4,8 +4,8 @@
         <ul class="menu-categories">
 
             {{-- Dashboard --}}
-            <li class="menu active">
-                <a href="{{url('/')}}" data-active="true" class="menu-toggle">
+            <li class="menu">
+                <a href="{{route('dashboard')}}" data-active="false" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -27,7 +27,7 @@
 
             {{-- Products --}}
             <li class="menu">
-                <a href="{{url('/products')}}" data-active="false" class="menu-toggle">
+                <a href="{{route('products')}}" data-active="false" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

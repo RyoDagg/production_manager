@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,6 @@ Route::get('/',[HomeController::class,'index']);
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 
-Route::get('/products', fn() => view('products'));
+Route::get('/products',  [ProductController::class, 'index'])->name('products');
