@@ -15,10 +15,10 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('partner_id');
-            $table->foreign('partner_id')
+            $table->unsignedInteger('fournisseur_id');
+            $table->foreign('fournisseur_id')
                     ->references('id')
-                    ->on('partners')
+                    ->on('fournisseurs')
                     ->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('prix_unit');

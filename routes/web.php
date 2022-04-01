@@ -40,3 +40,8 @@ Route::get('/users', [AdminController::class, 'get_users'])->name('users');
 
 //Froms Controllers
 Route::get('/material-form', [MaterialsController::class, 'materials_form'])->name('materials_form');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
