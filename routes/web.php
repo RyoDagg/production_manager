@@ -36,6 +36,7 @@ Route::get('/materials', [MaterialsController::class, 'get_materials'])->name('m
 Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');
 Route::get('/production', [ProductionController::class, 'get_production'])->name('production');
 Route::get('/users', [AdminController::class, 'get_users'])->name('users');
+Route::get('/users', [SalesController::class, 'get_invoices'])->name('invoices');
 
 
 //Froms Controllers

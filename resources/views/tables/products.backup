@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('head')
-    <title>Materials</title>
+    <title>Products</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
@@ -64,17 +64,60 @@
             });
         });
     </script>
+    <script>
+        index = 1
+        function fields(index) {
+            let code = '<div class="form-row mb-4" id="row'+index+'">\
+                            <div class="form-group mb-4 col-md-7">\
+                                <select class="placeholder js-states form-control" name="material'+index+'">\
+                                    <option>Material</option>\
+                                    <option value="one">First</option>\
+                                    <option value="two">Second</option>\
+                                    <option value="three">Third</option>\
+                                    <option value="four">Fourth</option>\
+                                    <option value="five">Fifth</option>\
+                                </select>\
+                            </div>\
+                            <div class="form-group col-md-3">\
+                                <input type="number"  name="quanity'+index+'" class="form-control" placeholder="Quantity" id="inputZip">\
+                            </div>\
+                            <div class="form-group col-md-2">\
+                                <button type="button" id="cancel'+index+'"\
+                                    style="background: 0%;border: none;" onclick="deleteRow(\'row'+index+'\')">\
+                                    <img id="add_field" src="icons/cancel.png" width="40" height="40" alt="">\
+                                </button>\
+                            </div>\
+                        </div>'
+
+            return code
+        }
+
+        function deleteRow(id) {
+            console.log(id);
+            let row = document.getElementById(id);
+            row.remove();
+        }
+        
+                    
+        var btn = document.getElementById('add_field');
+        var rows = document.getElementById('rows');
+
+        btn.onclick = function() {
+            rows.innerHTML += fields(index);
+            index++;
+        }
+    </script>
 @endsection
 
 @section('content')
     <?php
     $active_menu = 'production';
-    $active_item = 'materials';
+    $active_item = 'products';
     ?>
 
     <div class="page-header">
         <div class="page-title">
-            <h3>Materials</h3>
+            <h3>Products</h3>
         </div>
         {{-- <div class="container">
             <div class="row">
@@ -92,20 +135,20 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#registerModal" type="button"
+                    <button data-toggle="modal" data-target="#productModal" type="button"
                         href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                        <strong>Add Material</strong>
+                        <strong>Add Product</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
                 </div>
 
-                <div class="modal animated fadeInRight custo-fadeInRight register-modal" id="registerModal" tabindex="-1"
-                    role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+                <div class="modal animated fade custo-fade register-modal" id="productModal" tabindex="-1" role="dialog"
+                    aria-labelledby="productModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
 
-                            <div class="modal-header" id="registerModalLabel">
-                                <h4 class="modal-title text-primary">Add New Material</h4>
+                            <div class="modal-header" id="productModalLabel">
+                                <h4 class="modal-title text-primary">Add New Product</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -118,21 +161,13 @@
                                 <form>
                                     <div class="mx-auto">
                                         <div class="form-row mb-4">
-                                            <div class="form-group mb-4 col-md-6">
+                                            <div class="form-group mb-4 col-md-7">
                                                 {{-- <label>Example textarea</label> --}}
                                                 <input type="text" class="form-control" name="name" placeholder="Name">
                                             </div>
-                                            <div class="form-group col-md-3">
-                                                <select class="placeholder js-states form-control">
-                                                    <option>Unit...</option>
-                                                    <option value="one">First</option>
-                                                    <option value="two">Second</option>
-                                                    <option value="three">Third</option>
-                                                    <option value="four">Fourth</option>
-                                                    <option value="five">Fifth</option>
-                                                </select>
+                                            <div class="form-group col-md-1">
                                             </div>
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <input type="number" class="form-control" placeholder="Quantity"
                                                     id="inputZip">
                                             </div>
@@ -159,7 +194,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                        <div class="col-md-12 text-right">
+                                            <button data-toggle="modal" data-target="#prodmatModal" type="button"
+                                                href="{{ route('materials_form') }}"
+                                                class="btn btn-primary mb-2 mr-2 btn-rounded">
+                                                <strong>Next</strong>
+                                                <img src="icons/next.png" width="20" height="20" alt="">
+                                            </button>
+                                            @include('items.prodpop')
+                                        </div>
                                     </div>
                                 </form>
 
@@ -183,8 +226,8 @@
                                 </th>
                                 <th>Name</th>
                                 <th>Stock</th>
-                                <th>Description</th>
-                                <th>Last Purchases Price</th>
+                                <th>Materials</th>
+                                <th>Cost</th>
                                 <th class="text-center"></th>
                             </tr>
                         </thead>

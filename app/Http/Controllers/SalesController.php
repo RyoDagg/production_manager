@@ -10,4 +10,8 @@ class SalesController extends Controller
     {
         return view('tables.sales');
     }
+    public function get_invoices()
+    {
+        return view('tables.invoices');
+    }
 }

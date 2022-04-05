@@ -1,7 +1,10 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <?php $active_menu = 'production'; ?>
+    <?php
+    $active_menu = 'production';
+    $active_item = 'production';
+    ?>
     
     <div class="page-header">
         <div class="page-title">
