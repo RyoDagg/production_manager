@@ -1,0 +1,24 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ClientFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name'=>$this->faker->name,
+            'cin'=>$this->faker->numerify,
+            'is_company'=>$this->faker->boolean,
+            'email'=>$this->faker->email,
+            'adresse'=>$this->faker->address
+        ];
+    }
+}

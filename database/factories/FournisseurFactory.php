@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Unit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MaterialsFactory extends Factory
+class FournisseurFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,9 +15,10 @@ class MaterialsFactory extends Factory
     {
         return [
             'name'=>$this->faker->word,
-            'unit_id'=>Unit::factory(),
-            'photo'=>$this->faker->image,
-            'description'=>$this->faker->paragraph,
-            'stock'=>$this->faker->numerify                ];
+            'cin'=>$this->faker->numerify,
+            'is_company'=>$this->faker->boolean,
+            'email'=>$this->faker->email,
+            'adresse'=>$this->faker->address
+        ];
     }
 }

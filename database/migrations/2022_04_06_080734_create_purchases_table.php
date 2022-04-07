@@ -20,10 +20,15 @@ class CreatePurchasesTable extends Migration
                     ->references('id')
                     ->on('fournisseurs')
                     ->cascadeOnDelete();
+            $table->unsignedInteger('material_id');
+            $table->foreign('material_id')
+                            ->references('id')
+                            ->on('materials')
+                            ->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('prix_unit');
-            $table->float('prix_tot');
-            $table->string('status');
+            $table->float('prix_tot')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

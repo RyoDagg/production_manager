@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('head')
-<title>Materials</title>
+<title>Suppliers</title>
 <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
 <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
@@ -74,7 +74,7 @@
 
 <div class="page-header">
     <div class="page-title">
-        <h3>Materials</h3>
+        <h3>Suppliers</h3>
     </div>
     {{-- <div class="container">
             <div class="row">
@@ -93,7 +93,7 @@
         <div class="widget-content widget-content-area br-6">
             <div class="col-md-12 text-right">
                 <button data-toggle="modal" data-target="#registerModal" type="button" href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                    <strong>Add Material</strong>
+                    <strong>New Supplier</strong>
                     <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                 </button>
             </div>
@@ -108,35 +108,20 @@
                          @endif
 
                         <div class="modal-header" id="registerModalLabel">
-                            <h4 class="modal-title text-primary">Add New Material</h4>
+                            <h4 class="modal-title text-primary">New Supplier</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
                                     <line x1="18" y1="6" x2="6" y2="18"></line>
                                     <line x1="6" y1="6" x2="18" y2="18"></line>
                                 </svg></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{route('new_material')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('new_product')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="mx-auto">
                                     <div class="form-row mb-4">
                                         <div class="form-group mb-4 col-md-6">
                                             {{-- <label>Example textarea</label> --}}
                                             <input type="text" class="form-control" name="name" placeholder="Name">
-                                        </div>
-                                        <div class="form-group col-md-3" >
-                                            <select name="unit" class="placeholder js-states form-control">
-                                                {{-- <option>Unit...</option> --}}
-                                                {{-- <option value="one">First</option>
-                                                <option value="two">Second</option>
-                                                <option value="three">Third</option>
-                                                <option value="four">Fourth</option>
-                                                <option value="five">Fifth</option> --}}
-                                                @foreach ($units as $unit)
-           
-                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                                
-                                                @endforeach
-                                            </select>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <input type="number" class="form-control" name="quantite" placeholder="Quantity" id="inputZip">
@@ -180,10 +165,12 @@
                                     <span class="new-control-indicator"></span>
                                 </label> --}}
                             </th>
-                            <th>Photo</th>
                             <th>Name</th>
-                            <th>Description</th>
-                            <th>Stock</th>
+                            <th>CIN</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            
+
                             <th class="text-center"></th>
                         </tr>
                     </thead>
@@ -191,7 +178,7 @@
                     <?php
                     $i=0;
                     ?>
-                        @foreach($materials as $material)
+                        @foreach($fournisseurs as $fournisseur)
 
 
                         <tr>
@@ -201,33 +188,25 @@
                                     <span class="new-control-indicator"></span>
                                 </label>
                             </td>
-                            <td><div class="avatar avatar-xl"><img src="{{ asset('storage/materials/' . $materials[$i]->photo) }}" alt="a" width="90" height="90" class="rounded-circle"></div></td>
-                            <td>{{$materials[$i]->name}}</td>
-                            <td style="width: 500px">{{$materials[$i]->description}}</td>
-                            <td>{{$materials[$i]->stock}}</td>
+                            <td>{{$fournisseurs[$i]->name}}</td>
+                            <td width="200">{{$fournisseurs[$i]->cin}}</td>
+                            <td width="200">{{$fournisseurs[$i]->email}}</td>
+                            <td width="200">{{$fournisseurs[$i]->adresse}}</td>    
                             <td class="text-center">
                                 <ul class="table-controls">
                                     <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Shop"><img src="icons/cart.png" width="25" height="25" alt=""></a></li>
-                                    {{-- <li><a href="{{route('materials.show', $materials[$i]->id)}}" data-toggle="modal" data-target="" type="button"  data-placement="top" title="View"><img src="icons/view.png" width="25" height="25" alt=""></a></li> --}}
-                                    <li><a href="{{route('materials.edit', $materials[$i]->id)}}" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success">
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="View"><img src="icons/view.png" width="25" height="25" alt=""></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success">
                                                 <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
                                                 </path>
                                             </svg></a></li>
-                                    <li>
-                                            <form method="POST" action="{{route('materials.delete', $materials[$i]->id)}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger">
+                                    <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                 </path>
                                                 <line x1="10" y1="11" x2="10" y2="17"></line>
                                                 <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                
-                                            </svg></a>
-                                            {{-- <button class="text-xs text-gray-400">Delete</button> --}}
-                                            </form>
-                                    </li>
+                                            </svg></a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -243,9 +222,9 @@
                                 </label>
                             </th>
                             <th>Name</th>
-                            <th>Photo</th>
-                            <th>Description</th>
-                            <th>Stock</th>
+                            <th>CIN</th>
+                            <th>Email</th>
+                            <th>Address</th>
                             <th class="text-center"></th>
                         </tr>
                         </tfoot>

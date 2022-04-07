@@ -21,6 +21,11 @@ class CreateSalesTable extends Migration
                     ->references('id')
                     ->on('clients')
                     ->cascadeOnDelete();
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')
+                    ->references('id')
+                    ->on('products')
+                    ->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('prix_unit');
             $table->float('prix_tot');

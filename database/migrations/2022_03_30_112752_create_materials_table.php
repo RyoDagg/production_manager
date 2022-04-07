@@ -21,7 +21,7 @@ class CreateMaterialsTable extends Migration
                     ->references('id')
                     ->on('units')
                     ->cascadeOnDelete();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->text('description');
             $table->integer('stock')->default(0);
             $table->timestamps();
