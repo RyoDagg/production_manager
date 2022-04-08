@@ -15,6 +15,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-select/bootstrap-select.min.css">
     <!-- END GLOBAL MANDATORY STYLES -->
     @yield('head')
 
@@ -102,7 +103,7 @@
             totalPrice.value = unitPrice * quantity.value;
         }
     </script>
-
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
 </body>
 
 </html>

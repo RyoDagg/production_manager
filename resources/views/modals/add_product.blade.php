@@ -72,7 +72,7 @@
                     <div id="rows">
                         <div class="form-row mb-4" id="row0">
                             <div class="form-group mb-4 col-md-8">
-                                <select class="placeholder js-states form-control" data-live-search="true"
+                                <select class="placeholder selectpicker form-control" data-live-search="true"
                                     name="material0">
                                     <option>Material</option>
                                     <option value="one">First</option>
