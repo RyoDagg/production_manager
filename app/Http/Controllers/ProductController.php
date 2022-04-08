@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Materials;
 use App\Models\Product;
 
 use Illuminate\Http\Request;
@@ -10,7 +12,9 @@ class ProductController extends Controller
     public function get_products(Product $product)
     {
         $product= Product::orderBy('created_at', 'DESC')->get();
-        return view('tables.products')->with('products', $product);
+        $material= Materials::all();
+        return view('tables.products')->with('products', $product)
+                                      ->with('materials', $material);
     }
     public function new_product(Request $request){
         // ddd($request->input());
@@ -27,6 +31,7 @@ class ProductController extends Controller
                 $file->move('storage/materials/', $filename);
                 $product->photo = $filename;
             }
+        $product->material_id=$request->input('material');
          //submit material
         $product->save();
         // redirect to the materials page after saving the record

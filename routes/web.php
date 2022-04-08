@@ -31,8 +31,9 @@ Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
-Route::get('/profile', [ProfileController::class, 'edit_profile'])->name('profile.edit');
-Route::post('logout',[SessionController::class, 'destroy'])->middleware('auth');
+Route::get('/profile', [ProfileController::class, 'view_profile'])->name('profile.view');
+Route::get('/settings', [ProfileController::class, 'edit_profile'])->name('profile.edit');
+Route::post('logout',[SessionController::class, 'destroy']);
 
 //Tables Controllers
 
@@ -47,8 +48,8 @@ Route::get('/users', [AdminController::class, 'get_users'])->name('users');
 Route::get('/materials', [MaterialsController::class, 'get_materials'])->name('materials');
 Route::post('/new_material', [MaterialsController::class, 'new_material'])->name('new_material');
 Route::get('/materials/{id}', [MaterialsController::class, 'show_material'])->name('materials.show');
-Route::delete('/materials/{id}', [MaterialsController::class, 'delete_material'])->name('materials.delete');
 Route::get('/materials/{id}', [MaterialsController::class, 'edit_material'])->name('materials.edit');
+Route::delete('/materials/{id}', [MaterialsController::class, 'delete_material'])->name('materials.delete');
 
 //sales
 Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');

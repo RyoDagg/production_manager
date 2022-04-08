@@ -92,28 +92,31 @@
     <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
         <div class="widget-content widget-content-area br-6">
             <div class="col-md-12 text-right">
-                <button data-toggle="modal" data-target="#registerModal" type="button" href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
+                <button data-toggle="modal" data-target="#productModal" type="button" href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
                     <strong>Add Product</strong>
                     <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                 </button>
             </div>
-
-            <div class="modal animated fadeInRight custo-fadeInRight register-modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+             <form action="{{route('new_product')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                @include('modals.add_product')
+                </form>
+            {{-- <div class="modal animated fadeInRight custo-fadeInRight register-modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content"> --}}
                         
                         {{-- alert message --}}
-                        @if(session('status'))
+                        {{-- @if(session('status'))
                          <h6 class="alert alert-success">{{session('status')}}</h6>
-                         @endif
+                         @endif --}}
 
-                        <div class="modal-header" id="registerModalLabel">
+                        {{-- <div class="modal-header" id="registerModalLabel">
                             <h4 class="modal-title text-primary">Add New Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
                                     <line x1="18" y1="6" x2="6" y2="18"></line>
                                     <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg></button>
-                        </div>
+                                </svg></button> --}}
+                        {{-- </div>
                         <div class="modal-body">
                             <form action="{{route('new_product')}}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -121,14 +124,14 @@
                                     <div class="form-row mb-4">
                                         <div class="form-group mb-4 col-md-6">
                                             {{-- <label>Example textarea</label> --}}
-                                            <input type="text" class="form-control" name="name" placeholder="Name">
+                                            {{-- <input type="text" class="form-control" name="name" placeholder="Name">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <input type="number" class="form-control" name="quantite" placeholder="Quantity" id="inputZip">
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="form-group mb-4">
+                                    {{-- <div class="form-group mb-4">
                                         <textarea class="form-control" name="description" placeholder="Description..." rows="3"></textarea>
                                     </div>
                                     <div class="form-row  mb-4">
@@ -143,8 +146,8 @@
                                                 <div class="custom-file-container__image-preview"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                    </div> --}}
+                                    {{-- <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                 </div>
                             </form>
 
@@ -153,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="table-responsive mb-4 mt-4">
                 <table id="range-search" class="display table table-hover" style="width:100%">

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>CORK Admin Template - User Account Settings</title>
+    <title>User Profile</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
@@ -12,10 +12,9 @@
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
     <!-- END GLOBAL MANDATORY STYLES -->
-
+    
     <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="plugins/dropify/dropify.min.css">
-    <link href="assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
 </head>
 <body class="sidebar-noneoverflow">
@@ -26,7 +25,7 @@
             <ul class="navbar-item flex-row">
                 <li class="nav-item theme-logo">
                     <a href="index.html">
-                        <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
+                        {{ route('profile.edit') }}{{ route('profile.edit') }}                 <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
                     </a>
                 </li>
             </ul>
@@ -605,10 +604,10 @@
 
                 <div class="submenu" id="users">
                     <ul class="submenu-list" data-parent-element="#users">
-                        <li>
+                        <li class="active">
                             <a href="user_profile.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span> Profile </a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="user_account_setting.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span> Account Settings </a>
                         </li>
                         <li>
@@ -732,735 +731,270 @@
 
                 <div class="page-header">
                     <div class="page-title">
-                        <h3>Account Settings</h3>
+                        <h3>Profile</h3>
                     </div>
                 </div>
-                    
-                <div class="account-settings-container layout-top-spacing">
 
-                    <div class="account-content">
-                        <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="general-info" class="section general-info">
-                                        <div class="info">
-                                            <h6 class="">General Information</h6>
-                                            <div class="row">
-                                                <div class="col-lg-11 mx-auto">
-                                                    <div class="row">
-                                                        <div class="col-xl-2 col-lg-12 col-md-4">
-                                                            <div class="upload mt-4 pr-md-4">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('storage/materials/' . auth()->user()->photo) }}" data-max-file-size="2M" />
-                                                                <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Upload Picture</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
-                                                            <div class="form">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label for="fullName">Full Name</label>
-                                                                            <input type="text" class="form-control mb-4" id="fullName" placeholder="Full Name" value="Jimmy Turner">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <label class="dob-input">Date of Birth</label>
-                                                                        <div class="d-sm-flex d-block">
-                                                                            <div class="form-group mr-1">
-                                                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                                                  <option>Day</option>
-                                                                                  <option>1</option>
-                                                                                  <option>2</option>
-                                                                                  <option>3</option>
-                                                                                  <option>4</option>
-                                                                                  <option>5</option>
-                                                                                  <option>6</option>
-                                                                                  <option>7</option>
-                                                                                  <option>8</option>
-                                                                                  <option>9</option>
-                                                                                  <option>10</option>
-                                                                                  <option>11</option>
-                                                                                  <option>12</option>
-                                                                                  <option>13</option>
-                                                                                  <option>14</option>
-                                                                                  <option>15</option>
-                                                                                  <option>16</option>
-                                                                                  <option>17</option>
-                                                                                  <option>18</option>
-                                                                                  <option>19</option>
-                                                                                  <option selected>20</option>
-                                                                                  <option>21</option>
-                                                                                  <option>22</option>
-                                                                                  <option>23</option>
-                                                                                  <option>24</option>
-                                                                                  <option>25</option>
-                                                                                  <option>26</option>
-                                                                                  <option>27</option>
-                                                                                  <option>28</option>
-                                                                                  <option>29</option>
-                                                                                  <option>30</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="form-group mr-1">
-                                                                                <select class="form-control" id="month">
-                                                                                    <option>Month</option>
-                                                                                    <option selected>Jan</option>
-                                                                                    <option>Feb</option>
-                                                                                    <option>Mar</option>
-                                                                                    <option>Apr</option>
-                                                                                    <option>May</option>
-                                                                                    <option>Jun</option>
-                                                                                    <option>Jul</option>
-                                                                                    <option>Aug</option>
-                                                                                    <option>Sep</option>
-                                                                                    <option>Oct</option>
-                                                                                    <option>Nov</option>
-                                                                                    <option>Dec</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="form-group mr-1">
-                                                                                <select class="form-control" id="year">
-                                                                                  <option>Year</option>
-                                                                                  <option>2018</option>
-                                                                                  <option>2017</option>
-                                                                                  <option>2016</option>
-                                                                                  <option>2015</option>
-                                                                                  <option>2014</option>
-                                                                                  <option>2013</option>
-                                                                                  <option>2012</option>
-                                                                                  <option>2011</option>
-                                                                                  <option>2010</option>
-                                                                                  <option>2009</option>
-                                                                                  <option>2008</option>
-                                                                                  <option>2007</option>
-                                                                                  <option>2006</option>
-                                                                                  <option>2005</option>
-                                                                                  <option>2004</option>
-                                                                                  <option>2003</option>
-                                                                                  <option>2002</option>
-                                                                                  <option>2001</option>
-                                                                                  <option>2000</option>
-                                                                                  <option>1999</option>
-                                                                                  <option>1998</option>
-                                                                                  <option>1997</option>
-                                                                                  <option>1996</option>
-                                                                                  <option>1995</option>
-                                                                                  <option>1994</option>
-                                                                                  <option>1993</option>
-                                                                                  <option>1992</option>
-                                                                                  <option>1991</option>
-                                                                                  <option>1990</option>
-                                                                                  <option selected>1989</option>
-                                                                                  <option>1988</option>
-                                                                                  <option>1987</option>
-                                                                                  <option>1986</option>
-                                                                                  <option>1985</option>
-                                                                                  <option>1984</option>
-                                                                                  <option>1983</option>
-                                                                                  <option>1982</option>
-                                                                                  <option>1981</option>
-                                                                                  <option>1980</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="profession">Profession</label>
-                                                                    <input type="text" class="form-control mb-4" id="profession" placeholder="Designer" value="Web Developer">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                <div class="row layout-spacing">
+
+                    <!-- Content -->
+                    <div class="col-xl-4 col-lg-6 col-md-5 col-sm-12 layout-top-spacing">
+
+                        <div class="user-profile layout-spacing">
+                            <div class="widget-content widget-content-area">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="">Info</h3>
+                                    <a href="{{ route('profile.edit') }}" class="mt-2 edit-profile"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></a>
                                 </div>
-
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="about" class="section about">
-                                        <div class="info">
-                                            <h5 class="">About</h5>
-                                            <div class="row">
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="form-group">
-                                                        <label for="aboutBio">Bio</label>
-                                                        <textarea class="form-control" id="aboutBio" placeholder="Tell something interesting about yourself" rows="10">I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs.
-
-My job is to build your website so that it is functional and user-friendly but at the same time attractive. Moreover, I add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way. I created web design for many famous brand companies.</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="text-center user-info">
+                                    <img src="{{ asset('storage/materials/' . auth()->user()->photo) }}" alt="avatar">
+                                    <p class="">{{ auth()->user()->name }}</p>
                                 </div>
+                                <div class="user-info-list">
 
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="work-platforms" class="section work-platforms">
-                                        <div class="info">
-                                            <h5 class="">Work Platforms</h5>
-                                            <div class="row">
-                                                <div class="col-md-12 text-right mb-5">
-                                                    <button id="add-work-platforms" class="btn btn-primary">Add</button>
-                                                </div>
-                                                <div class="col-md-11 mx-auto">
-
-                                                    <div class="platform-div">
-                                                        <div class="form-group">
-                                                            <label for="platform-title">Platforms Title</label>
-                                                            <input type="text" class="form-control mb-4" id="platform-title" placeholder="Platforms Title" value="Web Design" >
+                                    <div class="">
+                                        <ul class="contacts-block list-unstyled">
+                                            <li class="contacts-block__item">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg> Web Developer
+                                            </li>
+                                            <li class="contacts-block__item">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Jan 20, 1989
+                                            </li>
+                                            <li class="contacts-block__item">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>New York, USA
+                                            </li>
+                                            <li class="contacts-block__item">
+                                                <a href="mailto:example@mail.com"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>{{ auth()->user()->email }}</a>
+                                            </li>
+                                            <li class="contacts-block__item">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +1 (530) 555-12121
+                                            </li>
+                                            <li class="contacts-block__item">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <div class="social-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="platform-description">Description</label>
-                                                            <textarea class="form-control mb-4" id="platform-description" placeholder="Platforms Description" rows="10">Duis aute irure dolor in reprehenderit in voluptate velit esse eu fugiat nulla pariatur.</textarea>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="social-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
                                                         </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </form>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="social-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>                                    
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="contact" class="section contact">
-                                        <div class="info">
-                                            <h5 class="">Contact</h5>
-                                            <div class="row">
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="country">Country</label>
-                                                                <select class="form-control" id="country">
-                                                                    <option>All Countries</option>
-                                                                    <option selected>United States</option>
-                                                                    <option>India</option>
-                                                                    <option>Japan</option>
-                                                                    <option>China</option>
-                                                                    <option>Brazil</option>
-                                                                    <option>Norway</option>
-                                                                    <option>Canada</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" id="address" placeholder="Address" value="New York" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control mb-4" id="location" placeholder="Location">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="phone">Phone</label>
-                                                                <input type="text" class="form-control mb-4" id="phone" placeholder="Write your phone number here" value="+1 (530) 555-12121">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" class="form-control mb-4" id="email" placeholder="Write your email here" value="Jimmy@gmail.com">
-                                                            </div>
-                                                        </div>                                    
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="website1">Website</label>
-                                                                <input type="text" class="form-control mb-4" id="website1" placeholder="Write your website here">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <div class="education layout-spacing ">
+                            <div class="widget-content widget-content-area">
+                                <h3 class="">Education</h3>
+                                <div class="timeline-alter">
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">04 Mar 2009</p>
                                         </div>
-                                    </form>
-                                </div>
-
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="social" class="section social">
-                                        <div class="info">
-                                            <h5 class="">Social</h5>
-                                            <div class="row">
-
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="input-group social-linkedin mb-3">
-                                                                <div class="input-group-prepend mr-3">
-                                                                    <span class="input-group-text" id="linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" placeholder="linkedin Username" aria-label="Username" aria-describedby="linkedin" value="jimmy_turner">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="input-group social-tweet mb-3">
-                                                                <div class="input-group-prepend mr-3">
-                                                                    <span class="input-group-text" id="tweet"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" placeholder="Twitter Username" aria-label="Username" aria-describedby="tweet" value="@jTurner">
-                                                            </div>
-                                                        </div>                                                        
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="input-group social-fb mb-3">
-                                                                <div class="input-group-prepend mr-3">
-                                                                    <span class="input-group-text" id="fb"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" placeholder="Facebook Username" aria-label="Username" aria-describedby="fb" value="Jimmy Turner">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="input-group social-github mb-3">
-                                                                <div class="input-group-prepend mr-3">
-                                                                    <span class="input-group-text" id="github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" placeholder="Github Username" aria-label="Username" aria-describedby="github" value="@TurnerJimmy">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="t-dot">
                                         </div>
-                                    </form>
-                                </div>
-
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <div id="skill" class="section skill">
-                                        <div class="info">
-                                            <h5 class="">Skills</h5>
-                                            <div class="row progress-bar-section">
-
-                                                <div class="col-md-12 mx-auto">
-                                                    <div class="form-group">
-
-                                                        <div class="row">
-                                                            <div class="col-md-11 mx-auto">
-                                                                <div class="input-form">
-                                                                    <input type="text" class="form-control" id="skills" placeholder="Add Your Skills Here" value="">
-                                                                    <button id="add-skills" class="btn btn-primary">Add</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="custom-progress top-right progress-up" style="width: 100%">
-                                                        <p class="skill-name">PHP</p>
-                                                        <input type="range" min="0" max="100" class="custom-range progress-range-counter" value="25">
-                                                        <div class="range-count"><span class="range-count-number" data-rangecountnumber="25">25</span> <span class="range-count-unit">%</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="custom-progress top-right progress-up" style="width: 100%">
-                                                        <p class="skill-name">Wordpress</p>
-                                                        <input type="range" min="0" max="100" class="custom-range progress-range-counter" value="50">
-                                                        <div class="range-count"><span class="range-count-number" data-rangecountnumber="50">50</span> <span class="range-count-unit">%</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="custom-progress top-right progress-up" style="width: 100%">
-                                                        <p class="skill-name">Javascript</p>
-                                                        <input type="range" min="0" max="100" class="custom-range progress-range-counter" value="70">
-                                                        <div class="range-count"><span class="range-count-number" data-rangecountnumber="70">70</span> <span class="range-count-unit">%</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-11 mx-auto">
-                                                    <div class="custom-progress top-right progress-up" style="width: 100%">
-                                                        <p class="skill-name">jQuery</p>
-                                                        <input type="range" min="0" max="100" class="custom-range progress-range-counter" value="60">
-                                                        <div class="range-count"><span class="range-count-number" data-rangecountnumber="60">60</span> <span class="range-count-unit">%</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="t-text">
+                                            <p>Royal Collage of Art</p>
+                                            <p>Designer Illustrator</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">25 Apr 2014</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>Massachusetts Institute of Technology (MIT)</p>
+                                            <p>Designer Illustrator</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">04 Apr 2018</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>School of Art Institute of Chicago (SAIC)</p>
+                                            <p>Designer Illustrator</p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="edu-experience" class="section edu-experience">
-                                        <div class="info">
-                                            <h5 class="">Education</h5>
-                                            <div class="row">
-                                                <div class="col-md-12 text-right mb-5">
-                                                    <button id="add-education" class="btn btn-primary">Add</button>
-                                                </div>
-                                                <div class="col-md-11 mx-auto">
-
-                                                    <div class="edu-section">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="degree1">Enter Your Collage Name</label>
-                                                                    <input type="text" class="form-control mb-4" id="degree1" placeholder="Add your education here" value="Royal Collage of Art Designer Illustrator">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Starting From</label>
-
-                                                                            <div class="row">
-
-                                                                                <div class="col-md-6">
-                                                                                    <select class="form-control mb-4" id="s-from1">
-                                                                                        <option>Month</option>
-                                                                                        <option>Jan</option>
-                                                                                        <option>Feb</option>
-                                                                                        <option>Mar</option>
-                                                                                        <option>Apr</option>
-                                                                                        <option selected="selected">May</option>
-                                                                                        <option>Jun</option>
-                                                                                        <option>Jul</option>
-                                                                                        <option>Aug</option>
-                                                                                        <option>Sep</option>
-                                                                                        <option>Oct</option>
-                                                                                        <option>Nov</option>
-                                                                                        <option>Dec</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                                <div class="col-md-6">
-                                                                                    <select class="form-control mb-4" id="s-from2">
-                                                                                        <option>Year</option>
-                                                                                        <option>2021</option>
-                                                                                        <option>2020</option>
-                                                                                        <option>2018</option>
-                                                                                        <option>2017</option>
-                                                                                        <option>2016</option>
-                                                                                        <option>2015</option>
-                                                                                        <option>2014</option>
-                                                                                        <option>2013</option>
-                                                                                        <option>2012</option>
-                                                                                        <option>2011</option>
-                                                                                        <option>2010</option>
-                                                                                        <option selected="selected">2009</option>
-                                                                                        <option>2008</option>
-                                                                                        <option>2007</option>
-                                                                                        <option>2006</option>
-                                                                                        <option>2005</option>
-                                                                                        <option>2004</option>
-                                                                                        <option>2003</option>
-                                                                                        <option>2002</option>
-                                                                                        <option>2001</option>
-                                                                                        <option>2000</option>
-                                                                                        <option>1999</option>
-                                                                                        <option>1998</option>
-                                                                                        <option>1997</option>
-                                                                                        <option>1996</option>
-                                                                                        <option>1995</option>
-                                                                                        <option>1994</option>
-                                                                                        <option>1993</option>
-                                                                                        <option>1992</option>
-                                                                                        <option>1991</option>
-                                                                                        <option>1990</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Ending In</label>
-
-                                                                            <div class="row">
-
-                                                                                <div class="col-md-6 mb-4">
-                                                                                    <select class="form-control" id="end-in1">
-                                                                                        <option>Month</option>
-                                                                                        <option>Jan</option>
-                                                                                        <option>Feb</option>
-                                                                                        <option>Mar</option>
-                                                                                        <option>Apr</option>
-                                                                                        <option>May</option>
-                                                                                        <option>Jun</option>
-                                                                                        <option>Jul</option>
-                                                                                        <option>Aug</option>
-                                                                                        <option>Sep</option>
-                                                                                        <option>Oct</option>
-                                                                                        <option>Nov</option>
-                                                                                        <option>Dec</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                                <div class="col-md-6">
-                                                                                    <select class="form-control input-sm" id="end-in2">
-                                                                                        <option>Year</option>
-                                                                                        <option>2021</option>
-                                                                                        <option>2020</option>
-                                                                                        <option>2018</option>
-                                                                                        <option>2017</option>
-                                                                                        <option>2016</option>
-                                                                                        <option>2015</option>
-                                                                                        <option>2014</option>
-                                                                                        <option>2013</option>
-                                                                                        <option>2012</option>
-                                                                                        <option>2011</option>
-                                                                                        <option>2010</option>
-                                                                                        <option>2009</option>
-                                                                                        <option>2008</option>
-                                                                                        <option>2007</option>
-                                                                                        <option>2006</option>
-                                                                                        <option>2005</option>
-                                                                                        <option>2004</option>
-                                                                                        <option>2003</option>
-                                                                                        <option>2002</option>
-                                                                                        <option>2001</option>
-                                                                                        <option>2000</option>
-                                                                                        <option>1999</option>
-                                                                                        <option>1998</option>
-                                                                                        <option>1997</option>
-                                                                                        <option>1996</option>
-                                                                                        <option>1995</option>
-                                                                                        <option>1994</option>
-                                                                                        <option>1993</option>
-                                                                                        <option>1992</option>
-                                                                                        <option>1991</option>
-                                                                                        <option>1990</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <textarea class="form-control" placeholder="Description" rows="10"></textarea>
-                                                            </div>
-
-                                                        </div>
-                                                        
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="work-experience" class="section work-experience">
-                                        <div class="info">
-                                            <h5 class="">Work Experience</h5>
-                                            <div class="row">
-                                                <div class="col-md-12 text-right mb-5">
-                                                    <button id="add-work-exp" class="btn btn-primary">Add</button>
-                                                </div>
-                                                <div class="col-md-11 mx-auto">
-
-                                                    <div class="work-section">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="degree2">Company Name</label>
-                                                                    <input type="text" class="form-control mb-4" id="degree2" placeholder="Add your work here" value="Netfilx Inc.">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="degree3">Job Tilte</label>
-                                                                            <input type="text" class="form-control mb-4" id="degree3" placeholder="Add your work here" value="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="degree4">Location</label>
-                                                                            <input type="text" class="form-control mb-4" id="degree4" placeholder="Add your work here" value="">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Starting From</label>
-
-                                                                            <div class="row">
-
-                                                                                <div class="col-md-6">
-                                                                                    <select class="form-control mb-4" id="wes-from1">
-                                                                                        <option>Month</option>
-                                                                                        <option>Jan</option>
-                                                                                        <option>Feb</option>
-                                                                                        <option>Mar</option>
-                                                                                        <option>Apr</option>
-                                                                                        <option>May</option>
-                                                                                        <option>Jun</option>
-                                                                                        <option>Jul</option>
-                                                                                        <option>Aug</option>
-                                                                                        <option>Sep</option>
-                                                                                        <option>Oct</option>
-                                                                                        <option>Nov</option>
-                                                                                        <option>Dec</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                                <div class="col-md-6">
-                                                                                    <select class="form-control mb-4" id="wes-from2">
-                                                                                        <option>Year</option>
-                                                                                        <option>2021</option>
-                                                                                        <option>2020</option>
-                                                                                        <option>2018</option>
-                                                                                        <option>2017</option>
-                                                                                        <option>2016</option>
-                                                                                        <option>2015</option>
-                                                                                        <option>2014</option>
-                                                                                        <option>2013</option>
-                                                                                        <option>2012</option>
-                                                                                        <option>2011</option>
-                                                                                        <option>2010</option>
-                                                                                        <option>2009</option>
-                                                                                        <option>2008</option>
-                                                                                        <option>2007</option>
-                                                                                        <option>2006</option>
-                                                                                        <option>2005</option>
-                                                                                        <option>2004</option>
-                                                                                        <option>2003</option>
-                                                                                        <option>2002</option>
-                                                                                        <option>2001</option>
-                                                                                        <option>2000</option>
-                                                                                        <option>1999</option>
-                                                                                        <option>1998</option>
-                                                                                        <option>1997</option>
-                                                                                        <option>1996</option>
-                                                                                        <option>1995</option>
-                                                                                        <option>1994</option>
-                                                                                        <option>1993</option>
-                                                                                        <option>1992</option>
-                                                                                        <option>1991</option>
-                                                                                        <option>1990</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Ending In</label>
-
-                                                                            <div class="row">
-
-                                                                                <div class="col-md-6 mb-4">
-                                                                                    <select class="form-control" id="eiend-in1">
-                                                                                        <option>Month</option>
-                                                                                        <option>Jan</option>
-                                                                                        <option>Feb</option>
-                                                                                        <option>Mar</option>
-                                                                                        <option>Apr</option>
-                                                                                        <option>May</option>
-                                                                                        <option>Jun</option>
-                                                                                        <option>Jul</option>
-                                                                                        <option>Aug</option>
-                                                                                        <option>Sep</option>
-                                                                                        <option>Oct</option>
-                                                                                        <option>Nov</option>
-                                                                                        <option>Dec</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                                <div class="col-md-6">
-                                                                                    <select class="form-control input-sm" id="eiend-in2">
-                                                                                        <option>Year</option>
-                                                                                        <option>2021</option>
-                                                                                        <option>2020</option>
-                                                                                        <option>2018</option>
-                                                                                        <option>2017</option>
-                                                                                        <option>2016</option>
-                                                                                        <option>2015</option>
-                                                                                        <option>2014</option>
-                                                                                        <option>2013</option>
-                                                                                        <option>2012</option>
-                                                                                        <option>2011</option>
-                                                                                        <option>2010</option>
-                                                                                        <option>2009</option>
-                                                                                        <option>2008</option>
-                                                                                        <option>2007</option>
-                                                                                        <option>2006</option>
-                                                                                        <option>2005</option>
-                                                                                        <option>2004</option>
-                                                                                        <option>2003</option>
-                                                                                        <option>2002</option>
-                                                                                        <option>2001</option>
-                                                                                        <option>2000</option>
-                                                                                        <option>1999</option>
-                                                                                        <option>1998</option>
-                                                                                        <option>1997</option>
-                                                                                        <option>1996</option>
-                                                                                        <option>1995</option>
-                                                                                        <option>1994</option>
-                                                                                        <option>1993</option>
-                                                                                        <option>1992</option>
-                                                                                        <option>1991</option>
-                                                                                        <option>1990</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <textarea class="form-control" placeholder="Description" rows="10"></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
 
-                    <div class="account-settings-footer">
-                        
-                        <div class="as-footer-container">
+                        <div class="work-experience layout-spacing ">
+                            
+                            <div class="widget-content widget-content-area">
 
-                            <button id="multiple-reset" class="btn btn-warning">Reset All</button>
-                            <div class="blockui-growl-message">
-                                <i class="flaticon-double-check"></i>&nbsp; Settings Saved Successfully
+                                <h3 class="">Work Experience</h3>
+                                
+                                <div class="timeline-alter">
+                                
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">04 Mar 2009</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>Netfilx Inc.</p>
+                                            <p>Designer Illustrator</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">25 Apr 2014</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>Google Inc.</p>
+                                            <p>Designer Illustrator</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-timeline">
+                                        <div class="t-meta-date">
+                                            <p class="">04 Apr 2018</p>
+                                        </div>
+                                        <div class="t-dot">
+                                        </div>
+                                        <div class="t-text">
+                                            <p>Design Reset Inc.</p>
+                                            <p>Designer Illustrator</p>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <button id="multiple-messages" class="btn btn-primary">Save Changes</button>
 
                         </div>
 
                     </div>
-                </div>
+
+                    <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
+
+                        <div class="skills layout-spacing ">
+                            <div class="widget-content widget-content-area">
+                                <h3 class="">Skills</h3>
+                                <div class="progress br-30">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><div class="progress-title"><span>PHP</span> <span>25%</span> </div></div>
+                                </div>
+                                <div class="progress br-30">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><div class="progress-title"><span>Wordpress</span> <span>50%</span> </div></div>
+                                </div>
+                                <div class="progress br-30">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><div class="progress-title"><span>Javascript</span> <span>70%</span> </div></div>
+                                </div>
+                                <div class="progress br-30">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><div class="progress-title"><span>jQuery</span> <span>60%</span> </div></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="bio layout-spacing ">
+                            <div class="widget-content widget-content-area">
+                                <h3 class="">Bio</h3>
+                                <p>I'm Web Developer from California. I code and design websites worldwide. Mauris varius tellus vitae tristique sagittis. Sed aliquet, est nec auctor aliquet, orci ex vestibulum ex, non pharetra lacus erat ac nulla.</p>
+
+                                <p>Sed vulputate, ligula eget mollis auctor, lectus elit feugiat urna, eget euismod turpis lectus sed ex. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut velit finibus, scelerisque sapien vitae, pharetra est. Nunc accumsan ligula vehicula scelerisque vulputate.</p>
+
+                                <div class="bio-skill-box">
+
+                                    <div class="row">
+                                        
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Sass Applications</h5>
+                                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse eu fugiat nulla pariatur.</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                            
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Github Countributer</h5>
+                                                    <p>Ut enim ad minim veniam, quis nostrud exercitation aliquip ex ea commodo consequat.</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-0 mb-5 ">
+                                            
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Photograhpy</h5>
+                                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia anim id est laborum.</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-12 col-xl-6 col-lg-12 mb-xl-0 mb-0 ">
+                                            
+                                            <div class="d-flex b-skills">
+                                                <div>
+                                                </div>
+                                                <div class="">
+                                                    <h5>Mobile Apps</h5>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do et dolore magna aliqua.</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>                                
+                        </div>
+
+                    </div>
 
                 </div>
+                </div>
+        <div class="footer-wrapper">
+                <div class="footer-section f-section-1">
+                    <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights reserved.</p>
+                </div>
+                <div class="footer-section f-section-2">
+                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+                </div>
+            </div>
         </div>
         <!--  END CONTENT AREA  -->
 
     </div>
     <!-- END MAIN CONTAINER -->
-
+    
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
     <script src="bootstrap/js/popper.min.js"></script>
@@ -1475,13 +1009,5 @@ My job is to build your website so that it is functional and user-friendly but a
     </script>
     <script src="assets/js/custom.js"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-
-    <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-
-    <script src="plugins/dropify/dropify.min.js"></script>
-    <script src="plugins/blockui/jquery.blockUI.min.js"></script>
-    <!-- <script src="plugins/tagInput/tags-input.js"></script> -->
-    <script src="assets/js/users/account-settings.js"></script>
-    <!--  END CUSTOM SCRIPTS FILE  -->
 </body>
 </html>

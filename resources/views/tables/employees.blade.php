@@ -197,7 +197,12 @@
                             </td>
                             <td><div class="avatar avatar-xl"><img src="{{ asset('storage/materials/' . $employees[$i]->photo) }}" alt="a" width="90" height="90" class="rounded-circle"></div></td>
                             <td>{{$employees[$i]->name}}</td>
-                            <td>{{$employees[$i]->cin}}</td>
+                            <?php
+                            $str = "".$employees[$i]->cin;
+                            for($j=0;$j<8-strlen(strval($employees[$i]->cin));$j++)
+                                $str = "0".$str;
+                            ?>
+                            <td>{{$str}}</td>
                             <td>{{$employees[$i]->email}}</td>
                             <td width="200">{{$employees[$i]->adresse}}</td>    
                             <td class="text-center">

@@ -118,7 +118,7 @@
                             <form action="{{route('new_sale')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="mx-auto">
-                                     <div class="form-group col-md-3" >
+                                     <div class="form-group col-md-3">
                                             <select name="product" class="placeholder js-states form-control">
                                              
                                                 @foreach ($products as $product)
