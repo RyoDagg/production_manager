@@ -44,7 +44,7 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-          @include('items.sidebar')
+        @include('items.sidebar')
 
         <!--  END SIDEBAR  -->
 
@@ -93,6 +93,15 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     @yield('script')
+    <script>
+        function calculateTotal() {
+            var quantity = document.getElementById('quantity');
+            var unitPrice = parseFloat(document.getElementById('unitPrice').value);
+            quantity.value = parseInt(quantity.value)
+            var totalPrice = document.getElementById('totalPrice');
+            totalPrice.value = unitPrice * quantity.value;
+        }
+    </script>
 
 </body>
 

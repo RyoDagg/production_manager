@@ -1541,7 +1541,8 @@ select.form-control.form-custom {
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
   cursor: not-allowed;
   background-color: #f1f2f3 !important;
-  color: #acb0c3; }
+  color: #2b2b2b; 
+  font-weight: 600;}
 
 .help-block, .help-inline {
   color: #555555; }
@@ -1663,7 +1664,9 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   -webkit-transition: all 0.3s ease-out; }
 
 .table > tfoot > tr > th {
-  color: #3b3f5c; }
+  color: #a3a3a3; 
+  font-weight: 200;
+}
 
 .table-vertical-align tr, .table-vertical-align th, .table-vertical-align td {
   vertical-align: middle !important; }
