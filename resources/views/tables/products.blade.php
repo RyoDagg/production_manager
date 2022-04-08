@@ -104,7 +104,7 @@
         var rows = document.getElementById('rows');
 
         btn.onclick = function() {
-            rows.innerHTML += fields(index);
+            rows.insertAdjacentHTML("beforeend", fields(index));
             index++;
         }
     </script>

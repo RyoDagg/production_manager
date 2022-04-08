@@ -83,7 +83,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <input type="number" name="quanity0" class="form-control" placeholder="Quantity"
+                                <input type="number" name="quanity0" step="0.001" class="form-control" placeholder="Quantity"
                                     id="inputZip">
                             </div>
                         </div>

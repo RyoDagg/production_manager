@@ -24,7 +24,7 @@
                     <div class="form-row mb-0">
                         <div class="form-group col-md-7">
                             <div class="input-group">
-                                <input type="number" class="form-control integer" id="unitPrice" onchange="calculateTotal()"
+                                <input type="number" step="0.001" class="form-control integer" id="unitPrice" onchange="calculateTotal()"
                                     name="unitPrice" aria-describedby="basic-addon2" placeholder="Unit price...">
                                 <div class="input-group-append">
                                     <span class="input-group-text" style="background-color: #dccff7;"
