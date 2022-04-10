@@ -9,9 +9,9 @@ class Sale extends Model
 {
     use HasFactory;
 
-public function partners()
+public function clients()
     {
-        return $this->belongsTo(Partner::class);
+        return $this->belongsTo(Client::class);
     }
     public function products()
     {

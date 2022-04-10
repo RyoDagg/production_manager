@@ -16,15 +16,20 @@ class CreateSalesTable extends Migration
         Schema::dropIfExists('sales');
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('partner_id');
-            $table->foreign('partner_id')
+            $table->unsignedInteger('client_id');
+            $table->foreign('client_id')
                     ->references('id')
-                    ->on('partners')
+                    ->on('clients')
+                    ->cascadeOnDelete();
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')
+                    ->references('id')
+                    ->on('products')
                     ->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('prix_unit');
-            $table->float('prix_tot');
-            $table->string('status');
+            $table->float('prix_tot')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

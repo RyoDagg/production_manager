@@ -1,17 +1,22 @@
 @extends('layouts.dashboard')
 
 @section('head')
-    <title>Sales</title>
+    <title>Suppliers</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/tables/table-basic.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">
 @endsection
 
 @section('script')
     <script src="assets/js/scrollspyNav.js"></script>
+    <script>
+        checkall('todoAll', 'todochkbox');
+        $('[data-toggle="tooltip"]').tooltip()
+    </script>
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
 
     <script>
@@ -62,19 +67,18 @@
     </script>
 @endsection
 
-{{-- Modals --}}
-<form action="{{ route('new_sale') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('new_supplier') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @include('modals.add_sale')
+    @include('modals.add_supplier')
 </form>
 
 @section('content')
-    <?php $active_menu = 'accounting'; ?>
-    <?php $active_item = 'sales'; ?>
+    <?php $active_menu = 'production'; ?>
+    <?php $active_item = 'production'; ?>
 
     <div class="page-header">
         <div class="page-title">
-            <h3>Sales</h3>
+            <h3>Suppliers</h3>
         </div>
         {{-- <div class="container">
             <div class="row">
@@ -92,9 +96,9 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#sale_model" type="button"
+                    <button data-toggle="modal" data-target="#supplierModal" type="button"
                         class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                        <strong>New Sale</strong>
+                        <strong>New Supplier</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
                 </div>
@@ -103,19 +107,23 @@
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Product</th>
-                                <th>Client</th>
-                                <th>Date</th>
-                                <th>Quantity</th>
-                                <th>Unit Price</th>
-                                <th>Total Price</th>
-                                <th>Status</th>
+                                <th class="checkbox-column">
+                                    {{-- <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
+                                    <span class="new-control-indicator"></span>
+                                </label> --}}
+                                </th>
+                                <th>Name</th>
+                                <th>CIN</th>
+                                <th>Email</th>
+                                <th>Address</th>
+
+
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($sales as $sale)
+                            @foreach ($fournisseurs as $fournisseur)
                                 <tr>
                                     <td class="checkbox-column">
                                         <label class="new-control new-checkbox checkbox-primary"
@@ -124,15 +132,17 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $sale->product_id }}</td>
-                                    <td>{{ $sale->client_id }}</td>
-                                    <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
-                                    <td>{{ $sale->quantity }}</td>
-                                    <td>{{ $sale->prix_unit }}</td>
-                                    <td>{{ $sale->prix_tot }}</td>
-                                    <td>{{ $sale->status }}</td>
+                                    <td>{{ $fournisseur->name }}
+                                        {!! $fournisseur->is_company ? '<span class="badge badge-secondary"> Company </span>' : '' !!}
+                                    </td>
+                                    <td width="200">{{ $fournisseur->cin }}</td>
+                                    <td width="200">{{ $fournisseur->email }}</td>
+                                    <td width="200">{{ $fournisseur->adresse }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Shop"><img src="icons/cart.png" width="25" height="25"
+                                                        alt=""></a></li>
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                     title="View"><img src="icons/view.png" width="25" height="25"
                                                         alt=""></a></li>
@@ -170,13 +180,10 @@
                                         <span class="new-control-indicator"></span>
                                     </label>
                                 </th>
-                                <th>Date</th>
-                                <th>Client</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Unit Price</th>
-                                <th>Total Price</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                <th>CIN</th>
+                                <th>Email</th>
+                                <th>Address</th>
                                 <th class="text-center"></th>
                             </tr>
                         </tfoot>

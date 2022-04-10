@@ -74,17 +74,14 @@
                             <div class="form-group mb-4 col-md-8">
                                 <select class="placeholder selectpicker form-control" data-live-search="true"
                                     name="material0">
-                                    <option>Material</option>
-                                    <option value="one">First</option>
-                                    <option value="two">Second</option>
-                                    <option value="three">Third</option>
-                                    <option value="four">Fourth</option>
-                                    <option value="five">Fifth</option>
+                                    @foreach ($materials as $material)
+                                        <option value="{{ $material->id }}">{{ $material->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <input type="number" name="quanity0" step="0.001" class="form-control" placeholder="Quantity"
-                                    id="inputZip">
+                                <input type="number" name="quanity0" step="0.001" class="form-control"
+                                    placeholder="Quantity" id="inputZip">
                             </div>
                         </div>
                     </div>

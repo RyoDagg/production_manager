@@ -9,9 +9,9 @@ class Purchase extends Model
 {
     use HasFactory;
 
-public function partners()
+public function fournisseurs()
     {
-        return $this->belongsTo(Partner::class);
+        return $this->belongsTo(Fournisseur::class);
     }
 
 public function products()

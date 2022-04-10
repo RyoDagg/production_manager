@@ -10,16 +10,6 @@
         <div class="page-title">
             <h3>Purchases</h3>
         </div>
-        {{-- <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <a href="#add_new" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                        <strong>Add Purchase</strong>
-                        <img src="icons/add.png" style="margin-left: 5px;" width="25" height="25" alt="">
-                    </a>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     <div class="row layout-top-spacing" id="cancel-row">

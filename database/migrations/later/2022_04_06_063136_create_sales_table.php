@@ -28,8 +28,8 @@ class CreateSalesTable extends Migration
                     ->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('prix_unit');
-            $table->float('prix_tot');
-            $table->string('status');
+            $table->float('prix_tot')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,12 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('photo');
+            $table->unsignedInteger('unit_id');
+            $table->foreign('unit_id')
+                    ->references('id')
+                    ->on('units')
+                    ->cascadeOnDelete();
+            $table->string('photo')->nullable();
             $table->text('description');
             $table->integer('stock')->default(0);
             $table->timestamps();

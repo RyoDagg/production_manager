@@ -11,12 +11,10 @@
 @endsection
 
 @section('script')
+    <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="assets/js/scrollspyNav.js"></script>
-    <script>
-        checkall('todoAll', 'todochkbox');
-        $('[data-toggle="tooltip"]').tooltip()
-    </script>
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+    <script src="plugins/table/datatable/datatables.js"></script>
 
     <script>
         //First upload
@@ -24,7 +22,6 @@
         //Second upload
         var secondUpload = new FileUploadWithPreview('mySecondImage')
     </script>
-    <script src="plugins/table/datatable/datatables.js"></script>
     <script>
         /* Custom filtering function which will search data in column four between two values */
         $.fn.dataTable.ext.search.push(
@@ -72,11 +69,9 @@
                                 <div class="form-group mb-4 col-md-8">\
                                     <select class="placeholder js-states form-control" name="material' + index + '">\
                                         <option>Material</option>\
-                                        <option value="one">First</option>\
-                                        <option value="two">Second</option>\
-                                        <option value="three">Third</option>\
-                                        <option value="four">Fourth</option>\
-                                        <option value="five">Fifth</option>\
+                                        @foreach ($materials as $material)\
+                                          <option value="{{ $material->id }}">{{ $material->name }}</option>\
+                                        @endforeach\
                                     </select>\
                                 </div>\
                                 <div class="form-group col-md-3">\
@@ -110,6 +105,11 @@
     </script>
 @endsection
 
+<form action="{{ route('new_product') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @include('modals.add_product')
+</form>
+
 @section('content')
     <?php
     $active_menu = 'production';
@@ -137,80 +137,75 @@
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
                     <button data-toggle="modal" data-target="#productModal" type="button"
-                        href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
+                        class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
                         <strong>Add Product</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
                 </div>
-
-
-                <form action="">
-                @include('modals.add_product')
-                </form>
-
-
                 <div class="table-responsive mb-4 mt-4">
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary"
-                                        style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </th>
+                                <th></th>
+                                <th></th>
                                 <th>Name</th>
+                                <th>Description</th>
                                 <th>Stock</th>
-                                <th>Materials</th>
-                                <th>Cost</th>
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary"
-                                        style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todo-1">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </td>
-                                <td>Fiona Green</td>
-                                <td>48</td>
-                                <td>Chief Operating Officer (COO)</td>
-                                <td>$850,000</td>
-                                <td class="text-center">
-                                    <ul class="table-controls">
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Shop"><img src="icons/cart.png" width="25" height="25" alt=""></a>
-                                        </li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="View"><img src="icons/view.png" width="25" height="25" alt=""></a>
-                                        </li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-edit-2 text-success">
-                                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                    </path>
-                                                </svg></a></li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-trash-2 text-danger">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg></a></li>
-                                    </ul>
-                                </td>
-                            </tr>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <label class="new-control new-checkbox checkbox-primary"
+                                            style="height: 18px; margin: 0 auto;">
+                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-1">
+                                            <span class="new-control-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div class="avatar avatar-xl"><img
+                                                src="{{ asset('storage/materials/' . $product->photo) }}"
+                                                alt="Image not found" onerror="this.src='storage/materials/alt_p.png';"
+                                                width="90" height="90" class="rounded-circle"></div>
+                                    </td>
+                                    </td>
+                                    <td>{{ $product->name }}</td>
+                                    <td style="width: 40%">{{ $product->description }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td class="text-center">
+                                        <ul class="table-controls">
+                                            <li><a href="   javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Shop"><img src="icons/cart.png" width="25" height="25"
+                                                        alt=""></a></li>
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="View"><img src="icons/view.png" width="25" height="25"
+                                                        alt=""></a></li>
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-edit-2 text-success">
+                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        </path>
+                                                    </svg></a></li>
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-trash-2 text-danger">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                        </path>
+                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                    </svg></a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>

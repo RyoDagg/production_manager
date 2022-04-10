@@ -12,13 +12,9 @@
 
 @section('script')
     <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
-    <script src="plugins/sweetalerts/custom-sweetalert.js"></script>
     <script src="assets/js/scrollspyNav.js"></script>
-    <script>
-        checkall('todoAll', 'todochkbox');
-        $('[data-toggle="tooltip"]').tooltip()
-    </script>
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+    <script src="plugins/table/datatable/datatables.js"></script>
 
     <script>
         //First upload
@@ -26,7 +22,6 @@
         //Second upload
         var secondUpload = new FileUploadWithPreview('mySecondImage')
     </script>
-    <script src="plugins/table/datatable/datatables.js"></script>
     <script>
         /* Custom filtering function which will search data in column four between two values */
         $.fn.dataTable.ext.search.push(
@@ -69,7 +64,8 @@
 @endsection
 
 {{-- Modals --}}
-<form action="">
+<form action="{{ route('new_material') }}" method="POST" enctype="multipart/form-data">
+    @csrf
     @include('modals.add_material')
 </form>
 
@@ -103,8 +99,8 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#registerModal" type="button"
-                        href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
+                    <button data-toggle="modal" data-target="#materialModal" type="button"
+                        class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
                         <strong>Add Material</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
@@ -114,13 +110,7 @@
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary"
-                                        style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </th>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Stock</th>
                                 <th>Description</th>
@@ -129,61 +119,76 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary"
-                                        style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todo-1">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </td>
-                                <td>Tiger Nixon</td>
-                                <td>61</td>
-                                <td>System Architect</td>
-                                <td>$320,800</td>
-                                <td class="text-center">
-                                    <ul class="table-controls">
-                                        <li data-toggle="modal" data-target="#buyMaterials">
-                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Shop">
-                                                <img src="icons/cart.png" width="25" height="25" alt="">
-                                            </a>
-                                        </li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="View"><img src="icons/view.png" width="25" height="25" alt=""></a>
-                                        </li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-edit-2 text-success">
-                                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                    </path>
-                                                </svg></a></li>
 
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                class="confirm warning" title="Delete">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-trash-2 text-danger">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg></a></li>
-                                    </ul>
-                                </td>
-                            </tr>
+                            @foreach ($materials as $material)
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <label class="new-control new-checkbox checkbox-primary"
+                                            style="height: 18px; margin: 0 auto;">
+                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-1">
+                                            <span class="new-control-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div class="avatar avatar-xl"><img
+                                                src="{{ asset('storage/materials/' . $material->photo) }}"
+                                                alt="Image not found" onerror="this.src='storage/materials/alt.png';"
+                                                width=" 90" height="90" class="rounded-circle"></div>
+                                    </td>
+                                    <td>{{ $material->name }}</td>
+                                    <td style="width: 50%">{{ $material->description }}</td>
+                                    <td>{{ $material->stock }}</td>
+                                    <td class="text-center">
+                                        <ul class="table-controls">
+                                            <li data-toggle="modal" data-target="#buyMaterials">
+                                                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Shop">
+                                                    <img src="icons/cart.png" width="25" height="25" alt="">
+                                                </a>
+                                            </li>
+                                            {{-- <li><a href="{{route('materials.show', $material->id)}}" data-toggle="modal" data-target="" type="button"  data-placement="top" title="View"><img src="icons/view.png" width="25" height="25" alt=""></a></li> --}}
+                                            <li><a href="{{ route('materials.edit', $material->id) }}"
+                                                    data-toggle="tooltip" data-placement="top" title="Edit"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-edit-2 text-success">
+                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        </path>
+                                                    </svg></a></li>
+                                            <li>
+                                                <form method="POST"
+                                                    action="{{ route('materials.delete', $material->id) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button href="javascript:void(0);" data-toggle="tooltip"
+                                                        data-placement="top" style="background: 0%;border: none;"
+                                                        title="Delete" type="submit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-trash-2 text-danger">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="checkbox-column"></th>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Stock</th>
-                                <th>description</th>
+                                <th>Description</th>
                                 <th>Last Purchases Price</th>
                                 <th class="text-center"></th>
                             </tr>

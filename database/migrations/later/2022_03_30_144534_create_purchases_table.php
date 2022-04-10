@@ -15,15 +15,20 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('partner_id');
-            $table->foreign('partner_id')
+            $table->unsignedInteger('fournisseur_id');
+            $table->foreign('fournisseur_id')
                     ->references('id')
-                    ->on('partners')
+                    ->on('fournisseurs')
                     ->cascadeOnDelete();
+            $table->unsignedInteger('material_id');
+            $table->foreign('material_id')
+                            ->references('id')
+                            ->on('materials')
+                            ->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('prix_unit');
-            $table->float('prix_tot');
-            $table->string('status');
+            $table->float('prix_tot')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
