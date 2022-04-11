@@ -12,7 +12,11 @@
 @endsection
 
 @section('content')
-    <?php $active_menu = 'dashboard'; ?>
+    <?php
+    $active_menu = 'dashboard';
+    $active_item = '';
+    ?>
+
     <div class="page-header">
         <div class="page-title">
             <h3>Analytics</h3>

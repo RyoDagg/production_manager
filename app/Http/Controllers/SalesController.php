@@ -36,6 +36,7 @@ class SalesController extends Controller
             $sale->client_id=$request->input('client'); 
             $sale->quantity=$request->input('quantite'); 
             $sale->prix_unit=$request->input('prix_unit');
+
             $sale->prix_tot=$sale->quantity * $sale->prix_unit;
 
             foreach ($sale->products as $sold_product) {
@@ -68,6 +69,14 @@ class SalesController extends Controller
             ->route('tables.sales')
             ->withStatus('The sale record has been successfully deleted.');
     }
+
+    
+             $sale->save();
+        
+        return redirect()->back()
+            ->withStatus('Sale registered successfully.');
+    }
+    
 
    
 }

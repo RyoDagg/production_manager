@@ -70,13 +70,18 @@
 @endsection
 
 @section('content')
-<?php $active_menu = 'production'; ?>
 
-<div class="page-header">
-    <div class="page-title">
-        <h3>Productions</h3>
-    </div>
-    {{-- <div class="container">
+    <?php
+    $active_menu = 'production';
+    $active_item = 'production';
+    ?>
+    
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Production</h3>
+        </div>
+        {{-- <div class="container">
+
             <div class="row">
                 <div class="col-md-12 text-right">
                     <a href="#add_new" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">

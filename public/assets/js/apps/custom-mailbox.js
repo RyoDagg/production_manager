@@ -638,7 +638,7 @@ $(document).ready(function() {
 			$html = '<div class="mail-item sentmail">' +
                         '<div class="animated animatedFadeInUp fadeInUp" id="sfdsf">' +
                             '<div class="mb-0">' +
-                                '<div class="mail-item-heading collapsed"  data-toggle="collapse" role="navigation" data-target="#'+randomAlphaNumeric+'" aria-expanded="false">' +
+                                '<div class="mail-item-heading collapsed"  ="collapse" role="navigation" data-target="#'+randomAlphaNumeric+'" aria-expanded="false">' +
                                     '<div class="mail-item-inner">' +
 
                                         '<div class="d-flex">' +

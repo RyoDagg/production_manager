@@ -2,10 +2,14 @@
     aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+<
              {{-- alert message --}}
                         @if(session('status'))
                          <h6 class="alert alert-success">{{session('status')}}</h6>
                          @endif
+
+
+
             <div class="modal-header" id="productModalLabel">
                 <h4 class="modal-title text-primary">Add New Product</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
@@ -75,18 +79,19 @@
                     <div id="rows">
                         <div class="form-row mb-4" id="row0">
                             <div class="form-group mb-4 col-md-8">
-                                <select name="material" class="placeholder js-states form-control" data-live-search="true"
-                                    >
+
+
+                                <select class="placeholder selectpicker form-control" data-live-search="true"
+                                    name="material0">
                                     @foreach ($materials as $material)
-           
-                                                <option value="{{$material->id}}">{{$material->name}}</option>
-                                                
-                                                @endforeach
+                                        <option value="{{ $material->id }}">{{ $material->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <input type="number" name="quantite" class="form-control" placeholder="Quantity"
-                                    id="inputZip">
+                                <input type="number" name="quanity0" step="0.001" class="form-control"
+                                    placeholder="Quantity" id="inputZip">
+
                             </div>
                         </div>
                     </div>
@@ -260,4 +265,6 @@
             </div>
         </div>
     </div>
-    </div>
+
+</div>
+

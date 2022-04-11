@@ -70,23 +70,18 @@
 @endsection
 
 @section('content')
-<?php $active_menu = 'production'; ?>
 
-<div class="page-header">
-    <div class="page-title">
-        <h3>Purchases</h3>
+    <?php
+    $active_menu = 'accounting';
+    $active_item = 'purchases';
+    ?>
+    
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Purchases</h3>
+        </div>
     </div>
-    {{-- <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <a href="#add_new" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                        <strong>Add Material</strong>
-                        <img src="icons/add.png" style="margin-left: 5px;" width="25" height="25" alt="">
-                    </a>
-                </div>
-            </div>
-        </div> --}}
-</div>
+
 
 <div class="row layout-top-spacing" id="cancel-row">
     <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">

@@ -72,6 +72,9 @@
 @section('content')
 <?php $active_menu = 'production'; ?>
 
+<?php $active_item = 'production'; ?>
+
+
 <div class="page-header">
     <div class="page-title">
         <h3>Employees</h3>
@@ -92,7 +95,9 @@
     <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
         <div class="widget-content widget-content-area br-6">
             <div class="col-md-12 text-right">
-                <button data-toggle="modal" data-target="#registerModal" type="button" href="{{ route('materials_form') }}" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
+
+                <button data-toggle="modal" data-target="#registerModal" type="button" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
+
                     <strong>New Employee</strong>
                     <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                 </button>

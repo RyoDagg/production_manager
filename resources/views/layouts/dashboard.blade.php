@@ -15,6 +15,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap-select/bootstrap-select.min.css">
     <!-- END GLOBAL MANDATORY STYLES -->
     @yield('head')
 
@@ -44,7 +45,7 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-          @include('items.sidebar')
+        @include('items.sidebar')
 
         <!--  END SIDEBAR  -->
 
@@ -93,7 +94,16 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     @yield('script')
-
+    <script>
+        function calculateTotal() {
+            var quantity = document.getElementById('quantity');
+            var unitPrice = parseFloat(document.getElementById('unitPrice').value);
+            quantity.value = parseInt(quantity.value)
+            var totalPrice = document.getElementById('totalPrice');
+            totalPrice.value = unitPrice * quantity.value;
+        }
+    </script>
+    <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
 </body>
 
 </html>

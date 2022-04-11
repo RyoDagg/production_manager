@@ -11,7 +11,10 @@ class Purchase extends Model
 
 public function fournisseurs()
     {
+
         return $this->belongsTo(Fournisseur::class,'fournisseur_id');
+
+        return $this->belongsTo(Fournisseur::class);
     }
 
 public function materials()

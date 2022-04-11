@@ -78,19 +78,19 @@
 
         <div class="submenu" id="productions">
             <ul class="submenu-list" data-parent-element="#production">
-                <li>
+                <li class="{{ $active_item == 'products' ? 'active' : '' }}">
                     <a href="{{ route('products') }}">
                         <span class="icon">
                             <img src="icons/shirt.png" width="30" height="30" alt="">
                         </span> Products </a>
                 </li>
-                <li>
+                <li class="{{ $active_item == 'materials' ? 'active' : '' }}">
                     <a href="{{ route('materials') }}">
                         <span class="icon">
                             <img src="icons/textile.png" width="30" height="30" alt="">
                         </span> Raw Materials </a>
                 </li>
-                <li>
+                <li class="{{ $active_item == 'production' ? 'active' : '' }}">
                     <a href="{{ route('production') }}">
                         <span class="icon">
                             <img src="icons/gear.png" width="30" height="30" alt="">
@@ -101,17 +101,23 @@
 
         <div class="submenu" id="accountings">
             <ul class="submenu-list" data-parent-element="#forms">
-                <li>
+                <li class="{{ $active_item == 'sales' ? 'active' : '' }}">
                     <a href="{{ route('sales') }}">
                         <span class="icon">
                             <img src="icons/sell.png" width="30" height="30" alt="">
                         </span> Sales </a>
                 </li>
-                <li>
+                <li class="{{ $active_item == 'purchases' ? 'active' : '' }}">
                     <a href="{{ route('purchases') }}">
                         <span class="icon">
                             <img src="icons/buy.png" width="30" height="30" alt="">
                         </span> Purchases </a>
+                </li>
+                <li class="{{ $active_item == 'invoices' ? 'active' : '' }}">
+                    <a href="{{ route('invoices') }}">
+                        <span class="icon">
+                            <img src="icons/invoice.png" width="30" height="30" alt="">
+                        </span> Invoices </a>
                 </li>
             </ul>
         </div>
