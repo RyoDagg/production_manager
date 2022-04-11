@@ -11,11 +11,11 @@ class Purchase extends Model
 
 public function fournisseurs()
     {
-        return $this->belongsTo(Fournisseur::class);
+        return $this->belongsTo(Fournisseur::class,'fournisseur_id');
     }
 
-public function products()
+public function materials()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Materials::class,'material_id');
     }
 }

@@ -32,9 +32,36 @@ class ProductController extends Controller
                 $product->photo = $filename;
             }
         $product->material_id=$request->input('material');
-         //submit material
+         //submit product
         $product->save();
-        // redirect to the materials page after saving the record
+        // redirect to the prodcuts page after saving the record
         return redirect()->back()->with('status','Material Added Successfully');
+    }
+
+    //Store a newly created resource in storage.
+    public function store(Request $request, Product $model)
+    {
+        $model->create($request->all());
+
+        return redirect()
+            ->route('tables.products')
+            ->withStatus('Product successfully registered.');
+    }
+    public function edit_product(Request $request,Product $product){
+
+        $product->update($request->all());
+
+        return redirect()
+            ->route('tables.products')
+            ->withStatus('Product updated successfully.');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return redirect()
+            ->route('tables.products')
+            ->withStatus('Product removed successfully.');
     }
 }

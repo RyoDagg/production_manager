@@ -191,8 +191,8 @@
                                 </label>
                             </td>
                             <td>{{ date('d-m-y', strtotime($purchase->created_at)) }}</td>
-                            <td>{{$purchases[$i]->fournisseur_id}}</td>
-                            <td>{{$purchases[$i]->material_id}}</td>
+                            <td>{{$purchases[$i]->fournisseurs->name}}</td>
+                            <td>{{$purchases[$i]->materials->name}}</td>
                              <td>{{$purchases[$i]->quantity}}</td>
                             <td> {{$purchases[$i]->prix_unit}}</td>
                             <td>{{$purchases[$i]->prix_tot}}</td>

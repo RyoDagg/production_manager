@@ -191,8 +191,8 @@
                                 </label>
                             </td>
                             <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
-                           <td>{{$sales[$i]->client_id}}</td>
-                            <td>{{$sales[$i]->product_id}}</td>
+                           <td>{{$sales[$i]->clients->name}}</td>
+                            <td>{{$sales[$i]->products->name}}</td>
                              <td>{{$sales[$i]->quantity}}</td>
                             <td>{{$sales[$i]->prix_unit}}</td>
                             <td>{{$sales[$i]->prix_tot}}</td>

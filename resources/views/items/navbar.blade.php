@@ -292,7 +292,6 @@
                     <form method="post" action="/logout">
                     @csrf
                     <a href="/" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">
-                        
 
                         <form id="logout-form" method="POST" action="/logout">
                             @csrf

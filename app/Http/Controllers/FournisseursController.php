@@ -14,4 +14,6 @@ class FournisseursController extends Controller
         return view('tables.fournisseurs')->with('fournisseurs', $fournisseur)
                                 
             ;}
+
+    
 }

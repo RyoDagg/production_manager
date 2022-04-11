@@ -53,6 +53,15 @@ class MaterialsController extends Controller
             'material' => $material
         ]);
     }
+
+    public function store(Request $request, Materials $model)
+    {
+        $model->create($request->all());
+
+        return redirect()
+            ->route('tables.materials')
+            ->withStatus('Material successfully registered.');
+    }
     //edit material
     public function edit_material(Materials $material){
 

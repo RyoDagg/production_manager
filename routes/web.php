@@ -48,16 +48,23 @@ Route::get('/users', [AdminController::class, 'get_users'])->name('users');
 Route::get('/materials', [MaterialsController::class, 'get_materials'])->name('materials');
 Route::post('/new_material', [MaterialsController::class, 'new_material'])->name('new_material');
 Route::get('/materials/{id}', [MaterialsController::class, 'show_material'])->name('materials.show');
+Route::post('/materials',[MaterialsController::class,'store']);
 Route::get('/materials/{id}', [MaterialsController::class, 'edit_material'])->name('materials.edit');
 Route::delete('/materials/{id}', [MaterialsController::class, 'delete_material'])->name('materials.delete');
 
 //sales
 Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');
 Route::post('/new_sale', [SalesController::class, 'new_sale'])->name('new_sale');
+Route::get('/sales/{id}', [SalesController::class, 'view_sale'])->name('view_sale');
+Route::delete('/sales/{id}', [SalesController::class, 'delete_sale'])->name('delete_sale');
+
 
 //purchases
 Route::get('/purchases', [PurchasesController::class, 'get_purchases'])->name('purchases');
 Route::post('/new_purchase', [PurchasesController::class, 'new_purchase'])->name('new_purchase');
+Route::get('/purchases/{id}', [PurchasesController::class, 'view_purchase'])->name('view_purchase');
+Route::delete('/purchases/{id}', [SalesController::class, 'delete_purchase'])->name('delete_purchase');
+
 
 //employees
 Route::get('/employees', [EmployeeController::class, 'get_employees'])->name('employees');
@@ -66,13 +73,16 @@ Route::post('/new_employee', [EmployeeController::class, 'new_employee'])->name(
 //products
 Route::get('/products', [ProductController::class, 'get_products'])->name('products');
 Route::post('/new_product', [ProductController::class, 'new_product'])->name('new_product');
+Route::get('/products/{id}', [ProductController::class, 'edit_product'])->name('products.edit');
+Route::post('/products',[ProductController::class,'store']);
+Route::delete('/products/{id}', [ProductController::class, 'delete_product'])->name('products.delete');
 
 
 //Froms Controllers
 Route::get('/material-form', [MaterialsController::class, 'materials_form'])->name('materials_form');
 
 //session
-Route::post('logout',[SessionController::class, 'destroy']);
+Route::post('logout',[SessionController::class, 'destroy'])->middleware('auth');
 
 
 //Voyager
