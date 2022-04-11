@@ -104,9 +104,7 @@
                     <div class="modal-content">
                         
                         {{-- alert message --}}
-                        @if(session('status'))
-                         <h6 class="alert alert-success">{{session('status')}}</h6>
-                         @endif
+                        
 
                         <div class="modal-header" id="registerModalLabel">
                             <h4 class="modal-title text-primary">New Client</h4>
