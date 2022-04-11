@@ -70,13 +70,6 @@ class SalesController extends Controller
             ->withStatus('The sale record has been successfully deleted.');
     }
 
-    
-             $sale->save();
-        
-        return redirect()->back()
-            ->withStatus('Sale registered successfully.');
-    }
-    
 
    
 }

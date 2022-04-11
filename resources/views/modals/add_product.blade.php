@@ -2,60 +2,58 @@
     aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-<
-             {{-- alert message --}}
-                        @if(session('status'))
-                         <h6 class="alert alert-success">{{session('status')}}</h6>
-                         @endif
+            < {{-- alert message --}} @if (session('status'))
+                <h6 class="alert alert-success">{{ session('status') }}</h6>
+                @endif
 
 
 
-            <div class="modal-header" id="productModalLabel">
-                <h4 class="modal-title text-primary">Add New Product</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-x">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg></button>
-            </div>
-            <div class="modal-body">
-                <div class="mx-auto">
-                    <div class="form-row mb-4">
-                        <div class="form-group mb-2 col-md-12">
-                            {{-- <label>Example textarea</label> --}}
-                            <input type="text" class="form-control" name="name" placeholder="Name">
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-4">
-                        <textarea class="form-control" name="description" placeholder="Description..." rows="3"></textarea>
-                    </div>
-                    <div class="form-row  mb-4">
-                        <div class="form-group mb-4">
-                            <div class="custom-file-container" data-upload-id="myFirstImage">
-                                <label>Upload Image <a href="javascript:void(0)"
-                                        class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-                                <label class="custom-file-container__custom-file">
-                                    <input type="file" class="custom-file-container__custom-file__custom-file-input"
-                                        accept="image/*">
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                                    <span class="custom-file-container__custom-file__custom-file-control"></span>
-                                </label>
-                                <div class="custom-file-container__image-preview"></div>
+                <div class="modal-header" id="productModalLabel">
+                    <h4 class="modal-title text-primary">Add New Product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mx-auto">
+                        <div class="form-row mb-4">
+                            <div class="form-group mb-2 col-md-12">
+                                {{-- <label>Example textarea</label> --}}
+                                <input type="text" class="form-control" name="name" placeholder="Name">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 text-right">
-                        <a data-dismiss="modal" data-toggle="modal" href="#prodmatModal"
-                            class="btn btn-primary mb-2 mr-2 btn-rounded">
-                            <strong>Next</strong>
-                            <img src="icons/next.png" width="20" height="20" alt="">
-                        </a>
+
+                        <div class="form-group mb-4">
+                            <textarea class="form-control" name="description" placeholder="Description..." rows="3"></textarea>
+                        </div>
+                        <div class="form-row  mb-4">
+                            <div class="form-group mb-4">
+                                <div class="custom-file-container" data-upload-id="myFirstImage">
+                                    <label>Upload Image <a href="javascript:void(0)"
+                                            class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                    <label class="custom-file-container__custom-file">
+                                        <input type="file" class="custom-file-container__custom-file__custom-file-input"
+                                            accept="image/*">
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                        <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                    </label>
+                                    <div class="custom-file-container__image-preview"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <a data-dismiss="modal" data-toggle="modal" href="#prodmatModal"
+                                class="btn btn-primary mb-2 mr-2 btn-rounded">
+                                <strong>Next</strong>
+                                <img src="icons/next.png" width="20" height="20" alt="">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
@@ -81,9 +79,10 @@
                             <div class="form-group mb-4 col-md-8">
 
 
-                                <select class="placeholder selectpicker form-control" data-live-search="true"
+                                <select class="placeholder required selectpicker form-control" data-live-search="true"
                                     name="material0">
                                     @foreach ($materials as $material)
+                                        <option value="">Material</option>
                                         <option value="{{ $material->id }}">{{ $material->name }}</option>
                                     @endforeach
                                 </select>
@@ -267,4 +266,3 @@
     </div>
 
 </div>
-

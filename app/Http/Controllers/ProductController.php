@@ -17,27 +17,6 @@ class ProductController extends Controller
         return view('tables.products')->with('products', $product)
                                       ->with('materials', $material);
     }
-    public function new_product(Request $request){
-        // ddd($request->input());
-         $product = new Product();
-         
-         $product->name=$request->input('name'); //name
-         $product->stock=$request->input('quantite'); //quantite
-         $product->description=$request->input('description'); //description
-         //photo
-        if($request->photo){
-            $file = $request->photo;
-                $extenstion = $file->getClientOriginalExtension();
-                $filename = time().'.'.$extenstion;
-                $file->move('storage/materials/', $filename);
-                $product->photo = $filename;
-            }
-        $product->material_id=$request->input('material');
-         //submit product
-        $product->save();
-        // redirect to the prodcuts page after saving the record
-        return redirect()->back()->with('status','Material Added Successfully');
-    }
 
     //Store a newly created resource in storage.
     public function store(Request $request, Product $model)
@@ -64,13 +43,8 @@ class ProductController extends Controller
         return redirect()
             ->route('tables.products')
             ->withStatus('Product removed successfully.');
-
-    {
-        $product = Product::orderBy('created_at', 'DESC')->get();
-        $material = Materials::all();
-        return view('tables.products')->with('products', $product)
-            ->with('materials', $material);
     }
+
     public function new_product(Request $request)
     {
         ddd($request->input());
