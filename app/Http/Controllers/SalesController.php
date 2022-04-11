@@ -36,23 +36,47 @@ class SalesController extends Controller
             $sale->client_id=$request->input('client'); 
             $sale->quantity=$request->input('quantite'); 
             $sale->prix_unit=$request->input('prix_unit');
+
+            $sale->prix_tot=$sale->quantity * $sale->prix_unit;
+
+            foreach ($sale->products as $sold_product) {
+                $product_name = $sold_product->product->name;
+                $product_stock = $sold_product->product->stock;
+                if($sold_product->qty > $product_stock) return back()->withError("The product '$product_name' does not have enough stock. Only has $product_stock units.");
+            }
+    
+            foreach ($sale->products as $sold_product) {
+                $sold_product->product->stock -= $sold_product->qty;
+                $sold_product->product->save();
+            }
+
+            $sale->save();
+        
+        return redirect()->back()
+            ->withStatus('Sale registered successfully.');
+    }
+
+    public function view_sale(Sale $sale)
+    {
+        return view('tables.sales', ['sale' => $sale]);
+    }
+
+    public function delete_sale(Sale $sale)
+    {
+        $sale->delete();
+
+        return redirect()
+            ->route('tables.sales')
+            ->withStatus('The sale record has been successfully deleted.');
+    }
+
     
              $sale->save();
         
         return redirect()->back()
             ->withStatus('Sale registered successfully.');
     }
-    //     // ddd($request->input());
-    //      $sale = new Sale();
-         
-    //      $sale->product_id=$request->input('product'); 
-    //      $sale->client_id=$request->input('client'); 
-    //      $sale->quantity=$request->input('quantite'); 
-    //      $sale->prix_unit=$request->input('prix_unit');
-
-    //      $sale->save();
-    //     // redirect to the sales page after saving the record
-    //     return redirect()->back();
+    
 
    
 }

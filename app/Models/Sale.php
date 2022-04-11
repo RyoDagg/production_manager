@@ -11,10 +11,14 @@ class Sale extends Model
 
 public function clients()
     {
+
+        return $this->belongsTo(Client::class,'client_id');
+
         return $this->belongsTo(Client::class);
+
     }
     public function products()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class,'product_id');
     }
 }

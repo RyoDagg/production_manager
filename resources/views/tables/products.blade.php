@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('head')
+
     <title>Products</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
@@ -121,6 +122,7 @@
             <h3>Products</h3>
         </div>
         {{-- <div class="container">
+
             <div class="row">
                 <div class="col-md-12 text-right">
                     <a href="#add_new" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
@@ -130,7 +132,8 @@
                 </div>
             </div>
         </div> --}}
-    </div>
+</div>
+
 
     <div class="row layout-top-spacing" id="cancel-row">
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
@@ -216,11 +219,14 @@
                                 <th>Last Purchases Price</th>
                                 <th class="text-center"></th>
                             </tr>
+
                         </tfoot>
-                    </table>
-                </div>
+                </table>
+
+
             </div>
         </div>
-
     </div>
+
+</div>
 @endsection
