@@ -45,13 +45,11 @@
                     </div>
                     <div class="form-row mb-4">
                         <div class="form-group mb-4 col-md-12">
-                            <select class="placeholder js-states form-control" data-live-search="true" name="material0">
-                                <option>Fournisseur</option>
-                                <option value="one">First</option>
-                                <option value="two">Second</option>
-                                <option value="three">Third</option>
-                                <option value="four">Fourth</option>
-                                <option value="five">Fifth</option>
+                            <select class="placeholder js-states form-control" data-live-search="true" name="fournisseur">
+                                <option value="">Fournisseur</option>
+                                @foreach ($fournisseurs as $fournisseur)
+                                        <option value="{{ $fournisseur->id }}">{{ $fournisseur->name }}</option>
+                                    @endforeach
                             </select>
                         </div>
                     </div>

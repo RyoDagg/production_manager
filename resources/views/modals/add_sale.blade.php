@@ -20,7 +20,7 @@
             </div>
             <div class="modal-body">
                 <div class="mx-auto">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-8">
                         <select name="product" class="placeholder js-states form-control">
 
                             @foreach ($products as $product)
@@ -28,7 +28,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-8">
                         <select name="client" class="placeholder js-states form-control">
 
                             @foreach ($clients as $client)
@@ -36,11 +36,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <input type="number" class="form-control" name="quantite" placeholder="Quantity"
                             id="inputZip">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <input type="number" class="form-control" name="prix_unit" placeholder="Price" id="inputZip">
                     </div>
 
