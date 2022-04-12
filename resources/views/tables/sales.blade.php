@@ -63,7 +63,7 @@
 @endsection
 
 {{-- Modals --}}
-<form action="{{ route('new_sale') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('sales.new') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @include('modals.add_sale')
 </form>

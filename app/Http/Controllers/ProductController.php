@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Materials;
 use App\Models\Product;
-
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,8 +14,10 @@ class ProductController extends Controller
     {
         $product= Product::orderBy('created_at', 'DESC')->get();
         $material= Materials::all();
+        $unit= Unit::all();
         return view('tables.products')->with('products', $product)
-                                      ->with('materials', $material);
+                                      ->with('materials', $material)
+                                      ->with('units', $unit);
     }
 
     //Store a newly created resource in storage.
@@ -62,6 +64,7 @@ class ProductController extends Controller
             $product->photo = $filename;
         }
         $product->material_id = $request->input('material');
+        $product->unit = $request->input('unit');
         //submit material
         $product->save();
         // redirect to the materials page after saving the record

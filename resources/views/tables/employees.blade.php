@@ -187,12 +187,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    $i=0;
-                    ?>
                         @foreach($employees as $employee)
-
-
                         <tr>
                             <td class="checkbox-column">
                                 <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
@@ -200,16 +195,16 @@
                                     <span class="new-control-indicator"></span>
                                 </label>
                             </td>
-                            <td><div class="avatar avatar-xl"><img src="{{ asset('storage/materials/' . $employees[$i]->photo) }}" alt="a" width="90" height="90" class="rounded-circle"></div></td>
-                            <td>{{$employees[$i]->name}}</td>
+                            <td><div class="avatar avatar-xl"><img src="{{ asset('storage/materials/' . $employee->photo) }}" alt="a" width="90" height="90" class="rounded-circle"></div></td>
+                            <td>{{$employee->name}}</td>
                             <?php
-                            $str = "".$employees[$i]->cin;
-                            for($j=0;$j<8-strlen(strval($employees[$i]->cin));$j++)
+                            $str = "".$employee->cin;
+                            for($j=0;$j<8-strlen(strval($employee->cin));$j++)
                                 $str = "0".$str;
                             ?>
                             <td>{{$str}}</td>
-                            <td>{{$employees[$i]->email}}</td>
-                            <td width="200">{{$employees[$i]->adresse}}</td>    
+                            <td>{{$employee->email}}</td>
+                            <td width="200">{{$employee->adresse}}</td>    
                             <td class="text-center">
                                 <ul class="table-controls">
                                     <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Shop"><img src="icons/cart.png" width="25" height="25" alt=""></a></li>
@@ -228,9 +223,6 @@
                                 </ul>
                             </td>
                         </tr>
-                        <?php
-                    $i++;
-                    ?>
                         @endforeach
                         <tr>
                             <th class="checkbox-column">
