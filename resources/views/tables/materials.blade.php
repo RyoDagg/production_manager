@@ -133,10 +133,11 @@
                         <thead>
                             <tr>
                                 <th></th>
+                                <th>Photo</th>
                                 <th>Name</th>
-                                <th>Stock</th>
                                 <th>Description</th>
-                                <th>Last Purchases Price</th>
+                                <th>Stock</th>
+                                {{-- <th>Last Purchases Price</th> --}}
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
@@ -154,7 +155,6 @@
                                     <td>
                                         <div class="avatar avatar-xl"><img
                                                 src="{{ asset('storage/materials/' . $material->photo) }}"
-                                                alt="Image not found" onerror="this.src='storage/materials/alt.png';"
                                                 width=" 90" height="90" class="rounded-circle"></div>
                                     </td>
                                     <td>{{ $material->name }}</td>
@@ -208,10 +208,11 @@
                         <tfoot>
                             <tr>
                                 <th></th>
+                                <th>Photo</th>
                                 <th>Name</th>
-                                <th>Stock</th>
                                 <th>Description</th>
-                                <th>Last Purchases Price</th>
+                                <th>Stock</th>
+                                {{-- <th>Last Purchases Price</th> --}}
                                 <th class="text-center"></th>
                             </tr>
 

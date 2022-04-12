@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fournisseur;
 use App\Models\Materials;
 use App\Models\Unit;
 use Illuminate\Validation\Rule;
@@ -15,8 +16,10 @@ class MaterialsController extends Controller
     {
         $material = Materials::orderBy('created_at', 'DESC')->get();
         $unit = Unit::all();
+        $fournisseur = Fournisseur::all();
         return view('tables.materials')->with('materials', $material)
-            ->with('units', $unit);
+            ->with('units', $unit)
+            ->with('fournisseurs', $fournisseur);
         //return ddd($material);
     }
     //new material
