@@ -170,9 +170,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $i = 0;
-                            ?>
                             @foreach ($purchases as $purchase)
                                 <tr>
                                     <td class="checkbox-column">
@@ -183,12 +180,12 @@
                                         </label>
                                     </td>
                                     <td>{{ date('d-m-y', strtotime($purchase->created_at)) }}</td>
-                                    <td>{{ $purchases[$i]->fournisseurs->name }}</td>
-                                    <td>{{ $purchases[$i]->materials->name }}</td>
-                                    <td>{{ $purchases[$i]->quantity }}</td>
-                                    <td> {{ $purchases[$i]->prix_unit }}</td>
-                                    <td>{{ $purchases[$i]->prix_tot }}</td>
-                                    <td>{{ $purchases[$i]->status }}</td>
+                                    <td>{{ $purchase->fournisseurs->name }}</td>
+                                    <td>{{ $purchase->materials->name }}</td>
+                                    <td>{{ $purchase->quantity }}</td>
+                                    <td> {{ $purchase->prix_unit }}</td>
+                                    <td>{{ $purchase->prix_tot }}</td>
+                                    <td>{{ $purchase->status }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
@@ -222,9 +219,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <?php
-                                $i++;
-                                ?>
                             @endforeach
                             <tr>
                                 <th class="checkbox-column">

@@ -2,7 +2,7 @@
     aria-labelledby="sale_modelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-
+            
             {{-- alert message --}}
             @if (session('status'))
                 <h6 class="alert alert-success">{{ session('status') }}</h6>

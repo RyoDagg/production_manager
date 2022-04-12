@@ -114,7 +114,8 @@
                                 </label> --}}
                                 </th>
                                 <th>Name</th>
-                                <th>CIN</th>
+                                <th>Type</th>
+                                <th>CIN/MF</th>
                                 <th>Email</th>
                                 <th>Address</th>
 
@@ -132,8 +133,11 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $fournisseur->name }}
-                                        {!! $fournisseur->is_company ? '<span class="badge badge-secondary"> Company </span>' : '' !!}
+                                    <td width="200">{{ $fournisseur->name }}</td>
+                                    <td>
+                                        {!! $fournisseur->is_company ? 
+                                        '<span class="badge badge-primary"> Company </span>' :
+                                        '<span class="badge badge-dark"> Individual </span>' !!}
                                     </td>
                                     <td width="200">{{ $fournisseur->cin }}</td>
                                     <td width="200">{{ $fournisseur->email }}</td>
