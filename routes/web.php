@@ -91,6 +91,8 @@ Route::delete('/purchases/{id}', [PurchasesController::class, 'delete_purchase']
 Route::get('/employees', [EmployeeController::class, 'get_employees'])->name('employees');
 Route::post('/new_employee', [EmployeeController::class, 'new_employee'])->name('new_employee');
 
+//invoices
+Route::get('/invoices', [InvoiceController::class, 'get_invoices'])->name('invoices');
 
 //session
 Route::post('logout',[SessionController::class, 'destroy'])->middleware('auth');
