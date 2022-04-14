@@ -66,6 +66,11 @@
     </script>
 @endsection
 
+<form action="{{ route('new_product') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @include('modals.add_production')
+</form>
+
 @section('content')
     <?php
     $active_menu = 'production';
@@ -93,78 +98,11 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#registerModal" type="button"
+                    <button data-toggle="modal" data-target="#productionModal" type="button"
                         class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
                         <strong>New Production</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
-                </div>
-
-                <div class="modal animated fadeInRight custo-fadeInRight register-modal" id="registerModal" tabindex="-1"
-                    role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-
-                            {{-- alert message --}}
-                            @if (session('status'))
-                                <h6 class="alert alert-success">{{ session('status') }}</h6>
-                            @endif
-
-                            <div class="modal-header" id="registerModalLabel">
-                                <h4 class="modal-title text-primary">New Production</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('new_product') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mx-auto">
-                                        <div class="form-row mb-4">
-                                            <div class="form-group mb-4 col-md-6">
-                                                {{-- <label>Example textarea</label> --}}
-                                                <input type="text" class="form-control" name="name" placeholder="Name">
-                                            </div>
-                                            <div class="form-group col-md-3">
-                                                <input type="number" class="form-control" name="quantite"
-                                                    placeholder="Quantity" id="inputZip">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-4">
-                                            <textarea class="form-control" name="description" placeholder="Description..." rows="3"></textarea>
-                                        </div>
-                                        <div class="form-row  mb-4">
-                                            <div class="form-group mb-4">
-                                                <div class="custom-file-container" data-upload-id="myFirstImage">
-                                                    <label>Upload Image <a href="javascript:void(0)"
-                                                            class="custom-file-container__image-clear"
-                                                            title="Clear Image">x</a></label>
-                                                    <label class="custom-file-container__custom-file">
-                                                        <input type="file" name="photo"
-                                                            class="custom-file-container__custom-file__custom-file-input"
-                                                            accept="image/*">
-                                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                                                        <span
-                                                            class="custom-file-container__custom-file__custom-file-control"></span>
-                                                    </label>
-                                                    <div class="custom-file-container__image-preview"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                            <div class="modal-footer justify-content-center">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="table-responsive mb-4 mt-4">
@@ -184,9 +122,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $i = 0;
-                            ?>
                             @foreach ($productions as $production)
                                 <tr>
                                     <td class="checkbox-column">
@@ -196,9 +131,9 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $productions[$i]->product_id }}</td>
-                                    <td>{{ $productions[$i]->quantity }}</td>
-                                    <td>{{ $productions[$i]->status }}</td>
+                                    <td>{{ $production->product_id }}</td>
+                                    <td>{{ $production->quantity }}</td>
+                                    <td>{{ $production->status }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
@@ -230,25 +165,21 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <?php
-                                $i++;
-                                ?>
-                        @endforeach
+                            @endforeach
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <th>
-                            </th>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th class="text-center"></th>
-                        </tr>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
+                                <th class="text-center"></th>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

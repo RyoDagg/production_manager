@@ -24,7 +24,7 @@ class CreateProductMaterialsTable extends Migration
                     ->references('id')
                     ->on('materials')
                     ->onDelete('cascade');
-            $table->integer('stock');       
+            $table->float('stock');       
         });
     }
 

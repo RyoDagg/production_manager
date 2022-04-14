@@ -68,7 +68,7 @@
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
                                 <div class="form-group mb-4 col-md-8">\
-                                    <select class="placeholder js-states form-control" name="material' + index + '">\
+                                    <select class="placeholder js-states form-control" name="material[]">\
                                         <option>Material</option>\
                                         @foreach ($materials as $material)\
                                           <option value="{{ $material->id }}">{{ $material->name }}</option>\
@@ -76,7 +76,7 @@
                                     </select>\
                                 </div>\
                                 <div class="form-group col-md-3">\
-                                    <input type="number"  name="quanity' + index + '" class="form-control" placeholder="Quantity" id="inputZip">\
+                                    <input type="number"  name="quanity[]" class="form-control" placeholder="Quantity" id="inputZip">\
                                 </div>\
                                 <div class="form-group col-md-1">\
                                     <button type="button" id="cancel' + index + '"\
