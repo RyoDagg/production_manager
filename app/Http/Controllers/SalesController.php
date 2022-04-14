@@ -23,10 +23,17 @@ class SalesController extends Controller
                                 
             ;}
 
+<<<<<<< HEAD
+    // public function get_invoices()
+    // {
+    //     return view('tables.invoices');
+    // }
+=======
     public function get_invoices()
     {
         return view('tables.invoices');
     }
+>>>>>>> 7929de3202528d01a794155b58cc5c78b6b7a2b5
 
     //new sale
     public function new_sale(Request $request){

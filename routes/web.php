@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\PurchasesController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\FournisseursController;
 use App\Http\Controllers\EmployeeController;
@@ -77,7 +78,6 @@ Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');
 Route::post('/new_sale', [SalesController::class, 'new_sale'])->name('sales.new');
 Route::get('/sales/{id}', [SalesController::class, 'view_sale'])->name('sales.view');
 Route::delete('/sales/{id}', [SalesController::class, 'delete_sale'])->name('sales.delete');
-Route::get('/invoices', [SalesController::class, 'get_invoices'])->name('invoices');
 
 
 //purchases
