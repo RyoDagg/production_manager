@@ -22,6 +22,12 @@ class SalesController extends Controller
                                     ->with('products',$product)
                                 
             ;}
+
+    // public function get_invoices()
+    // {
+    //     return view('tables.invoices');
+    // }
+
     //new sale
     public function new_sale(Request $request){
         $existent = Sale::where('client_id', $request->get('client_id'))->where('status', null)->get();
@@ -39,16 +45,16 @@ class SalesController extends Controller
 
             $sale->prix_tot=$sale->quantity * $sale->prix_unit;
 
-            foreach ($sale->products as $sold_product) {
-                $product_name = $sold_product->product->name;
-                $product_stock = $sold_product->product->stock;
-                if($sold_product->qty > $product_stock) return back()->withError("The product '$product_name' does not have enough stock. Only has $product_stock units.");
-            }
+            // foreach ($sale->products as $sold_product) {
+            //     $product_name = $sold_product->product->name;
+            //     $product_stock = $sold_product->product->stock;
+            //     if($sold_product->qty > $product_stock) return back()->withError("The product '$product_name' does not have enough stock. Only has $product_stock units.");
+            // }
     
-            foreach ($sale->products as $sold_product) {
-                $sold_product->product->stock -= $sold_product->qty;
-                $sold_product->product->save();
-            }
+            // foreach ($sale->products as $sold_product) {
+            //     $sold_product->product->stock -= $sold_product->qty;
+            //     $sold_product->product->save();
+            // }
 
             $sale->save();
         
@@ -61,13 +67,11 @@ class SalesController extends Controller
         return view('tables.sales', ['sale' => $sale]);
     }
 
-    public function delete_sale(Sale $sale)
-    {
+    public function delete_sale($id) {
+        $sale = Sale::find($id);
         $sale->delete();
 
-        return redirect()
-            ->route('tables.sales')
-            ->withStatus('The sale record has been successfully deleted.');
+        return back()->with('success', 'Sale Deleted!');
     }
 
 

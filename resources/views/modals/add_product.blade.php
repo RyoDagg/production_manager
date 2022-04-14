@@ -87,10 +87,19 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <input type="number" name="quanity0" step="0.001" class="form-control"
                                     placeholder="Quantity" id="inputZip">
 
+                            </div>
+                            <div class="form-group col-md-1">
+                            <select class="placeholder required selectpicker form-control" data-live-search="true"
+                                    name="unit">
+                                    @foreach ($units as $unit)
+                                        <option value="">Unit</option>
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

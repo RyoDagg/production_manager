@@ -54,13 +54,11 @@ class PurchasesController extends Controller
         return view('tables.purchases', ['purchase' => $purchase]);
     }
 
-    // public function delete_purchase(Purchase $purchase)
-    // {
-    //     $purchase->delete();
+    public function delete_purchase($id){
+        $purchase = Purchase::find($id);
+        $purchase->delete();
 
-    //     return redirect()
-    //         ->route('tables.purchases')
-    //         ->withStatus('The purchase record has been successfully deleted.');
-    // }
-
+        return back()->with('success', 'Purchase Deleted!');
     }
+
+}

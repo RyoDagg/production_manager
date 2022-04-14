@@ -150,7 +150,7 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th></th>
+                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Stock</th>
@@ -169,8 +169,7 @@
                                     </td>
                                     <td>
                                         <div class="avatar avatar-xl"><img
-                                                src="{{ asset('storage/materials/' . $product->photo) }}"
-                                                alt="Image not found" onerror="this.src='storage/materials/alt_p.png';"
+                                                src="{{ asset('storage/materials/' . $product->photo) }}"                       
                                                 width="90" height="90" class="rounded-circle"></div>
                                     </td>
                                     </td>
@@ -213,17 +212,16 @@
                         <tfoot>
                             <tr>
                                 <th class="checkbox-column"></th>
+                                <th>Photo</th>
                                 <th>Name</th>
+                                <th>Description</th>
                                 <th>Stock</th>
-                                <th>description</th>
-                                <th>Last Purchases Price</th>
+                                {{-- <th>Last Purchases Price</th> --}}
                                 <th class="text-center"></th>
                             </tr>
 
                         </tfoot>
                 </table>
-
-
             </div>
         </div>
     </div>

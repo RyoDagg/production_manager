@@ -14,8 +14,6 @@ public function clients()
 
         return $this->belongsTo(Client::class,'client_id');
 
-        return $this->belongsTo(Client::class);
-
     }
     public function products()
     {

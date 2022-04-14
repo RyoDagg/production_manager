@@ -124,7 +124,7 @@
                                 </svg></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{route('new_product')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('new_client')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="mx-auto">
                                     <div class="form-row mb-4">
@@ -136,7 +136,9 @@
                                             <input type="number" class="form-control" name="cin" placeholder="CIN" >
                                         </div>
                                     </div>
-
+                                    <div class="form-group mb-4">
+                                        <textarea class="form-control" name="email" placeholder="email" type="email"></textarea>
+                                    </div>
                                     <div class="form-group mb-4">
                                         <textarea class="form-control" name="description" placeholder="Description..." rows="3"></textarea>
                                     </div>
@@ -197,10 +199,15 @@
                                     <span class="new-control-indicator"></span>
                                 </label>
                             </td>
-                            <td>{{$clients[$i]->name}}</td>
-                            <td>{{$clients[$i]->cin}}</td>
-                            <td>{{$clients[$i]->email}}</td>
-                            <td width="200">{{$clients[$i]->adresse}}</td>    
+                            <td>{{$client->name}}</td>
+                            <?php
+                            $str = "".$client->cin;
+                            for($j=0;$j<8-strlen(strval($client->cin));$j++)
+                                $str = "0".$str;
+                            ?>
+                            <td>{{$str}}</td>
+                            <td>{{$client->email}}</td>
+                            <td width="200">{{$client->adresse}}</td>    
                             <td class="text-center">
                                 <ul class="table-controls">
                                     <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Shop"><img src="icons/cart.png" width="25" height="25" alt=""></a></li>

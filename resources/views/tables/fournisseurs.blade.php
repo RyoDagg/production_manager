@@ -114,7 +114,7 @@
                                 </label> --}}
                                 </th>
                                 <th>Name</th>
-                                <th>CIN</th>
+                                <th>CIN/MF</th>
                                 <th>Email</th>
                                 <th>Address</th>
 
@@ -135,7 +135,12 @@
                                     <td>{{ $fournisseur->name }}
                                         {!! $fournisseur->is_company ? '<span class="badge badge-secondary"> Company </span>' : '' !!}
                                     </td>
-                                    <td width="200">{{ $fournisseur->cin }}</td>
+                                    <?php
+                            $str = "".$fournisseur->cin;
+                            for($j=0;$j<8-strlen(strval($fournisseur->cin));$j++)
+                                $str = "0".$str;
+                            ?>
+                            <td>{{$str}}</td>
                                     <td width="200">{{ $fournisseur->email }}</td>
                                     <td width="200">{{ $fournisseur->adresse }}</td>
                                     <td class="text-center">
@@ -181,7 +186,7 @@
                                     </label>
                                 </th>
                                 <th>Name</th>
-                                <th>CIN</th>
+                                <th>CIN/MF</th>
                                 <th>Email</th>
                                 <th>Address</th>
                                 <th class="text-center"></th>
