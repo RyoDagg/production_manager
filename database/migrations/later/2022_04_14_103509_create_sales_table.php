@@ -29,7 +29,7 @@ class CreateSalesTable extends Migration
             $table->integer('quantity');
             $table->float('prix_unit');
             $table->float('prix_tot')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status',['pending','accepted','refused']);
             $table->timestamps();
         });
     }

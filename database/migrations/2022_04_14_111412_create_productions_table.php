@@ -22,7 +22,7 @@ class CreateProductionsTable extends Migration
                     ->on('products')
                     ->cascadeOnDelete();
             $table->integer('quantity');
-            $table->string('status');
+            $table->enum('status',['pending','progress','completed','canceled']);
             $table->timestamps();
         });
     }
