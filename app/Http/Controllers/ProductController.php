@@ -50,11 +50,11 @@ class ProductController extends Controller
 
     public function new_product(Request $request)
     {
-        ddd(($request->input()));
+        // ddd(($request->input()));
         $product = new Product();
 
         $product->name = $request->input('name'); //name
-        $product->stock = "0"; //quantite
+        $product->stock	= "0"; //quantite
         $product->description = $request->input('description'); //description
         //photo
         if ($request->photo) {
@@ -74,7 +74,7 @@ class ProductController extends Controller
             $prodmat = new ProductMaterial();
             $prodmat->product_id = $product->id;
             $prodmat->material_id = $mats[$i];
-            $prodmat->stock = $quantity[$i];
+            $prodmat->quantity	= $quantity[$i];
             $prodmat->save();
         }
         
