@@ -78,11 +78,6 @@ Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');
 Route::post('/new_sale', [SalesController::class, 'new_sale'])->name('sales.new');
 Route::get('/sales/{id}', [SalesController::class, 'view_sale'])->name('sales.view');
 Route::delete('/sales/{id}', [SalesController::class, 'delete_sale'])->name('sales.delete');
-<<<<<<< HEAD
-Route::get('/invoices', [InvoiceController::class, 'get_invoices'])->name('invoices');
-=======
-Route::get('/invoices', [SalesController::class, 'get_invoices'])->name('invoices');
->>>>>>> 7929de3202528d01a794155b58cc5c78b6b7a2b5
 
 
 //purchases
