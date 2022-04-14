@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Sale;
-use App\Service\InvoiceService;
-
-use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
@@ -15,6 +12,6 @@ class InvoiceController extends Controller
         $sale = Sale::all();
 
         return view('tables.invoices')->with('invoices', $invoice)
-                                      ->with('sales',$sale)
+                                      ->with('sales',$sale);
     }
 }
