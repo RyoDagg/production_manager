@@ -248,6 +248,7 @@
                             <div class="invoice-container">
                                 <div class="invoice-inbox">
 
+<<<<<<< HEAD
                                     <div class="inv-not-selected">
                                         <p>Open an invoice from the list.</p>
                                     </div>
@@ -418,6 +419,8 @@
                     </div>
 =======
 
+=======
+>>>>>>> 7929de3202528d01a794155b58cc5c78b6b7a2b5
 
                     <div class="inv--thankYou">
                         <div class="row">
