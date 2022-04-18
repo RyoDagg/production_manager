@@ -161,7 +161,7 @@
                                     <td>
                                         <div class="avatar avatar-xl"><img
                                                 src="{{ asset('storage/materials/' . $product->photo) }}"
-                                                alt="Image not found" onerror="this.src='storage/materials/alt_p.png';"
+                                                {{-- alt="Image not found" onerror="this.src='storage/materials/alt_p.png';" --}}
                                                 width="90" height="90" class="rounded-circle"></div>
                                     </td>
                                     <td>{{ $product->name }}</td>

@@ -90,7 +90,7 @@
                             <div class="col mx-0 px-0">
                                 <form method="POST" action="{{ route('production.complete', $production->id) }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-rounded btn-success">Complete</button>
+                                    <button type="submit" class="btn btn-rounded btn-success">Mark As Completed</button>
                                 </form>
                             </div>
                         @break
@@ -100,6 +100,9 @@
 
                 <table class="table">
                     <tbody>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
                         <tr>
                             <td scope="row">{{ $production->products->name }}</td>
                             <td scope="row">{{ $production->quantity }}</td>

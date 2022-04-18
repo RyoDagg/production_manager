@@ -85,6 +85,12 @@
 
                 <table class="table">
                     <tbody>
+                    <th>Material</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total Price</th>
+                    <th>Supplier</th>
+                    <th>Date</th>
                         <tr>
                             <td>{{ $purchase->materials->name }}</td>
                             <td>{{ $purchase->quantity }}</td>

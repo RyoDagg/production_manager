@@ -71,6 +71,36 @@
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </li>
+            <li class="menu {{ $active_menu == 'users' ? 'active' : '' }}">
+                <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
+                    <div class="base-menu">
+                        <div class="base-icons">
+                            <img src="icons/user.png" width="65" height="65" alt="">
+                        </div>
+                        <span>Reports</span>
+                    </div>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-left">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </li>
+            <li class="menu {{ $active_menu == 'users' ? 'active' : '' }}">
+                <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
+                    <div class="base-menu">
+                        <div class="base-icons">
+                            <img src="icons/user.png" width="65" height="65" alt="">
+                        </div>
+                        <span>Settings</span>
+                    </div>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-left">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </li>
         </ul>
     </nav>
 

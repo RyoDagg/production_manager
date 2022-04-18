@@ -116,6 +116,7 @@
                                     <span class="new-control-indicator"></span>
                                 </label> --}}
                                 </th>
+                                <th>Date</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Status</th>
@@ -132,7 +133,8 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $production->product_id }}</td>
+                                    <td scope="row">{{ date('d-m-y', strtotime($production->created_at)) }}</td>
+                                    <td>{{ $production->products->name }}</td>
                                     <td>{{ $production->quantity }}</td>
                                     <td>
                                         @switch($production->status)
@@ -179,6 +181,7 @@
                             <tr>
                                 <th>
                                 </th>
+                                <th>Date</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Status</th>

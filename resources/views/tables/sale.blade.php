@@ -85,6 +85,12 @@
 
                 <table class="table">
                     <tbody>
+                    <th>Product</th>
+                    <th>Client</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total Price</th>
                         <tr>
                             <td scope="row">{{ $sale->products->name }}</td>
                             <td scope="row">{{ $sale->clients->name }}</td>
