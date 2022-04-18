@@ -148,7 +148,7 @@
                                             @break
 
                                             @case('completed')
-                                                <span class="badge badge-danger"> Completed </span>
+                                                <span class="badge badge-success"> Completed </span>
                                             @break
                                         @endswitch
                                     </td>
