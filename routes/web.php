@@ -36,8 +36,11 @@ Route::get('/profile', [ProfileController::class, 'view_profile'])->name('profil
 Route::get('/settings', [ProfileController::class, 'edit_profile'])->name('profile.edit');
 Route::post('logout',[SessionController::class, 'destroy']);
 
-//Tables Controllers
+//Production
 Route::get('/production', [ProductionController::class, 'get_production'])->name('production');
+Route::post('/new_production', [ProductionController::class, 'new_production'])->name('productions.new');
+Route::delete('/productions/{id}', [ProductionController::class, 'delete_production'])->name('productions.delete');
+Route::post('/production/{id}/{action}', [ProductionController::class, 'validate_production'])->name('production.validate');
 
 //clients
 Route::get('/clients', [ClientsController::class, 'get_clients'])->name('clients');
@@ -45,7 +48,6 @@ Route::post('/new_client', [ClientsController::class, 'new_client'])->name('new_
 
 
 
-Route::get('/production', [ProductionController::class, 'get_production'])->name('production');
 Route::get('/clients', [ClientsController::class, 'get_clients'])->name('clients');
 Route::get('/fournisseurs', [FournisseursController::class, 'get_fournisseurs'])->name('fournisseurs');
 
@@ -78,6 +80,8 @@ Route::get('/sales', [SalesController::class, 'get_sales'])->name('sales');
 Route::post('/new_sale', [SalesController::class, 'new_sale'])->name('sales.new');
 Route::get('/sales/{id}', [SalesController::class, 'view_sale'])->name('sales.view');
 Route::delete('/sales/{id}', [SalesController::class, 'delete_sale'])->name('sales.delete');
+Route::post('/sale/{id}/{action}', [SalesController::class, 'validate_sale'])->name('sale.validate');
+
 
 
 //purchases
@@ -85,6 +89,7 @@ Route::get('/purchases', [PurchasesController::class, 'get_purchases'])->name('p
 Route::post('/new_purchase', [PurchasesController::class, 'new_purchase'])->name('purchases.new');
 Route::get('/purchases/{id}', [PurchasesController::class, 'view_purchase'])->name('purchases.view');
 Route::delete('/purchases/{id}', [PurchasesController::class, 'delete_purchase'])->name('purchases.delete');
+Route::post('/purchase/{id}/{action}', [PurchasesController::class, 'validate_purchase'])->name('purchase.validate');
 
 
 //employees
@@ -108,6 +113,6 @@ Route::post('/new_supplier', [FournisseursController::class, 'new_supplier'])->n
 
 //Voyager
 
-// Route::group(['prefix' => 'admin'], function () {
-//     Voyager::routes();
-// });
+//Route::group(['prefix' => 'admin'], function () {
+   // Voyager::routes();
+//});

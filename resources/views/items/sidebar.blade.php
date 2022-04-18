@@ -4,7 +4,7 @@
 
             {{-- Dashboard --}}
             <li class="{{ $active_menu == 'dashboard' ? 'menu active' : '' }}">
-                <a href="{{ route('dashboard') }}" data-active="{{ $active_menu == 'dashboard' ? 'true' : '' }}"
+                <a href="{{ route('dashboard') }}" data-active="{{ $active_menu == '$sale' ? 'true' : '' }}"
                     class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">

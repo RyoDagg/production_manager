@@ -2,10 +2,6 @@
     aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @if (session('status'))
-                <h6 class="alert alert-success">{{ session('status') }}</h6>
-            @endif
-
             <div class="modal-header" id="productModalLabel">
                 <h4 class="modal-title text-primary">Add New Product</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
@@ -34,8 +30,8 @@
                                 <label>Upload Image <a href="javascript:void(0)"
                                         class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                 <label class="custom-file-container__custom-file">
-                                    <input type="file" name='photo' class="custom-file-container__custom-file__custom-file-input"
-                                        accept="image/*">
+                                    <input type="file" name='photo'
+                                        class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                                     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                                     <span class="custom-file-container__custom-file__custom-file-control"></span>
                                 </label>
@@ -79,14 +75,14 @@
 
                                 <select required class="placeholder required selectpicker form-control"
                                     data-live-search="true" name="material[]">
+                                    <option value="">Material</option>
                                     @foreach ($materials as $material)
-                                        <option value="">Material</option>
                                         <option value="{{ $material->id }}">{{ $material->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <input type="number" name="quanity[]" step="0.001" class="form-control"
+                                <input required type="number" name="quanity[]" step="0.001" class="form-control"
                                     placeholder="Quantity" id="inputZip">
 
                             </div>

@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('head')
-
     <title>Products</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
@@ -67,24 +66,24 @@
 
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
-                                <div class="form-group mb-4 col-md-8">\
-                                    <select class="placeholder js-states form-control" name="material[]">\
-                                        <option>Material</option>\
-                                        @foreach ($materials as $material)\
-                                          <option value="{{ $material->id }}">{{ $material->name }}</option>\
-                                        @endforeach\
-                                    </select>\
-                                </div>\
-                                <div class="form-group col-md-3">\
-                                    <input type="number"  name="quanity[]" class="form-control" placeholder="Quantity" id="inputZip">\
-                                </div>\
-                                <div class="form-group col-md-1">\
-                                    <button type="button" id="cancel' + index + '"\
-                                        style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
-                                        <img id="add_field" src="icons/cancel.png" width="40" height="40" alt="">\
-                                    </button>\
-                                </div>\
-                            </div>'
+                            <div class="form-group mb-4 col-md-8">\
+                                <select required class="placeholder js-states form-control" name="material[]">\
+                                    <option value="">Material</option>\
+                                    @foreach ($materials as $material)\
+                                        <option value="{{ $material->id }}">{{ $material->name }}</option>\
+                                    @endforeach\
+                                </select>\
+                            </div>\
+                            <div class="form-group col-md-3">\
+                                <input required type="number" step="0.001" name="quanity[]" class="form-control" placeholder="Quantity" id="inputZip">\
+                            </div>\
+                            <div class="form-group col-md-1">\
+                                <button type="button" id="cancel' + index + '"\
+                                    style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
+                                    <img src="icons/cancel.png" width="40" height="40" alt="">\
+                                </button>\
+                            </div>\
+                        </div>'
 
             return code
         }
@@ -121,18 +120,7 @@
         <div class="page-title">
             <h3>Products</h3>
         </div>
-        {{-- <div class="container">
-
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <a href="#add_new" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                        <strong>Add Material</strong>
-                        <img src="icons/add.png" style="margin-left: 5px;" width="25" height="25" alt="">
-                    </a>
-                </div>
-            </div>
-        </div> --}}
-</div>
+    </div>
 
 
     <div class="row layout-top-spacing" id="cancel-row">
@@ -145,6 +133,7 @@
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
                 </div>
+                
                 <div class="table-responsive mb-4 mt-4">
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
@@ -172,7 +161,6 @@
                                                 src="{{ asset('storage/materials/' . $product->photo) }}"
                                                 alt="Image not found" onerror="this.src='storage/materials/alt_p.png';"
                                                 width="90" height="90" class="rounded-circle"></div>
-                                    </td>
                                     </td>
                                     <td>{{ $product->name }}</td>
                                     <td style="width: 40%">{{ $product->description }}</td>
@@ -221,12 +209,12 @@
                             </tr>
 
                         </tfoot>
-                </table>
+                    </table>
 
 
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 @endsection

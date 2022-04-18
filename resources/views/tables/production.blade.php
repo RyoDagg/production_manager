@@ -66,7 +66,7 @@
     </script>
 @endsection
 
-<form action="{{ route('new_product') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @include('modals.add_production')
 </form>

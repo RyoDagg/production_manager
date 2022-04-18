@@ -1,7 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('head')
-    <title>Purchases</title>
+    <title>
+        Purchases</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
@@ -66,6 +67,11 @@
     </script>
 @endsection
 
+<form action="{{ route('purchases.new') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @include('modals.add_purchase')
+</form>
+
 @section('content')
     <?php
     $active_menu = 'accounting';
@@ -82,127 +88,77 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#registerModal" type="button"
+                    <button data-toggle="modal" data-target="#purchaseModal" type="button"
                         class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
                         <strong>New Purchase</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
                 </div>
 
-                <div class="modal animated fadeInRight custo-fadeInRight register-modal" id="registerModal" tabindex="-1"
-                    role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-
-                            {{-- alert message --}}
-                            @if (session('status'))
-                                <h6 class="alert alert-success">{{ session('status') }}</h6>
-                            @endif
-
-                            <div class="modal-header" id="registerModalLabel">
-                                <h4 class="modal-title text-primary">Add New Product</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('purchases.new') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mx-auto">
-                                        <div class="form-group col-md-3">
-                                            <select name="material" class="placeholder js-states form-control">
-
-                                                @foreach ($materials as $material)
-                                                    <option value="{{ $material->id }}">{{ $material->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <select name="fournisseur" class="placeholder js-states form-control">
-
-                                                @foreach ($fournisseurs as $fournisseur)
-                                                    <option value="{{ $fournisseur->id }}">{{ $fournisseur->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <input type="number" class="form-control" name="quantite"
-                                                placeholder="Quantity" id="inputZip">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <input type="number" class="form-control" name="prix_unit" placeholder="Price"
-                                                id="inputZip">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                            </div>
-                            </form>
-
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                        </div>
-                    </div>
-                </div>
-
                 <div class="table-responsive mb-4 mt-4">
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th class="checkbox-column">
-                                    {{-- <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                    <span class="new-control-indicator"></span>
-                                </label> --}}
-                            </th>
-                            <th>Date</th>
-                            <th>Material</th>
-                            <th>Supplier</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total Price</th>
-                            <th>Status</th>
-                            <th class="text-center"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($purchases as $purchase)
-                            <tr>
-                                <th class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary"
-                                        style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </td>
-                                <td>{{ date('d-m-y', strtotime($purchase->created_at)) }}</td>
-                                <td>{{ $purchase->fournisseurs->name }}</td>
-                                <td>{{ $purchase->materials->name }}</td>
-                                <td>{{ $purchase->quantity }}</td>
-                                <td> {{ $purchase->prix_unit }}</td>
-                                <td>{{ $purchase->prix_tot }}</td>
-                                <td>{{ $purchase->status }}</td>
-                                <td class="text-center">
-                                    <ul class="table-controls">
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Shop"><img src="icons/cart.png" width="25" height="25" alt=""></a>
-                                        </li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="View"><img src="icons/view.png" width="25" height="25" alt=""></a>
-                                        </li>
-                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-edit-2 text-success">
-                                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                    </path>
-                                                </svg></a></li>
-                                                <li>
+                                <th>
+                                </th>
+                                <th>Material</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total Price</th>
+                                <th>Supplier</th>
+                                <th>Status</th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($purchases as $purchase)
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <label class="new-control new-checkbox checkbox-primary"
+                                            style="height: 18px; margin: 0 auto;">
+                                            <input type="checkbox" class="new-control-input todochkbox" id="todo-1">
+                                            <span class="new-control-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td>{{ $purchase->materials->name }}</td>
+                                    <td>{{ $purchase->quantity }}</td>
+                                    <td>{{ $purchase->prix_unit }}</td>
+                                    <td>{{ $purchase->prix_tot }}</td>
+                                    <td>{{ $purchase->fournisseurs->name }}</td>
+                                    <td>
+                                        @switch($purchase->status)
+                                            @case('pending')
+                                                <span class="badge badge-info"> Pending... </span>
+                                            @break
+
+                                            @case('accepted')
+                                                <span class="badge badge-success"> Accepted </span>
+                                            @break
+
+                                            @case('refused')
+                                                <span class="badge badge-danger"> Refused </span>
+                                            @break
+                                        @endswitch
+                                    </td>
+                                    <td class="text-center">
+                                        <ul class="table-controls">
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Shop"><img src="icons/cart.png" width="25" height="25"
+                                                        alt=""></a>
+                                            </li>
+                                            <li><a href=" {{ route('purchases.view', $purchase->id) }}"
+                                                    data-toggle="tooltip" data-placement="top" title="View"><img
+                                                        src="icons/view.png" width="25" height="25" alt=""></a>
+                                            </li>
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-edit-2 text-success">
+                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        </path>
+                                                    </svg></a></li>
+                                            <li>
                                                 <form method="POST"
                                                     action="{{ route('purchases.delete', $purchase->id) }}">
                                                     @method('DELETE')
@@ -224,34 +180,27 @@
                                                     </button>
                                                 </form>
                                             </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                    <tfoot>
-                        <tr>
-                            <th class="checkbox-column">
-                                <label class="new-control new-checkbox checkbox-primary"
-                                    style="height: 18px; margin: 0 auto;">
-                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                    <span class="new-control-indicator"></span>
-                                </label>
-                            </th>
-                            <th>Date</th>
-                            <th>Material</th>
-                            <th>Supplier</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total Price</th>
-                            <th>Status</th>
-                            <th class="text-center"></th>
-                        </tr>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Material</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total Price</th>
+                                <th>Supplier</th>
+                                <th>Status</th>
+                                <th class="text-center"></th>
+                            </tr>
                         </tfoot>
-                </table>
+                    </table>
 
 
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

@@ -69,8 +69,11 @@
 </form>
 
 @section('content')
-    <?php $active_menu = 'accounting'; ?>
-    <?php $active_item = 'sales'; ?>
+    <?php
+    $active_menu = 'accounting';
+    $active_item = 'sales';
+    // ddd($sales);
+    ?>
 
     <div class="page-header">
         <div class="page-title">
@@ -82,7 +85,7 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#sale_model" type="button"
+                    <button data-toggle="modal" data-target="#saleModal" type="button"
                         class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
                         <strong>New Sale</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
@@ -114,27 +117,33 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $sale->product_id }}</td>
-                                    <td>{{ $sale->client_id }}</td>
+                                    <td>{{ $sale->products->name }}</td>
+                                    <td>{{ $sale->clients->name }}</td>
                                     <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
                                     <td>{{ $sale->quantity }}</td>
                                     <td>{{ $sale->prix_unit }}</td>
                                     <td>{{ $sale->prix_tot }}</td>
-                                    <td>{{ $sale->status }}</td>
+                                    <td>
+                                        @switch($sale->status)
+                                            @case('pending')
+                                                <span class="badge badge-info"> Pending... </span>
+                                            @break
+
+                                            @case('accepted')
+                                                <span class="badge badge-success"> Accepted </span>
+                                            @break
+
+                                            @case('refused')
+                                                <span class="badge badge-danger"> Refused </span>
+                                            @break
+                                        @endswitch
+                                    </td>
                                     <td class="text-center">
                                         <ul class="table-controls">
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                            <li><a href="{{route('sales.view', $sale->id)}}" data-toggle="tooltip" data-placement="top"
                                                     title="View"><img src="icons/view.png" width="25" height="25"
                                                         alt=""></a>
                                             </li>
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 text-success">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg></a></li>
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                     title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -154,16 +163,10 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="checkbox-column">
-                                    <label class="new-control new-checkbox checkbox-primary"
-                                        style="height: 18px; margin: 0 auto;">
-                                        <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                        <span class="new-control-indicator"></span>
-                                    </label>
-                                </th>
-                                <th>Date</th>
-                                <th>Client</th>
+                                <th></th>
                                 <th>Product</th>
+                                <th>Client</th>
+                                <th>Date</th>
                                 <th>Quantity</th>
                                 <th>Unit Price</th>
                                 <th>Total Price</th>
@@ -172,12 +175,8 @@
                             </tr>
                         </tfoot>
                     </table>
-
-
                 </div>
-
             </div>
         </div>
     </div>
-
 @endsection

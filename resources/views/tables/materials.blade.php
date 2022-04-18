@@ -101,10 +101,10 @@
                         <thead>
                             <tr>
                                 <th></th>
+                                <th></th>
                                 <th>Name</th>
-                                <th>Stock</th>
                                 <th>Description</th>
-                                <th>Last Purchases Price</th>
+                                <th>Stock</th>
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
