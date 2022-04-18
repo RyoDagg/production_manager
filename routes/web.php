@@ -39,8 +39,10 @@ Route::post('logout',[SessionController::class, 'destroy']);
 //Production
 Route::get('/production', [ProductionController::class, 'get_production'])->name('production');
 Route::post('/new_production', [ProductionController::class, 'new_production'])->name('productions.new');
+Route::get('/productions/{id}', [ProductionController::class, 'view_production'])->name('productions.view');
 Route::delete('/productions/{id}', [ProductionController::class, 'delete_production'])->name('productions.delete');
 Route::post('/production/{id}/{action}', [ProductionController::class, 'validate_production'])->name('production.validate');
+Route::post('/production/{id}', [ProductionController::class, 'complete_production'])->name('production.complete');
 
 //clients
 Route::get('/clients', [ClientsController::class, 'get_clients'])->name('clients');

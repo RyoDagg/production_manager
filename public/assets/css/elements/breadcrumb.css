@@ -124,6 +124,12 @@
   .breadcrumb-two .breadcrumb li.refused.active a:after {
     border-left-color: #e7515a; }
 
+.breadcrumb-two .breadcrumb li.in_progress.active a {
+  background: #5c1ac3;
+  color: #fff; }
+  .breadcrumb-two .breadcrumb li.in_progress.active a:after {
+    border-left-color: #5c1ac3; }
+
 .breadcrumb-two .breadcrumb li:last-child a {
   pointer-events: none;
   cursor: default;

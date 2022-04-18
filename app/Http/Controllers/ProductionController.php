@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Materials;
 use App\Models\Product;
 use App\Models\Production;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class ProductionController extends Controller
     {
         $products = Product::all();
         $production= Production::orderBy('created_at', 'DESC')->get();
-        return view('tables.production')->with('productions', $production)
+        return view('tables.productions')->with('productions', $production)
                                         ->with('products', $products);
     }
 
@@ -31,8 +32,47 @@ class ProductionController extends Controller
 
         $production->product_id = $request->input('product');
         $production->quantity = $request->input('quantity');
-        
+
         $production->save();
         return redirect()->back();
+    }
+
+    public function view_production($id)
+    {
+        $production = Production::find($id);
+        return view('tables.production', ['production' => $production]);
+    }
+
+    public function validate_production($id, $action)
+    {
+        $production = Production::find($id);
+        if (($production->status = 'pending') && ($action != 'completed')) {
+            $production->status  = $action;
+            if ($action == 'progress') {
+                foreach ($production->products->materials as $material) {
+                    $cost = $material->pivot->quantity * $production->quantity;
+                    $material->stock -= $cost;
+                    $material->save();
+                }
+            }
+
+            $production->save();
+            return redirect()->back()->with('status','Production '.$action.' successfully!!');
+        }
+        return redirect()->back()->with('fail');
+    }
+
+    public function complete_production($id)
+    {
+        $production = Production::find($id);
+        if ($production->status = 'progress') {
+            $production->status  = 'completed';
+            $product = $production->products;
+            $product->stock += $production->quantity;
+            $production->save();
+            $product->save();
+            return redirect()->back()->with('status','Production Completed successfully!!');
+        }
+        return redirect()->back()->with('fail');
     }
 }

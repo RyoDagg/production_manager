@@ -12,11 +12,11 @@ class Materials extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'product_materials', 'material_id', 'product_id');
     }
     public function units()
     {
-        return $this->hasOne(Unit::class);
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 
     public function purchases()
