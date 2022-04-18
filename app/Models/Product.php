@@ -11,7 +11,15 @@ class Product extends Model
 
 public function materials()
     {
-        return $this->belongsToMany(Materials::class);
+        return $this->belongsToMany(Materials::class, 
+            'product_materials', 'product_id', 'material_id')
+            ->withPivot('quantity');
+
+    }
+
+    public function product_materials()
+    {
+        return $this->hasMany(ProductMaterial::class);
     }
 
     public function productions()

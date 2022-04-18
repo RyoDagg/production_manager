@@ -3,11 +3,6 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            {{-- alert message --}}
-            @if (session('status'))
-                <h6 class="alert alert-success">{{ session('status') }}</h6>
-            @endif
-
             <div class="modal-header" id="productionModalLabel">
                 <h4 class="modal-title text-primary">New Sale</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
@@ -20,26 +15,40 @@
             </div>
             <div class="modal-body">
                 <div class="mx-auto">
-                    <div class="form-group col-md-12">
-                        <select required name="product" class="placeholder js-states form-control">
-                            <option>Product</option>
-                            @foreach ($products as $product)
-                                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <select name="product" class="placeholder js-states form-control">
+                                <option value="">Product...</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="number" class="form-control" name="quantite" placeholder="Quantity"
-                            id="inputZip">
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <input type="number" placeholder="Quantity" id="quantity" onchange="calculateTotal()"
+                                name="quantity" class="form-control integer">
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="number" class="form-control" name="prix_unit" placeholder="Price" id="inputZip">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <p>Estimated Product Cost :</p id="total-price">
+                            <input type="number" readonly id="totalPrice" 
+                                class="form-control text-center"
+                                aria-describedby="total-price">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <p>Total cost :</p id="total-price">
+                            <input type="number" readonly id="totalPrice" 
+                                class="form-control text-center"
+                                aria-describedby="total-price">
+                        </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </div>
         </div>
     </div>

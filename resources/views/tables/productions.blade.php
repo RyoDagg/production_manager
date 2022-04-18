@@ -1,8 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('head')
-    <title>
-        Purchases</title>
+    <title>Productions</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
@@ -70,28 +69,39 @@
 
 @section('content')
     <?php
-    $active_menu = 'accounting';
-    $active_item = 'purchases';
+    $active_menu = 'production';
+    $active_item = 'production';
     ?>
 
-    <form action="{{ route('purchases.new') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @include('modals.add_purchase')
+        @include('modals.add_production')
     </form>
 
     <div class="page-header">
         <div class="page-title">
-            <h3>Purchases</h3>
+            <h3>Production</h3>
         </div>
+        {{-- <div class="container">
+
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="#add_new" class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
+                        <strong>Add Material</strong>
+                        <img src="icons/add.png" style="margin-left: 5px;" width="25" height="25" alt="">
+                    </a>
+                </div>
+            </div>
+        </div> --}}
     </div>
 
     <div class="row layout-top-spacing" id="cancel-row">
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="col-md-12 text-right">
-                    <button data-toggle="modal" data-target="#purchaseModal" type="button"
+                    <button data-toggle="modal" data-target="#productionModal" type="button"
                         class="btn btn-lg btn-secondary mb-2 mr-2 btn-rounded">
-                        <strong>New Purchase</strong>
+                        <strong>New Production</strong>
                         <img src="icons/add.png" style="margin-left: 6px" width="25" height="25" alt="">
                     </button>
                 </div>
@@ -100,19 +110,20 @@
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th>
+                                <th class="checkbox-column">
+                                    {{-- <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
+                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
+                                    <span class="new-control-indicator"></span>
+                                </label> --}}
                                 </th>
-                                <th>Material</th>
+                                <th>Product</th>
                                 <th>Quantity</th>
-                                <th>Unit Price</th>
-                                <th>Total Price</th>
-                                <th>Supplier</th>
                                 <th>Status</th>
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($purchases as $purchase)
+                            @foreach ($productions as $production)
                                 <tr>
                                     <td class="checkbox-column">
                                         <label class="new-control new-checkbox checkbox-primary"
@@ -121,66 +132,44 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $purchase->materials->name }}</td>
-                                    <td>{{ $purchase->quantity }}</td>
-                                    <td>{{ $purchase->prix_unit }}</td>
-                                    <td>{{ $purchase->prix_tot }}</td>
-                                    <td>{{ $purchase->fournisseurs->name }}</td>
+                                    <td>{{ $production->product_id }}</td>
+                                    <td>{{ $production->quantity }}</td>
                                     <td>
-                                        @switch($purchase->status)
+                                        @switch($production->status)
                                             @case('pending')
                                                 <span class="badge badge-info"> Pending... </span>
                                             @break
 
-                                            @case('accepted')
-                                                <span class="badge badge-success"> Accepted </span>
+                                            @case('progress')
+                                                <span class="badge badge-secondary"> In Progress </span>
                                             @break
 
-                                            @case('refused')
-                                                <span class="badge badge-danger"> Refused </span>
+                                            @case('canceled')
+                                                <span class="badge badge-danger"> Canceled </span>
+                                            @break
+
+                                            @case('completed')
+                                                <span class="badge badge-success"> Completed </span>
                                             @break
                                         @endswitch
                                     </td>
                                     <td class="text-center">
                                         <ul class="table-controls">
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Shop"><img src="icons/cart.png" width="25" height="25"
-                                                        alt=""></a>
-                                            </li>
-                                            <li><a href=" {{ route('purchases.view', $purchase->id) }}"
+                                            <li><a href="{{ route('productions.view', $production->id) }}"
                                                     data-toggle="tooltip" data-placement="top" title="View"><img
-                                                        src="icons/view.png" width="25" height="25" alt=""></a>
-                                            </li>
+                                                        src="icons/view.png" width="25" height="25" alt=""></a></li>
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 text-success">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        class="feather feather-trash-2 text-danger">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                         </path>
+                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
                                                     </svg></a></li>
-                                            <li>
-                                                <form method="POST"
-                                                    action="{{ route('purchases.delete', $purchase->id) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button href="javascript:void(0);" data-toggle="tooltip"
-                                                        data-placement="top" style="background: 0%;border: none;"
-                                                        title="Delete" type="submit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                            class="feather feather-trash-2 text-danger">
-                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                            <path
-                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                            </path>
-                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                        </svg>
-                                                    </button>
-                                                </form>
-                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -188,20 +177,17 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th></th>
-                                <th>Material</th>
+                                <th>
+                                </th>
+                                <th>Product</th>
                                 <th>Quantity</th>
-                                <th>Unit Price</th>
-                                <th>Total Price</th>
-                                <th>Supplier</th>
                                 <th>Status</th>
                                 <th class="text-center"></th>
                             </tr>
                         </tfoot>
                     </table>
-
-
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

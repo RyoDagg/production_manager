@@ -1,10 +1,10 @@
-<div class="modal animated fade custo-fade register-modal" id="saleModal" tabindex="-1" role="dialog"
-    aria-labelledby="saleModalLabel" aria-hidden="true">
+<div class="modal animated fade custo-fade register-modal" id="purchaseModal" tabindex="-1" role="dialog"
+    aria-labelledby="purchaseModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="modal-header" id="saleModalLabel">
-                <h4 class="modal-title text-primary">New Sale</h4>
+            <div class="modal-header" id="purchaseModalLabel">
+                <h4 class="modal-title text-primary">New Purchase</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -17,18 +17,18 @@
                 <div class="mx-auto">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <select name="product" class="placeholder js-states form-control">
-                                <option value="">Product...</option>
-                                @foreach ($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            <select name="material" class="placeholder js-states form-control">
+                                <option value="">Material...</option>
+                                @foreach ($materials as $material)
+                                    <option value="{{ $material->id }}">{{ $material->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-12">
-                            <select name="client" class="placeholder js-states form-control">
-                                <option value="">Client...</option>
-                                @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                            <select name="fournisseur" class="placeholder js-states form-control">
+                                <option value="">Supplier...</option>
+                                @foreach ($fournisseurs as $fournisseur)
+                                    <option value="{{ $fournisseur->id }}">{{ $fournisseur->name }}</option>
                                 @endforeach
                             </select>
                         </div>

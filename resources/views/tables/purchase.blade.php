@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('head')
-    <title>Production | {{ $production->products->name }}</title>
+    <title>Purchases | Purchase#{{ $purchase->id }}</title>
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
@@ -18,13 +18,14 @@
 {{-- Modals --}}
 @section('content')
     <?php
-    $active_menu = 'production';
-    $active_item = 'production';
+    $active_menu = 'accounting';
+    $active_item = 'purchases';
+    // ddd($purchases);
     ?>
 
     <div class="page-header">
         <div class="page-title">
-            <h3>{{ $production->products->name }} Production#{{ $production->id }}</h3>
+            <h3>Purchase#{{ $purchase->id }}</h3>
         </div>
     </div>
     <div class="row layout-top-spacing" id="cancel-row">
@@ -47,63 +48,50 @@
                             <ol class="breadcrumb">
                                 <li
                                     class="breadcrumb-item pending
-                                    {{ $production->status == 'pending' ? 'active' : '' }}">
+                                    {{ $purchase->status == 'pending' ? 'active' : '' }}">
                                     <a class="px-5">Pending</a>
                                 </li>
 
                                 <li
                                     class="breadcrumb-item refused
-                                    {{ $production->status == 'canceled' ? 'active' : '' }}">
-                                    <a class="px-5">Canceled</a>
-                                </li>
-
-                                <li
-                                    class="breadcrumb-item in_progress
-                                    {{ $production->status == 'progress' ? 'active' : '' }}">
-                                    <a class="px-5">In Progress</a>
+                                    {{ $purchase->status == 'refused' ? 'active' : '' }}">
+                                    <a class="px-5">Refused</a>
                                 </li>
 
                                 <li
                                     class="breadcrumb-item accepted
-                                    {{ $production->status == 'completed' ? 'active' : '' }}">
-                                    <a class="px-5">Completed</a>
+                                    {{ $purchase->status == 'accepted' ? 'active' : '' }}">
+                                    <a class="px-5">Accepted</a>
                                 </li>
                             </ol>
                         </nav>
                     </div>
-                    @switch ($production->status)
-                        @case('pending')
-                            <div class="col mx-0 px-0">
-                                <form method="POST" action="{{ route('production.validate', [$production->id, 'progress']) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-rounded btn-success">Accept</button>
-                                </form>
-                            </div>
-                            <div class="col mx-0 px-0">
-                                <form method="POST" action="{{ route('production.validate', [$production->id, 'canceled']) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-rounded btn-danger">Refuse</button>
-                                </form>
-                            </div>
-                        @break
-                        @case('progress')
-                            <div class="col mx-0 px-0">
-                                <form method="POST" action="{{ route('production.complete', $production->id) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-rounded btn-success">Complete</button>
-                                </form>
-                            </div>
-                        @break
-                    @endswitch
+                    @if ($purchase->status == 'pending')
+                        <div class="col mx-0 px-0">
+                            <form method="POST" action="{{ route('purchase.validate', [$purchase->id, 'accepted']) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-rounded btn-success">Accept</button>
+                            </form>
+                        </div>
+                        <div class="col mx-0 px-0">
+                            <form method="POST" action="{{ route('purchase.validate', [$purchase->id, 'refused']) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-rounded btn-danger">Refuse</button>
+                            </form>
+                        </div>
+                    @endif
 
                 </div>
 
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td scope="row">{{ $production->products->name }}</td>
-                            <td scope="row">{{ $production->quantity }}</td>
-                            <td scope="row">{{ date('d-m-y', strtotime($production->created_at)) }}</td>
+                            <td>{{ $purchase->materials->name }}</td>
+                            <td>{{ $purchase->quantity }}</td>
+                            <td>{{ $purchase->prix_unit }}</td>
+                            <td>{{ $purchase->prix_tot }}</td>
+                            <td>{{ $purchase->fournisseurs->name }}</td>
+                            <td scope="row">{{ date('d-m-y', strtotime($purchase->created_at)) }}</td>
                         </tr>
                     </tbody>
                 </table>
