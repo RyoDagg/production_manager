@@ -64,20 +64,21 @@
 @endsection
 
 {{-- Modals --}}
-<form action="{{ route('new_material') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('modals.add_material')
-</form>
-
-<form action="">
-    @include('modals.buy_material')
-</form>
 
 @section('content')
-    <?php
+<?php
     $active_menu = 'production';
     $active_item = 'materials';
     ?>
+    
+    <form action="{{ route('new_material') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add_material')
+    </form>
+
+    <form action="">
+        @include('modals.buy_material')
+    </form>
 
     <div class="page-header">
         <div class="page-title">

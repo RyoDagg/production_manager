@@ -62,11 +62,6 @@
     </script>
 @endsection
 
-{{-- Modals --}}
-<form action="{{ route('sales.new') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('modals.add_sale')
-</form>
 
 @section('content')
     <?php
@@ -74,6 +69,12 @@
     $active_item = 'sales';
     // ddd($sales);
     ?>
+
+    {{-- Modals --}}
+    <form action="{{ route('sales.new') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add_sale')
+    </form>
 
     <div class="page-header">
         <div class="page-title">
@@ -140,9 +141,9 @@
                                     </td>
                                     <td class="text-center">
                                         <ul class="table-controls">
-                                            <li><a href="{{route('sales.view', $sale->id)}}" data-toggle="tooltip" data-placement="top"
-                                                    title="View"><img src="icons/view.png" width="25" height="25"
-                                                        alt=""></a>
+                                            <li><a href="{{ route('sales.view', $sale->id) }}" data-toggle="tooltip"
+                                                    data-placement="top" title="View"><img src="icons/view.png" width="25"
+                                                        height="25" alt=""></a>
                                             </li>
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                     title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"

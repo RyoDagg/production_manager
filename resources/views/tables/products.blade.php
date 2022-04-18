@@ -66,25 +66,24 @@
 
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
-                                        <div class="form-group mb-4 col-md-8">\
-                                            <select required class="placeholder js-states form-control" name="material[]">\
-                                                <option value="">Material</option>\
-                                                @foreach ($materials as $material)
-                                                    \
-                                                    <option value="{{ $material->id }}">{{ $material->name }}</option>\
-                                                @endforeach\
-                                            </select>\
-                                        </div>\
-                                        <div class="form-group col-md-3">\
-                                            <input required type="number" step="0.001" name="quanity[]" class="form-control" placeholder="Quantity" id="inputZip">\
-                                        </div>\
-                                        <div class="form-group col-md-1">\
-                                            <button type="button" id="cancel' + index + '"\
-                                                style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
-                                                <img src="icons/cancel.png" width="40" height="40" alt="">\
-                                            </button>\
-                                        </div>\
-                                    </div>'
+                            <div class="form-group mb-4 col-md-8">\
+                                <select required class="placeholder js-states form-control" name="material[]">\
+                                    <option value="">Material</option>\
+                                    @foreach ($materials as $material)\
+                                        <option value="{{ $material->id }}">{{ $material->name }}</option>\
+                                    @endforeach\
+                                </select>\
+                            </div>\
+                            <div class="form-group col-md-3">\
+                                <input required type="number" step="0.001" name="quanity[]" class="form-control" placeholder="Quantity" id="inputZip">\
+                            </div>\
+                            <div class="form-group col-md-1">\
+                                <button type="button" id="cancel' + index + '"\
+                                    style="background: 0%;border: none;" onclick="deleteRow(\'row' +index + '\')">\
+                                    <img src="icons/cancel.png" width="40" height="40" alt="">\
+                                </button>\
+                            </div>\
+                        </div>'
 
             return code
         }
@@ -106,10 +105,6 @@
     </script>
 @endsection
 
-<form action="{{ route('new_product') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('modals.add_product')
-</form>
 
 @section('content')
     <?php
@@ -122,6 +117,11 @@
             <h3>Products</h3>
         </div>
     </div>
+
+    <form action="{{ route('new_product') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add_product')
+    </form>
 
 
     <div class="row layout-top-spacing" id="cancel-row">
@@ -170,8 +170,7 @@
                                         <ul>
                                             @foreach ($product->materials as $material)
                                                 <li class="badge outline-badge-primary">
-                                                    {{ $material->name . ' ' . $material->pivot->quantity.$material->units->symbole
-                                                    }}
+                                                    {{                                                     $material->name . ' ' . $material->pivot->quantity . $material->units->symbole }}
                                                 </li><br>
                                             @endforeach
                                         </ul>

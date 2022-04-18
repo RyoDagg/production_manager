@@ -66,16 +66,17 @@
     </script>
 @endsection
 
-<form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('modals.add_production')
-</form>
 
 @section('content')
     <?php
     $active_menu = 'production';
     $active_item = 'production';
     ?>
+
+    <form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add_production')
+    </form>
 
     <div class="page-header">
         <div class="page-title">

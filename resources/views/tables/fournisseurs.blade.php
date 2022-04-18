@@ -67,14 +67,15 @@
     </script>
 @endsection
 
-<form action="{{ route('new_supplier') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('modals.add_supplier')
-</form>
 
 @section('content')
     <?php $active_menu = 'production'; ?>
     <?php $active_item = 'production'; ?>
+
+    <form action="{{ route('new_supplier') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add_supplier')
+    </form>
 
     <div class="page-header">
         <div class="page-title">
@@ -136,11 +137,12 @@
                                         {!! $fournisseur->is_company ? '<span class="badge badge-secondary"> Company </span>' : '' !!}
                                     </td>
                                     <?php
-                            $str = "".$fournisseur->cin;
-                            for($j=0;$j<8-strlen(strval($fournisseur->cin));$j++)
-                                $str = "0".$str;
-                            ?>
-                            <td>{{$str}}</td>
+                                    $str = '' . $fournisseur->cin;
+                                    for ($j = 0; $j < 8 - strlen(strval($fournisseur->cin)); $j++) {
+                                        $str = '0' . $str;
+                                    }
+                                    ?>
+                                    <td>{{ $str }}</td>
                                     <td width="200">{{ $fournisseur->email }}</td>
                                     <td width="200">{{ $fournisseur->adresse }}</td>
                                     <td class="text-center">

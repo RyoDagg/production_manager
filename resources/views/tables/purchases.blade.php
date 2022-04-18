@@ -67,16 +67,17 @@
     </script>
 @endsection
 
-<form action="{{ route('purchases.new') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @include('modals.add_purchase')
-</form>
 
 @section('content')
     <?php
     $active_menu = 'accounting';
     $active_item = 'purchases';
     ?>
+
+    <form action="{{ route('purchases.new') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add_purchase')
+    </form>
 
     <div class="page-header">
         <div class="page-title">
