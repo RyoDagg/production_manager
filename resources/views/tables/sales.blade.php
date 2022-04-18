@@ -114,8 +114,8 @@
                                             <span class="new-control-indicator"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $sale->product_id }}</td>
-                                    <td>{{ $sale->client_id }}</td>
+                                    <td>{{ $sale->products->name }}</td>
+                                    <td>{{ $sale->clients->name }}</td>
                                     <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
                                     <td>{{ $sale->quantity }}</td>
                                     <td>{{ $sale->prix_unit }}</td>
