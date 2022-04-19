@@ -60,9 +60,9 @@
                 <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <img src="icons/user.png" width="65" height="65" alt="">
+                            <img src="icons/HRM.png" width="65" height="65" alt="">
                         </div>
-                        <span>Users</span>
+                        <span>HRM</span>
                     </div>
                 </a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -155,28 +155,22 @@
         <div class="submenu" id="users">
             <ul class="submenu-list" data-parent-element="#users">
                 <li>
-                    <a href="{{ route('clients') }}"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg></span> Clients </a>
+                    <a href="{{ route('clients') }}">
+                        <span class="icon">
+                            <img src="icons/client.png" width="30" height="30" alt="">
+                        </span> Clients </a>
                 </li>
                 <li>
-                    <a href="{{ route('fournisseurs') }}"><span class="icon"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg></span> Suppliers </a>
+                    <a href="{{ route('fournisseurs') }}">
+                        <span class="icon">
+                            <img src="icons/supplier.png" width="30" height="30" alt="">
+                        </span> Suppliers </a>
                 </li>
                  <li>
-                    <a href="{{ route('employees') }}"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-circle">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg></span> Employees </a>
+                    <a href="{{ route('employees') }}">
+                        <span class="icon">
+                            <img src="icons/employee.png" width="30" height="30" alt="">
+                        </span> Employees </a>
                 </li>
                 {{-- <li>
                     <a href="widgets.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"

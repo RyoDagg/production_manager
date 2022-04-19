@@ -17,9 +17,16 @@ class SalesController extends Controller
         $sale = Sale::orderBy('created_at', 'DESC')->get();
         $client = Client::all();
         $product = Product::all();
+        $stock = [];
+        foreach ($product as $prod) {
+            $stock[$prod->id] = $prod->stock;
+        }
+        // ddd($stock);
         // $sale = $sale ->load(['clients']);
-        return view('tables.sales')->with('sales', $sale)
+        return view('tables.sales')
+            ->with('sales', $sale)
             ->with('clients', $client)
+            ->with('stock', $stock)
             ->with('products', $product);
     }
 

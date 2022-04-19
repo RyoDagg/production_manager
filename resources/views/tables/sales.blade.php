@@ -11,7 +11,45 @@
 @endsection
 
 @section('script')
+    <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="assets/js/scrollspyNav.js"></script>
+
+    <script>
+
+        var stocks = @json($stock);
+        console.log(stocks);
+
+
+        function validateForm() {
+            let quant = document.forms["add_sale"]["quantity"].value;
+            let prod_id = document.forms["add_sale"]["product"].value;
+            let stock = stocks[prod_id];
+
+            if (quant > stock) {
+                swal({
+                    title: "
+                            <sub>\
+                                Warning!!\
+                            </sub>\
+                            <p>Stock is insufficient!</p>",
+                    width: "auto",
+                    padding: "1em",
+                });
+                return false;
+            }
+        }
+    </script>
+
+    <script>
+        let prod = document.getElementById("product");
+        prod.onchange = function() {
+            let prod_id = prod.value
+            let stock = stocks[prod_id];
+            let stock_append = document.getElementById("stock");
+            stock_append.innerText = stock + 'pcs';
+
+        };
+    </script>
 
     <script>
         $('[data-toggle="tooltip"]').tooltip()
@@ -61,12 +99,13 @@
 
 @section('content')
     @php
-        $active_menu = 'accounting';
-        $active_item = 'sales';
+    $active_menu = 'accounting';
+    $active_item = 'sales';
     @endphp
-    
+
     {{-- Modals --}}
-    <form action="{{ route('sales.new') }}" method="POST" enctype="multipart/form-data">
+    <form name="add_sale" action="{{ route('sales.new') }}" method="POST" enctype="multipart/form-data"
+        onsubmit="return validateForm()">
         @csrf
         @include('modals.add_sale')
     </form>
@@ -140,18 +179,28 @@
                                                     data-placement="top" title="View"><img src="icons/view.png" width="25"
                                                         height="25" alt=""></a>
                                             </li>
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash-2 text-danger">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                    </svg></a></li>
+                                            <li>
+                                                <form method="POST"
+                                                    action="{{ route('sales.delete', $sale->id) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button href="javascript:void(0);" data-toggle="tooltip"
+                                                        data-placement="top" style="background: 0%;border: none;"
+                                                        title="Delete" type="submit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-trash-2 text-danger">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>

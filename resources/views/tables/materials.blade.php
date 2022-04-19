@@ -128,7 +128,7 @@
                                         </div>
                                     </td>
                                     <td>{{ $material->name }}</td>
-                                    <td style="width: 50%">{{ $material->description }}</td>
+                                    <td style="width: 35%">{{ $material->description }}</td>
                                     <td>{{ $material->stock }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">
