@@ -4,7 +4,7 @@
         <div class="modal-content">
 
             <div class="modal-header" id="productionModalLabel">
-                <h4 class="modal-title text-primary">New Sale</h4>
+                <h4 class="modal-title text-primary">New Production</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

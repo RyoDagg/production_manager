@@ -12,13 +12,9 @@
 
 @section('script')
     <script src="assets/js/scrollspyNav.js"></script>
-    <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
 
     <script>
-        //First upload
-        var firstUpload = new FileUploadWithPreview('myFirstImage')
-        //Second upload
-        var secondUpload = new FileUploadWithPreview('mySecondImage')
+        $('[data-toggle="tooltip"]').tooltip()
     </script>
     <script src="plugins/table/datatable/datatables.js"></script>
     <script>
@@ -64,12 +60,11 @@
 
 
 @section('content')
-    <?php
-    $active_menu = 'accounting';
-    $active_item = 'sales';
-    // ddd($sales);
-    ?>
-
+    @php
+        $active_menu = 'accounting';
+        $active_item = 'sales';
+    @endphp
+    
     {{-- Modals --}}
     <form action="{{ route('sales.new') }}" method="POST" enctype="multipart/form-data">
         @csrf

@@ -14,11 +14,15 @@ class ProductController extends Controller
 
     {
         $product= Product::orderBy('created_at', 'DESC')->get();
-        $material= Materials::all();
-        $unit= Unit::all();
+        $materials= Materials::all();
+        // $units = array();
+        foreach ($materials as $material) {
+            $units[$material->id] = $material->units->symbole;
+        }
+        // ddd($units);
         return view('tables.products')->with('products', $product)
-                                      ->with('materials', $material)
-                                      ->with('units', $unit);
+                                      ->with('materials', $materials)
+                                      ->with('units', $units);
     }
 
     //Store a newly created resource in storage.

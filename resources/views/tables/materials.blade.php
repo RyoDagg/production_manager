@@ -66,10 +66,10 @@
 {{-- Modals --}}
 
 @section('content')
-<?php
-    $active_menu = 'production';
-    $active_item = 'materials';
-    ?>
+    @php
+        $active_menu = 'production';
+        $active_item = 'materials';
+    @endphp
     
     <form action="{{ route('new_material') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -121,10 +121,11 @@
                                         </label>
                                     </td>
                                     <td>
-                                        <div class="avatar avatar-xl"><img
-                                                src="{{ asset('storage/materials/' . $material->photo) }}"
-                                                {{-- alt="Image not found" onerror="this.src='storage/materials/alt.png';" --}}
-                                                width=" 90" height="90" class="rounded-circle"></div>
+                                        <div class="avatar avatar-xl">
+                                            <img src="{{ asset('storage/materials/' . $material->photo) }}"
+                                                alt="Image not found" onerror="this.src='storage/materials/alt.png';"
+                                                width=" 90" height="90" class="rounded-circle">
+                                        </div>
                                     </td>
                                     <td>{{ $material->name }}</td>
                                     <td style="width: 50%">{{ $material->description }}</td>

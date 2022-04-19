@@ -16,6 +16,22 @@
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
     <script src="plugins/table/datatable/datatables.js"></script>
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+        // var units = @json($units);
+        // $(function() {
+
+        //     $('.pplp').change(function() {
+        //         var mat_id = $('.selectpicker').val();
+        //         console.log(units[mat_id]);
+        //         $('.unit_append').text(units[mat_id]); // selector for div
+
+
+        //     });
+
+        // });
+    </script>
+
     <script>
         //First upload
         var firstUpload = new FileUploadWithPreview('myFirstImage')
@@ -67,7 +83,8 @@
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
                             <div class="form-group mb-4 col-md-8">\
-                                <select required class="placeholder js-states form-control" name="material[]">\
+                                <select required class="placeholder required form-control"\
+                                        data-live-search="true" name="material[]">\
                                     <option value="">Material</option>\
                                     @foreach ($materials as $material)\
                                         <option value="{{ $material->id }}">{{ $material->name }}</option>\
@@ -75,11 +92,18 @@
                                 </select>\
                             </div>\
                             <div class="form-group col-md-3">\
-                                <input required type="number" step="0.001" name="quanity[]" class="form-control" placeholder="Quantity" id="inputZip">\
+                                <div class="input-group">\
+                                    <input required type="number" name="quanity[]" step="0.001" class="form-control"\
+                                        placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
+                                    <div class="input-group-append">\
+                                        <span class="input-group-text" style="background-color: #dccff7;"\
+                                            id="basic-addon6"><strong class="unit_append"></strong></span>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class="form-group col-md-1">\
                                 <button type="button" id="cancel' + index + '"\
-                                    style="background: 0%;border: none;" onclick="deleteRow(\'row' +index + '\')">\
+                                    style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
                                     <img src="icons/cancel.png" width="40" height="40" alt="">\
                                 </button>\
                             </div>\
@@ -107,10 +131,13 @@
 
 
 @section('content')
-    <?php
-    $active_menu = 'production';
-    $active_item = 'products';
-    ?>
+
+    @php
+        $active_menu = 'production';
+        $active_item = 'products';
+    @endphp
+    
+
 
     <div class="page-header">
         <div class="page-title">
@@ -161,7 +188,7 @@
                                     <td>
                                         <div class="avatar avatar-xl"><img
                                                 src="{{ asset('storage/materials/' . $product->photo) }}"
-                                                {{-- alt="Image not found" onerror="this.src='storage/materials/alt_p.png';" --}}
+                                                alt="Image not found" onerror="this.src='storage/materials/alt_p.png';"
                                                 width="90" height="90" class="rounded-circle"></div>
                                     </td>
                                     <td>{{ $product->name }}</td>
@@ -170,7 +197,7 @@
                                         <ul>
                                             @foreach ($product->materials as $material)
                                                 <li class="badge outline-badge-primary">
-                                                    {{                                                     $material->name . ' ' . $material->pivot->quantity . $material->units->symbole }}
+                                                    {{ $material->name . ' ' . $material->pivot->quantity . $material->units->symbole }}
                                                 </li><br>
                                             @endforeach
                                         </ul>

@@ -68,10 +68,10 @@
 
 
 @section('content')
-    <?php
-    $active_menu = 'production';
-    $active_item = 'production';
-    ?>
+    @php
+        $active_menu = 'production';
+        $active_item = 'production';
+    @endphp
 
     <form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data">
         @csrf

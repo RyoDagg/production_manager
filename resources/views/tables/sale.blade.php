@@ -17,12 +17,11 @@
 
 {{-- Modals --}}
 @section('content')
-    <?php
-    $active_menu = 'accounting';
-    $active_item = 'sales';
-    // ddd($sales);
-    ?>
-
+    @php
+        $active_menu = 'accounting';
+        $active_item = 'sales';
+    @endphp
+    
     <div class="page-header">
         <div class="page-title">
             <h3>Sale#{{ $sale->id }}</h3>

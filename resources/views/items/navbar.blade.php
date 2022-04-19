@@ -3,7 +3,7 @@
         <ul class="navbar-item flex-row">
             <li class="nav-item theme-logo">
                 <a href="{{route('dashboard')}}">
-                    <img src="assets/img/mih.jpg" class="navbar-logo" alt="logo">
+                    <img src="assets/img/logo-txt.png" class="navbar-logo" alt="logo">
                 </a>
             </li>
         </ul>

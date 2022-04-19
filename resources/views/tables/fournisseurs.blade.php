@@ -69,8 +69,10 @@
 
 
 @section('content')
-    <?php $active_menu = 'production'; ?>
-    <?php $active_item = 'production'; ?>
+    @php
+        $active_menu = 'users';
+        $active_item = 'supplier';
+    @endphp
 
     <form action="{{ route('new_supplier') }}" method="POST" enctype="multipart/form-data">
         @csrf

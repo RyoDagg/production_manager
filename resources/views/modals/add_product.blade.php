@@ -71,9 +71,7 @@
                     <div id="rows">
                         <div class="form-row mb-4" id="row0">
                             <div class="form-group mb-4 col-md-8">
-
-
-                                <select required class="placeholder required selectpicker form-control"
+                                <select id="select0" required class="placeholder required selectpicker form-control"
                                     data-live-search="true" name="material[]">
                                     <option value="">Material</option>
                                     @foreach ($materials as $material)
@@ -82,9 +80,14 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <input required type="number" name="quanity[]" step="0.001" class="form-control"
-                                    placeholder="Quantity" id="inputZip">
-
+                                <div class="input-group">
+                                    <input required type="number" name="quanity[]" step="0.001" class="form-control"
+                                        placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" style="background-color: #dccff7;"
+                                            id="basic-addon6"><strong id="unit_append0"></strong></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('head')
-    <title>
-        Purchases</title>
+    <title>Purchases</title>
     <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
@@ -14,17 +13,9 @@
 @section('script')
     <script src="assets/js/scrollspyNav.js"></script>
     <script>
-        checkall('todoAll', 'todochkbox');
         $('[data-toggle="tooltip"]').tooltip()
     </script>
-    <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
 
-    <script>
-        //First upload
-        var firstUpload = new FileUploadWithPreview('myFirstImage')
-        //Second upload
-        var secondUpload = new FileUploadWithPreview('mySecondImage')
-    </script>
     <script src="plugins/table/datatable/datatables.js"></script>
     <script>
         /* Custom filtering function which will search data in column four between two values */
@@ -143,22 +134,10 @@
                                     </td>
                                     <td class="text-center">
                                         <ul class="table-controls">
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Shop"><img src="icons/cart.png" width="25" height="25"
-                                                        alt=""></a>
-                                            </li>
                                             <li><a href=" {{ route('purchases.view', $purchase->id) }}"
                                                     data-toggle="tooltip" data-placement="top" title="View"><img
                                                         src="icons/view.png" width="25" height="25" alt=""></a>
                                             </li>
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 text-success">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg></a></li>
                                             <li>
                                                 <form method="POST"
                                                     action="{{ route('purchases.delete', $purchase->id) }}">

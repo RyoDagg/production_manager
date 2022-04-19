@@ -17,10 +17,10 @@
 
 {{-- Modals --}}
 @section('content')
-    <?php
-    $active_menu = 'production';
-    $active_item = 'production';
-    ?>
+    @php
+        $active_menu = 'production';
+        $active_item = 'production';
+    @endphp
 
     <div class="page-header">
         <div class="page-title">
