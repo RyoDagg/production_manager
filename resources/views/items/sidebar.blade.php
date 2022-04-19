@@ -75,7 +75,7 @@
                 <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <img src="icons/user.png" width="65" height="65" alt="">
+                            <img src="icons/report.png" width="65" height="65" alt="">
                         </div>
                         <span>Reports</span>
                     </div>
@@ -90,7 +90,7 @@
                 <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <img src="icons/user.png" width="65" height="65" alt="">
+                            <img src="icons/settings.png" width="65" height="65" alt="">
                         </div>
                         <span>Settings</span>
                     </div>
