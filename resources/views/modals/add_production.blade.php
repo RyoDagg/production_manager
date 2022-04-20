@@ -17,7 +17,7 @@
                 <div class="mx-auto">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <select name="product" class="placeholder js-states form-control">
+                            <select name="product" id="product" class="placeholder js-states form-control">
                                 <option value="">Product...</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -31,17 +31,20 @@
                                 name="quantity" class="form-control integer">
                         </div>
                     </div>
+                    @foreach ($products as $product)
+                        @foreach ($product->materials as $mat)
+                            {{$mat->name}}{{$mat->pivot->quantity}}
+                        @endforeach
+                    @endforeach
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <p>Estimated Product Cost :</p id="total-price">
-                            <input type="number" readonly id="totalPrice" 
-                                class="form-control text-center"
+                            <input type="number" readonly id="totalPrice" class="form-control text-center"
                                 aria-describedby="total-price">
                         </div>
                         <div class="form-group col-md-6">
                             <p>Total cost :</p id="total-price">
-                            <input type="number" readonly id="totalPrice" 
-                                class="form-control text-center"
+                            <input type="number" readonly id="totalPrice" class="form-control text-center"
                                 aria-describedby="total-price">
                         </div>
                     </div>

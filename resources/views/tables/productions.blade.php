@@ -13,10 +13,29 @@
 @section('script')
     <script src="assets/js/scrollspyNav.js"></script>
     <script>
-        checkall('todoAll', 'todochkbox');
         $('[data-toggle="tooltip"]').tooltip()
     </script>
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+
+    <script>
+        function validateForm() {
+            let quant = document.getElementById('').value;
+            let prod_id = document.forms["add_sale"]["product"].value;
+            let stock = stocks[prod_id];
+
+            if (quant > stock) {
+                swal({
+                    title: "<sub class='text-danger'>\
+                                    Warning!!\
+                                </sub>\
+                                <p>Stock is insufficient!</p>",
+                    width: "auto",
+                    padding: "1em",
+                });
+                return false;
+            }
+        }
+    </script>
 
     <script>
         //First upload
@@ -69,11 +88,12 @@
 
 @section('content')
     @php
-        $active_menu = 'production';
-        $active_item = 'production';
+    $active_menu = 'production';
+    $active_item = 'production';
     @endphp
 
-    <form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('productions.new') }}" method="POST" enctype="multipart/form-data"
+        onsubmit="return validateForm()">
         @csrf
         @include('modals.add_production')
     </form>

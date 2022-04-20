@@ -15,7 +15,6 @@
     <script src="assets/js/scrollspyNav.js"></script>
 
     <script>
-
         var stocks = @json($stock);
         console.log(stocks);
 
@@ -28,9 +27,9 @@
             if (quant > stock) {
                 swal({
                     title: "<sub class='text-danger'>\
-                                Warning!!\
-                            </sub>\
-                            <p>Stock is insufficient!</p>",
+                                    Warning!!\
+                                </sub>\
+                                <p>Stock is insufficient!</p>",
                     width: "auto",
                     padding: "1em",
                 });
@@ -179,8 +178,7 @@
                                                         height="25" alt=""></a>
                                             </li>
                                             <li>
-                                                <form method="POST"
-                                                    action="{{ route('sales.delete', $sale->id) }}">
+                                                <form method="POST" action="{{ route('sales.delete', $sale->id) }}">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button href="javascript:void(0);" data-toggle="tooltip"
