@@ -33,7 +33,8 @@
                                             <input type="text" class="form-control" placeholder="Search">
                                         </div>
                                         <ul class="nav nav-pills inv-list-container d-block" id="pills-tab" role="tablist">
-                                         @foreach ($invoices as $invoice)
+                                        
+                                          @foreach ($invoices as $invoice)
                                             <li class="nav-item">
                                                 <div class="nav-link list-actions" id="invoice-{{$invoice->id}}" data-invoice-id="{{$invoice->id}}">
                                                     <div class="f-m-body">
@@ -48,7 +49,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            @endforeach
+                                        @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -68,6 +69,8 @@
                                         </div>
                                     </div>
                                     <div id="ct" class=""> 
+                                        
+                                    
                                     @foreach($invoices as $invoice)
                                         
                                     
@@ -125,13 +128,14 @@
                                                                 </thead>
                                                                 <tbody>
                                                                 {{-- Sales per client!! --}}
-                                                                @foreach ($sales as $sale)
+                                                                <?php $i=1;?>
+                                                                @foreach ($clients as $client)
                                                                     <tr>
-                                                                        <td>{{ $sale->id }}</td>
-                                                                        <td>{{ $sale->products->name }}</td>
-                                                                        <td class="text-right">{{ $sale->quantity }}</td>
+                                                                        <td>{{ $i++ }}</td>
+                                                                        <td>{{ $client->sales->first()}}</td>
+                                                                        {{-- <td class="text-right">{{ $sale->quantity }}</td>
                                                                         <td class="text-right">{{ $sale->prix_unit }}</td>
-                                                                        <td class="text-right">{{ $sale->prix_tot }}</td>
+                                                                        <td class="text-right">{{ $sale->prix_tot }}</td> --}}
                                                                     </tr>
                                                                 @endforeach
 

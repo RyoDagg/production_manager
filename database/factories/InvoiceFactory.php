@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Client;
 use App\Models\Fournisseur;
+use App\Models\Sale;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InvoiceFactory extends Factory
@@ -18,7 +19,7 @@ class InvoiceFactory extends Factory
         return [
             'tax'=>$this->faker->numerify,
             'discount'=>$this->faker->numerify,
-            'client_id'=>Client::factory(),
+            'client_id'=>Sale::factory(),
             'fournisseur_id'=>Fournisseur::factory(),
         ];
     }

@@ -19,4 +19,9 @@ public function clients()
     {
         return $this->belongsTo(Product::class,'product_id');
     }
+
+    public function invoices()
+    {
+        return $this->belongsTo(Invoice::class,'invoice_id');
+    }
 }

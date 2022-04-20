@@ -17,4 +17,8 @@ class Invoice extends Model
     public function fournisseurs(){
         return $this->belongsTo(Fournisseur::class, 'fournisseur_id');
     }
+    
+    public function sales(){
+        return $this->hasMany(Sale::class);
+    }
 }

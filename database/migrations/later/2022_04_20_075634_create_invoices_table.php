@@ -14,16 +14,17 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
             $table->string('tax');
             $table->string('discount');
             $table->unsignedInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients')
+            $table->foreign('client_id')->references('client_id')->on('sales')
                 ->onDelete('cascade');
             $table->unsignedInteger('fournisseur_id');
             $table->foreign('fournisseur_id')->references('id')->on('fournisseurs')
                     ->onDelete('cascade');
+            $table->unsignedInteger('sale_id');
         });
     }
 
