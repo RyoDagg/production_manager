@@ -34,25 +34,6 @@
     <button type="button" class="btn btn-secondary">This Month</button>
     <button type="button" class="btn btn-secondary">This Year</button>
     </div>
-
-                <table class="table">
-                    <tbody>
-                    <th></th>
-                    <th>Product</th>
-                    <th>Client</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>Total Price</th>
-                        <tr>
-                            <td scope="row"></td>
-                            <td scope="row"></td>
-                            <td scope="row"></td>
-                            <td scope="row"></td>
-                            <td scope="row"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  
     </div>
 @endsection
