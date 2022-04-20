@@ -17,13 +17,13 @@ class CreateProductMaterialsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('material_id')->unsigned();
             $table->foreign('product_id')
-                    ->references('id')
-                    ->on('products')
-                    ->onDelete('cascade');
-                    $table->foreign('material_id')
-                    ->references('id')
-                    ->on('materials')
-                    ->onDelete('cascade');
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
+            $table->foreign('material_id')
+                ->references('id')
+                ->on('materials')
+                ->onDelete('cascade');
             $table->float('quantity');       
         });
     }

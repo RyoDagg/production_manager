@@ -22,7 +22,7 @@ class CreateMaterialsTable extends Migration
                     ->on('units')
                     ->cascadeOnDelete();
             $table->string('photo')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->float('stock')->default(0);
             $table->timestamps();
         });
