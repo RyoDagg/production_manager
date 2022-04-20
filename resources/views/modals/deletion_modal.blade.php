@@ -13,7 +13,8 @@
                     <button class="btn btn-primary" data-dismiss="modal"><i class="flaticon-cancel-12"></i>Cancel</button>
                 </div>
                 <div class="col text-center mx-1">
-                    <button class="btn btn-danger" onclick="submitForm($form_id)" type="sumbit" class="btn btn-primary">Comfirm</button>
+                    <button class="btn btn-danger" onclick="submitForm('{{ $form_id }}')" type="sumbit"
+                        class="btn btn-primary">Comfirm</button>
                 </div>
             </div>
 

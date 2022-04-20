@@ -181,9 +181,9 @@
                                                 @php
                                                     $data = [
                                                         'id' =>  $sale->id,
-                                                        'label' =>  'Sale#.'$sale->id,
+                                                        'label' =>  'Sale#'.$sale->id,
                                                         'name' =>  $sale->products->name,
-                                                        'form_id' =>  'saledeletion'+{{ $sale->id }},
+                                                        'form_id' =>  'saledeletion'.$sale->id
                                                     ]
                                                 @endphp
                                                 <form method="POST" action="{{ route('sales.delete', $sale->id) }}"
@@ -210,9 +210,7 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <div>
-                                    @include('modals.deletion_modal' $data)
-                                </div>
+                                @include('modals.deletion_modal', $data)
                             @endforeach
                         </tbody>
                         <tfoot>
