@@ -1,6 +1,6 @@
 <div class="modal animated fade custo-fade register-modal" id="productionModal" tabindex="-1" role="dialog"
     aria-labelledby="productionModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header" id="productionModalLabel">
@@ -17,7 +17,7 @@
                 <div class="mx-auto">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <select name="product" id="product" class="placeholder js-states form-control">
+                            <select name="product" id="product" class="placeholder params js-states form-control">
                                 <option value="">Product...</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -27,25 +27,40 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-5">
-                            <input type="number" placeholder="Quantity" id="quantity" onchange="calculateTotal()"
-                                name="quantity" class="form-control integer">
+                            <input type="number" placeholder="Quantity" min="1" id="quantity" name="quantity"
+                                class="form-control params integer">
                         </div>
                     </div>
-                    @foreach ($products as $product)
-                        @foreach ($product->materials as $mat)
-                            {{$mat->name}}{{$mat->pivot->quantity}}
-                        @endforeach
-                    @endforeach
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <p>Estimated Product Cost :</p id="total-price">
-                            <input type="number" readonly id="totalPrice" class="form-control text-center"
-                                aria-describedby="total-price">
+                    <div id="req_mats" class="container text-center">
+                        <div class="row">
+                            <div class="col-md-6 border rounded p-1">
+                                <strong>Materials</strong>
+                            </div>
+                            <div class="col-md-2 border rounded p-1">
+                                <strong>Cost/pcs</strong>
+                            </div>
+                            <div class="col-md-2 border rounded p-1">
+                                <strong>Total Cost</strong>
+                            </div>
+                            <div class="col-md-2 border rounded p-1">
+                                <strong>Available</strong>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <p>Total cost :</p id="total-price">
-                            <input type="number" readonly id="totalPrice" class="form-control text-center"
-                                aria-describedby="total-price">
+                        <div id="materials">
+                            <div class="row">
+                                <div class="col-md-6 card">
+                                    sdfgsfdgsdfgsdfgsdfg
+                                </div>
+                                <div class="col-md-2 card">
+                                    15615 kg
+                                </div>
+                                <div class="col-md-2 card">
+                                    145159565
+                                </div>
+                                <div class="col-md-2 card">
+                                    14515156159565
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

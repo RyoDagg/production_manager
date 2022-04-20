@@ -15,14 +15,8 @@ class ProductController extends Controller
     {
         $product= Product::orderBy('created_at', 'DESC')->get();
         $materials= Materials::all();
-        $units = array();
-        foreach ($materials as $material) {
-            $units[$material->id] = $material->units->symbole;
-        }
-        // ddd($units);
         return view('tables.products')->with('products', $product)
-                                      ->with('materials', $materials)
-                                      ->with('units', $units);
+                                      ->with('materials', $materials);
     }
 
     //Store a newly created resource in storage.

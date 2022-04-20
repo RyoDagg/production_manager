@@ -27,9 +27,9 @@
             if (quant > stock) {
                 swal({
                     title: "<sub class='text-danger'>\
-                                    Warning!!\
-                                </sub>\
-                                <p>Stock is insufficient!</p>",
+                                            Warning!!\
+                                        </sub>\
+                                        <p>Stock is insufficient!</p>",
                     width: "auto",
                     padding: "1em",
                 });
@@ -178,13 +178,22 @@
                                                         height="25" alt=""></a>
                                             </li>
                                             <li>
-                                                <form method="POST" action="{{ route('sales.delete', $sale->id) }}">
+                                                @php
+                                                    $data = [
+                                                        'id' =>  $sale->id,
+                                                        'label' =>  'Sale#.'$sale->id,
+                                                        'name' =>  $sale->products->name,
+                                                        'form_id' =>  'saledeletion'+{{ $sale->id }},
+                                                    ]
+                                                @endphp
+                                                <form method="POST" action="{{ route('sales.delete', $sale->id) }}"
+                                                        id="saledeletion{{ $sale->id }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button href="javascript:void(0);" data-toggle="tooltip"
-                                                        data-placement="top" style="background: 0%;border: none;"
-                                                        title="Delete" type="submit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    <a style="background: 0%;border: none;" data-toggle="modal"
+                                                        href="#deletionModal{{ $sale->id }}">
+                                                        <svg data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                             class="feather feather-trash-2 text-danger">
@@ -195,12 +204,15 @@
                                                             <line x1="10" y1="11" x2="10" y2="17"></line>
                                                             <line x1="14" y1="11" x2="14" y2="17"></line>
                                                         </svg>
-                                                    </button>
+                                                    </a>
                                                 </form>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                <div>
+                                    @include('modals.deletion_modal' $data)
+                                </div>
                             @endforeach
                         </tbody>
                         <tfoot>

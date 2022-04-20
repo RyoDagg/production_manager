@@ -17,20 +17,6 @@
     <script src="plugins/table/datatable/datatables.js"></script>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script>
-        // var units = @json($units);
-        // $(function() {
-
-        //     $('.pplp').change(function() {
-        //         var mat_id = $('.selectpicker').val();
-        //         console.log(units[mat_id]);
-        //         $('.unit_append').text(units[mat_id]); // selector for div
-
-
-        //     });
-
-        // });
-    </script>
 
     <script>
         //First upload

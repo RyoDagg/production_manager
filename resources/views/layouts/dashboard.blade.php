@@ -102,10 +102,16 @@
             var unitPrice = parseFloat(document.getElementById('unitPrice').value);
             quantity.value = parseInt(quantity.value)
             var totalPrice = document.getElementById('totalPrice');
-            totalPrice.value = unitPrice * quantity.value;
+            totalPrice.value = (unitPrice * quantity.value).toPrecision(3);
         }
     </script>
     <script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script>
+        function submitForm(form_id) {
+            form = document.getElementById(form_id);
+            form.submit();
+        }
+    </script>
 </body>
 
 </html>

@@ -11,6 +11,7 @@
 @endsection
 
 @section('script')
+    <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="assets/js/scrollspyNav.js"></script>
     <script>
         $('[data-toggle="tooltip"]').tooltip()
@@ -18,12 +19,68 @@
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
 
     <script>
-        function validateForm() {
-            let quant = document.getElementById('').value;
-            let prod_id = document.forms["add_sale"]["product"].value;
-            let stock = stocks[prod_id];
+        let mats = @json($materials);
+        console.log(mats);
+        let prod = document.getElementById('product');
+        let materials = document.getElementById('materials');
+        let quantity = document.getElementById('quantity');
 
-            if (quant > stock) {
+        prod.onchange = function() {
+            code = '';
+            // materials.innerHTML = '';
+            let prod_id = prod.value;
+            mats[prod_id].forEach(mat => {
+                let lack = (mat['stock']< mat['quant'] * quantity.value? 'alert-danger' : '')
+                code += '<div class="row">\
+                                <div class="col-md-6 card '+lack+'">\
+                                    ' + mat['name'] + '\
+                                </div>\
+                                <div class="col-md-2 card '+lack+'">\
+                                    ' + mat['quant'] + mat['unit'] + '\
+                                </div>\
+                                <div class="col-md-2 card '+lack+'" id="cost'+mat['id']+'">\
+                                    ' + (mat['quant'] * quantity.value).toPrecision(3) + mat['unit'] + '\
+                                </div>\
+                                <div class="col-md-2 card '+lack+'">\
+                                    ' + mat['stock'] + mat['unit'] + '\
+                                </div>\
+                            </div>'
+            });
+            materials.innerHTML = code;
+        }
+        quantity.onchange = function() {
+            code = '';
+            // materials.innerHTML = '';
+            let prod_id = prod.value;
+            mats[prod_id].forEach(mat => {
+                let lack = (mat['stock']< mat['quant'] * quantity.value? 'alert-danger' : '')
+                code += '<div class="row">\
+                                <div class="col-md-6 card '+lack+'">\
+                                    ' + mat['name'] + '\
+                                </div>\
+                                <div class="col-md-2 card '+lack+'">\
+                                    ' + mat['quant'] + mat['unit'] + '\
+                                </div>\
+                                <div class="col-md-2 card '+lack+'" id="cost'+mat['id']+'">\
+                                    ' + (mat['quant'] * quantity.value).toPrecision(3) + mat['unit'] + '\
+                                </div>\
+                                <div class="col-md-2 card '+lack+'">\
+                                    ' + mat['stock'] + mat['unit'] + '\
+                                </div>\
+                            </div>'
+            });
+            materials.innerHTML = code;
+        }
+    </script>
+
+    <script>
+        function validateForm() {
+            let prod_id = prod.value;
+            let valid = true;
+            mats[prod_id].forEach(mat => {
+                valid &= mat['stock']>= mat['quant']*quantity.value;
+            });
+            if (!valid) {
                 swal({
                     title: "<sub class='text-danger'>\
                                     Warning!!\

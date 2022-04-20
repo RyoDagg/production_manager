@@ -12,9 +12,27 @@ class ProductionController extends Controller
     public function get_production()
     {
         $products = Product::all();
+        $materials = [];
+        foreach ($products as $product) {
+            $mats = [];
+            foreach ($product->materials as $material) {
+                $mat = [
+                    'name' => $material->name,
+                    'quant' => $material->pivot->quantity,
+                    'stock' => $material->stock,
+                    'unit' => $material->units->symbole,
+                ];
+                array_push($mats, $mat);
+            }
+            $materials[$product->id] = $mats;
+        }
+        // ddd($materials);
         $production= Production::orderBy('created_at', 'DESC')->get();
-        return view('tables.productions')->with('productions', $production)
-                                        ->with('products', $products);
+        return view('tables.productions')
+            ->with('productions', $production)
+            ->with('products', $products)
+            ->with('materials', $materials);
+
     }
 
     public function new_production(Request $request)
