@@ -82,4 +82,9 @@ class PurchasesController extends Controller
         }
         return redirect()->back()->with('fail');
     }
+
+    public function purchase_reports(){
+
+        return view('reports.purchases');
+    }
 }

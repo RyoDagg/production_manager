@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('cin');
             $table->string('email');
             $table->string('adresse');
+            $table->string('tel');
             $table->timestamps();
         });
     }

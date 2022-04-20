@@ -83,6 +83,7 @@ Route::post('/new_sale', [SalesController::class, 'new_sale'])->name('sales.new'
 Route::get('/sales/{id}', [SalesController::class, 'view_sale'])->name('sales.view');
 Route::delete('/sales/{id}', [SalesController::class, 'delete_sale'])->name('sales.delete');
 Route::post('/sale/{id}/{action}', [SalesController::class, 'validate_sale'])->name('sale.validate');
+Route::get('/sale_reports', [SalesController::class, 'sale_reports'])->name('reports.sales');
 
 
 
@@ -92,7 +93,7 @@ Route::post('/new_purchase', [PurchasesController::class, 'new_purchase'])->name
 Route::get('/purchases/{id}', [PurchasesController::class, 'view_purchase'])->name('purchases.view');
 Route::delete('/purchases/{id}', [PurchasesController::class, 'delete_purchase'])->name('purchases.delete');
 Route::post('/purchase/{id}/{action}', [PurchasesController::class, 'validate_purchase'])->name('purchase.validate');
-
+Route::get('/purchase_reports', [PurchasesController::class, 'purchase_reports'])->name('reports.purchases');
 
 //employees
 Route::get('/employees', [EmployeeController::class, 'get_employees'])->name('employees');

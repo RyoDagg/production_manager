@@ -71,8 +71,8 @@
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </li>
-            <li class="menu {{ $active_menu == 'users' ? 'active' : '' }}">
-                <a href="#users" data-active="{{ $active_menu == 'users' ? 'true' : '' }}" class="menu-toggle">
+            <li class="menu {{ $active_menu == 'reports' ? 'active' : '' }}">
+                <a href="#reports" data-active="{{ $active_menu == 'reports' ? 'true' : '' }}" class="menu-toggle">
                     <div class="base-menu">
                         <div class="base-icons">
                             <img src="icons/report.png" width="65" height="65" alt="">
@@ -172,6 +172,8 @@
                             <img src="icons/employee.png" width="30" height="30" alt="">
                         </span> Employees </a>
                 </li>
+
+                
                 {{-- <li>
                     <a href="widgets.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -182,6 +184,21 @@
                 </li>  --}}
             </ul>
         </div>
-
+        <div class="submenu" id="reports">
+            <ul class="submenu-list" data-parent-element="#forms">
+                <li class="{{ $active_item == 'sales' ? 'active' : '' }}">
+                    <a href="{{ route('reports.sales') }}">
+                        <span class="icon">
+                            <img src="icons/sell.png" width="30" height="30" alt="">
+                        </span> Sales Reports</a>
+                </li>
+                <li class="{{ $active_item == 'purchases' ? 'active' : '' }}">
+                    <a href="{{ route('reports.purchases') }}">
+                        <span class="icon">
+                            <img src="icons/buy.png" width="30" height="30" alt="">
+                        </span> Purchases Reports</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

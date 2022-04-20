@@ -103,4 +103,39 @@ class SalesController extends Controller
         }
         return redirect()->back()->with('fail');
     }
+    public function sale_reports(){
+
+        $anualsales = $this->getAnnualSales();
+        $monthlysales = $this->getMonthlySales();
+        $weeklysales = $this->getWeeklySales();
+        $dailysales = $this->getDailySales();
+
+        return view('reports.sales',[
+
+            'anualsales'                => $anualsales,
+            'monthlypurchases'              => $monthlysales,
+            'weeklysales'                => $weeklysales,
+            'dailysales'              => $dailysales
+        ]);
+    }
+    public function getAnnualSales()
+    {
+        $sales = [];
+        foreach(range(1, 12) as $i) {
+            $monthlySalesCount = Sale::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->count();
+
+            array_push($sales, $monthlySalesCount);
+        }
+        return "[" . implode(',', $sales) . "]";
+    }
+    public function getMonthlySales()
+    {
+        $sales = [];
+        foreach(range(1, 12) as $i) {
+            $monthlySalesCount = Sale::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->count();
+
+            array_push($sales, $monthlySalesCount);
+        }
+        return "[" . implode(',', $sales) . "]";
+    }
 }
