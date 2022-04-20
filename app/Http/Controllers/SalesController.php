@@ -113,7 +113,7 @@ class SalesController extends Controller
         return view('reports.sales',[
 
             'anualsales'                => $anualsales,
-            'monthlypurchases'              => $monthlysales,
+            'monthlysales'              => $monthlysales,
             'weeklysales'                => $weeklysales,
             'dailysales'              => $dailysales
         ]);
@@ -128,14 +128,18 @@ class SalesController extends Controller
         }
         return "[" . implode(',', $sales) . "]";
     }
+
     public function getMonthlySales()
     {
-        $sales = [];
-        foreach(range(1, 12) as $i) {
-            $monthlySalesCount = Sale::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->count();
+       
+    }
+    
+    public function getWeeklySales()
+    {
 
-            array_push($sales, $monthlySalesCount);
-        }
-        return "[" . implode(',', $sales) . "]";
+    }
+    public function getDailySales()
+    {
+
     }
 }
