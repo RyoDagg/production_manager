@@ -27,8 +27,7 @@
 
             if (quant > stock) {
                 swal({
-                    title: "
-                            <sub>\
+                    title: "<sub class='text-danger'>\
                                 Warning!!\
                             </sub>\
                             <p>Stock is insufficient!</p>",

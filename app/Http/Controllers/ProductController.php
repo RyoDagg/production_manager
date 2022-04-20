@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $product= Product::orderBy('created_at', 'DESC')->get();
         $materials= Materials::all();
-        // $units = array();
+        $units = array();
         foreach ($materials as $material) {
             $units[$material->id] = $material->units->symbole;
         }
