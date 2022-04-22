@@ -21,7 +21,10 @@
         //First upload
         var firstUpload = new FileUploadWithPreview('myFirstImage')
         //Second upload
-        var secondUpload = new FileUploadWithPreview('mySecondImage')
+        @foreach ($products as $product)
+            {!! 'var secondUpload = new FileUploadWithPreview("myEditImage'. $product->id .'")' !!}
+        @endforeach
+
     </script>
     <script>
         /* Custom filtering function which will search data in column four between two values */

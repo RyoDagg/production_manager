@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" id="editModalLabel{{ $product->id }}">
-                <h4 class="modal-title text-primary">Add New Product</h4>
+                <h4 class="modal-title text-primary">Edit <strong>{{ $product->name }}</strong></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -17,20 +17,22 @@
                     <div class="form-row mb-4">
                         <div class="form-group mb-2 col-md-12">
                             {{-- <label>Example textarea</label> --}}
-                            <input type="text" required class="form-control" name="name" placeholder="Name">
+                            <input type="text" required class="form-control" value="{{ $product->name }}"
+                                name="name" placeholder="Name">
                         </div>
                     </div>
 
                     <div class="form-group mb-4">
-                        <textarea class="form-control" name="description" placeholder="Description..." rows="3"></textarea>
+                        <textarea class="form-control" name="description" placeholder="Description..."
+                            rows="3">{{ $product->description }}</textarea>
                     </div>
                     <div class="form-row  mb-4">
                         <div class="form-group mb-4">
-                            <div class="custom-file-container" data-upload-id="myFirstImage">
+                            <div class="custom-file-container" data-upload-id="myEditImage{{ $product->id }}">
                                 <label>Upload Image <a href="javascript:void(0)"
                                         class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                 <label class="custom-file-container__custom-file">
-                                    <input type="file" name='photo'
+                                    <input type="file" name='photo' value="{{ asset('storage/materials/' . $product->photo) }}"
                                         class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                                     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                                     <span class="custom-file-container__custom-file__custom-file-control"></span>
@@ -126,8 +128,8 @@
 
             <div class="modal-header" id="infomodalLabel">
                 <h4 class="modal-title text-primary">Add Product's Materials</h4>
-                <a type="button" class="close" data-dismiss="modal" data-toggle="modal" href="#editModal{{ $product->id }}"
-                    aria-hidden="true">
+                <a type="button" class="close" data-dismiss="modal" data-toggle="modal"
+                    href="#editModal{{ $product->id }}" aria-hidden="true">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-x">
