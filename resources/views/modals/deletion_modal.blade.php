@@ -4,8 +4,8 @@
         <div class="modal-content">
 
             <div class="modal-body text-center">
-                <h4>Are u Sure u want to delete {{ $label }}</h4>
-                <h5 class="text-info">{{ $name }}</h5>
+                <h5>Are u Sure u want to delete {{ $label }}</h5>
+                <h4 class="alert-info p-1 mx-3">{{ $name }}</h4>
             </div>
 
             <div class="row mb-3 mx-1">

@@ -37,13 +37,12 @@ class ProductController extends Controller
             ->withStatus('Product updated successfully.');
     }
 
-    public function destroy(Product $product)
-    {
+    public function delete_product($id)
+    {   
+        $product = Product::find($id);
         $product->delete();
 
-        return redirect()
-            ->route('tables.products')
-            ->withStatus('Product removed successfully.');
+        return back()->with('Product removed successfully.');
     }
 
     public function new_product(Request $request)

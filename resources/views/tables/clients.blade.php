@@ -12,11 +12,7 @@
 
 @section('script')
 <script src="assets/js/scrollspyNav.js"></script>
-<script>
-    checkall('todoAll', 'todochkbox');
-    $('[data-toggle="tooltip"]').tooltip()
 
-</script>
 <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
 
 <script>

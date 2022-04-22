@@ -16,7 +16,6 @@
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
     <script src="plugins/table/datatable/datatables.js"></script>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
     <script>
         //First upload
@@ -68,32 +67,34 @@
 
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
-                            <div class="form-group mb-4 col-md-8">\
-                                <select required class="placeholder required form-control"\
-                                        data-live-search="true" name="material[]">\
-                                    <option value="">Material</option>\
-                                    @foreach ($materials as $material)\
-                                        <option value="{{ $material->id }}">{{ $material->name }}</option>\
-                                    @endforeach\
-                                </select>\
-                            </div>\
-                            <div class="form-group col-md-3">\
-                                <div class="input-group">\
-                                    <input required type="number" name="quanity[]" step="0.001" class="form-control"\
-                                        placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
-                                    <div class="input-group-append">\
-                                        <span class="input-group-text" style="background-color: #dccff7;"\
-                                            id="basic-addon6"><strong class="unit_append"></strong></span>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                            <div class="form-group col-md-1">\
-                                <button type="button" id="cancel' + index + '"\
-                                    style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
-                                    <img src="icons/cancel.png" width="40" height="40" alt="">\
-                                </button>\
-                            </div>\
-                        </div>'
+                                                    <div class="form-group mb-4 col-md-8">\
+                                                        <select required class="placeholder required form-control"\
+                                                                data-live-search="true" name="material[]">\
+                                                            <option value="">Material</option>\
+                                                            @foreach ($materials as $material)\
+                                                                <option value="{{ $material->id }}">{{ $material->name }}</option>\
+                                                            @endforeach\
+                                                        </select>\
+                                                    </div>\
+                                                    <div class="form-group col-md-3">\
+                                                        <div class="input-group">\
+                                                            <input required type="number" name="quanity[]" step="0.001" class="form-control"\
+                                                                placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
+                                                            <div class="input-group-append">\
+                                                                <span class="input-group-text" style="background-color: #dccff7;"\
+                                                                    id="basic-addon6"><strong class="unit_append"></strong></span>\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-group col-md-1">\
+                                                        <button type="button" id="cancel' + index +
+                '"\
+                                                            style="background: 0%;border: none;" onclick="deleteRow(\'row' +
+                index + '\')">\
+                                                            <img src="icons/cancel.png" width="40" height="40" alt="">\
+                                                        </button>\
+                                                    </div>\
+                                                </div>'
 
             return code
         }
@@ -117,12 +118,11 @@
 
 
 @section('content')
-
     @php
-        $active_menu = 'production';
-        $active_item = 'products';
+    $active_menu = 'production';
+    $active_item = 'products';
     @endphp
-    
+
 
 
     <div class="page-header">
@@ -181,9 +181,9 @@
                                     <td style="width: 40%">{{ $product->description }}</td>
                                     <td>
                                         <ul>
-                                            @foreach ($product->materials as $material)
+                                            @foreach ($product->materials as $this_material)
                                                 <li class="badge outline-badge-primary">
-                                                    {{ $material->name . ' ' . $material->pivot->quantity . $material->units->symbole }}
+                                                    {{ $this_material->name . ' ' . $this_material->pivot->quantity . $this_material->units->symbole }}
                                                 </li><br>
                                             @endforeach
                                         </ul>
@@ -197,29 +197,64 @@
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                     title="View"><img src="icons/view.png" width="25" height="25"
                                                         alt=""></a></li>
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2 text-success">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg></a></li>
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash-2 text-danger">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                    </svg></a></li>
+                                            <li>
+                                                @php
+                                                    // $edit_data = [
+                                                    //     'id' => $product->id,
+                                                    //     'label' => ' this product :',
+                                                    //     'name' => $product->name,
+                                                    //     'form_id' => 'productdeletion' . $product->id,
+                                                    // ];
+                                                @endphp
+                                                <form method="POST" action="{{ route('products.delete', $product->id) }}"
+                                                    id="productedit{{ $product->id }}">
+                                                    <a data-toggle="modal" href="#editModal{{ $product->id }}">
+                                                        <svg data-toggle="tooltip" data-placement="top" title="Edit"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-edit-2 text-success">
+                                                            <path
+                                                                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                            </path>
+                                                        </svg></a>
+                                                </form>
+                                            </li>
+
+                                            <li>
+                                                @php
+                                                    $deletion_data = [
+                                                        'id' => $product->id,
+                                                        'label' => ' this product :',
+                                                        'name' => $product->name,
+                                                        'form_id' => 'productdeletion' . $product->id,
+                                                    ];
+                                                @endphp
+                                                <form method="POST" action="{{ route('products.delete', $product->id) }}"
+                                                    id="productdeletion{{ $product->id }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <a data-toggle="modal" href="#deletionModal{{ $product->id }}">
+                                                        <svg data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-trash-2 text-danger">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                        </svg>
+                                                    </a>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                @include('modals.deletion_modal', $deletion_data)
+                                @include('modals.edits.edit_product')
                             @endforeach
                         </tbody>
                         <tfoot>

@@ -16,6 +16,8 @@
     <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
     <script src="plugins/table/datatable/datatables.js"></script>
 
+
+
     <script>
         //First upload
         var firstUpload = new FileUploadWithPreview('myFirstImage')
@@ -67,10 +69,10 @@
 
 @section('content')
     @php
-        $active_menu = 'production';
-        $active_item = 'materials';
+    $active_menu = 'production';
+    $active_item = 'materials';
     @endphp
-    
+
     <form action="{{ route('new_material') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('modals.add_material')
@@ -132,31 +134,37 @@
                                     <td>{{ $material->stock }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">
-                                            <li data-toggle="modal" data-target="#buyMaterials">
-                                                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Shop">
-                                                    <img src="icons/cart.png" width="25" height="25" alt="">
-                                                </a>
-                                            </li>
-                                            {{-- <li><a href="{{route('materials.show', $material->id)}}" data-toggle="modal" data-target="" type="button"  data-placement="top" title="View"><img src="icons/view.png" width="25" height="25" alt=""></a></li> --}}
-                                            <li><a href="{{ route('materials.edit', $material->id) }}"
-                                                    data-toggle="tooltip" data-placement="top" title="Edit"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Shop"><img src="icons/cart.png" width="25" height="25"
+                                                        alt=""></a></li>
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="View"><img src="icons/view.png" width="25" height="25"
+                                                        alt=""></a></li>
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                    title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                         class="feather feather-edit-2 text-success">
                                                         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
                                                         </path>
                                                     </svg></a></li>
                                             <li>
-                                                <form method="POST"
-                                                    action="{{ route('materials.delete', $material->id) }}">
+                                                @php
+                                                    $data = [
+                                                        'id' => $material->id,
+                                                        'label' => ' this material :',
+                                                        'name' => $material->name,
+                                                        'form_id' => 'materialdeletion' . $material->id,
+                                                    ];
+                                                @endphp
+                                                <form method="POST" action="{{ route('materials.delete', $material->id) }}"
+                                                    id="materialdeletion{{ $material->id }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button href="javascript:void(0);" data-toggle="tooltip"
-                                                        data-placement="top" style="background: 0%;border: none;"
-                                                        title="Delete" type="submit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    <a style="background: 0%;border: none;" data-toggle="modal"
+                                                        href="#deletionModal{{ $material->id }}">
+                                                        <svg data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                             class="feather feather-trash-2 text-danger">
@@ -167,21 +175,22 @@
                                                             <line x1="10" y1="11" x2="10" y2="17"></line>
                                                             <line x1="14" y1="11" x2="14" y2="17"></line>
                                                         </svg>
-                                                    </button>
+                                                    </a>
                                                 </form>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                @include('modals.deletion_modal', $data)
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th></th>
+                                <th></th>
                                 <th>Name</th>
-                                <th>Stock</th>
                                 <th>Description</th>
-                                <th>Last Purchases Price</th>
+                                <th>Stock</th>
                                 <th class="text-center"></th>
                             </tr>
                         </tfoot>

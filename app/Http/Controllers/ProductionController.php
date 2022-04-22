@@ -93,4 +93,11 @@ class ProductionController extends Controller
         }
         return redirect()->back()->with('fail');
     }
+
+    public function delete_production($id) {
+        $production = Production::find($id);
+        $production->delete();
+
+        return back()->with('success', 'Production Deleted!');
+    }
 }

@@ -49,9 +49,6 @@
         };
     </script>
 
-    <script>
-        $('[data-toggle="tooltip"]').tooltip()
-    </script>
     <script src="plugins/table/datatable/datatables.js"></script>
     <script>
         /* Custom filtering function which will search data in column four between two values */

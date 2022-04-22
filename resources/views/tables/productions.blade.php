@@ -30,21 +30,21 @@
             // materials.innerHTML = '';
             let prod_id = prod.value;
             mats[prod_id].forEach(mat => {
-                let lack = (mat['stock']< mat['quant'] * quantity.value? 'alert-danger' : '')
+                let lack = (mat['stock'] < mat['quant'] * quantity.value ? 'alert-danger' : '')
                 code += '<div class="row">\
-                                <div class="col-md-6 card '+lack+'">\
-                                    ' + mat['name'] + '\
-                                </div>\
-                                <div class="col-md-2 card '+lack+'">\
-                                    ' + mat['quant'] + mat['unit'] + '\
-                                </div>\
-                                <div class="col-md-2 card '+lack+'" id="cost'+mat['id']+'">\
-                                    ' + (mat['quant'] * quantity.value).toPrecision(3) + mat['unit'] + '\
-                                </div>\
-                                <div class="col-md-2 card '+lack+'">\
-                                    ' + mat['stock'] + mat['unit'] + '\
-                                </div>\
-                            </div>'
+                                        <div class="col-md-6 card ' + lack + '">\
+                                            ' + mat['name'] + '\
+                                        </div>\
+                                        <div class="col-md-2 card ' + lack + '">\
+                                            ' + mat['quant'] + mat['unit'] + '\
+                                        </div>\
+                                        <div class="col-md-2 card ' + lack + '" id="cost' + mat['id'] + '">\
+                                            ' + (mat['quant'] * quantity.value).toPrecision(3) + mat['unit'] + '\
+                                        </div>\
+                                        <div class="col-md-2 card ' + lack + '">\
+                                            ' + mat['stock'] + mat['unit'] + '\
+                                        </div>\
+                                    </div>'
             });
             materials.innerHTML = code;
         }
@@ -53,21 +53,21 @@
             // materials.innerHTML = '';
             let prod_id = prod.value;
             mats[prod_id].forEach(mat => {
-                let lack = (mat['stock']< mat['quant'] * quantity.value? 'alert-danger' : '')
+                let lack = (mat['stock'] < mat['quant'] * quantity.value ? 'alert-danger' : '')
                 code += '<div class="row">\
-                                <div class="col-md-6 card '+lack+'">\
-                                    ' + mat['name'] + '\
-                                </div>\
-                                <div class="col-md-2 card '+lack+'">\
-                                    ' + mat['quant'] + mat['unit'] + '\
-                                </div>\
-                                <div class="col-md-2 card '+lack+'" id="cost'+mat['id']+'">\
-                                    ' + (mat['quant'] * quantity.value).toPrecision(3) + mat['unit'] + '\
-                                </div>\
-                                <div class="col-md-2 card '+lack+'">\
-                                    ' + mat['stock'] + mat['unit'] + '\
-                                </div>\
-                            </div>'
+                                        <div class="col-md-6 card ' + lack + '">\
+                                            ' + mat['name'] + '\
+                                        </div>\
+                                        <div class="col-md-2 card ' + lack + '">\
+                                            ' + mat['quant'] + mat['unit'] + '\
+                                        </div>\
+                                        <div class="col-md-2 card ' + lack + '" id="cost' + mat['id'] + '">\
+                                            ' + (mat['quant'] * quantity.value).toPrecision(3) + mat['unit'] + '\
+                                        </div>\
+                                        <div class="col-md-2 card ' + lack + '">\
+                                            ' + mat['stock'] + mat['unit'] + '\
+                                        </div>\
+                                    </div>'
             });
             materials.innerHTML = code;
         }
@@ -78,14 +78,14 @@
             let prod_id = prod.value;
             let valid = true;
             mats[prod_id].forEach(mat => {
-                valid &= mat['stock']>= mat['quant']*quantity.value;
+                valid &= mat['stock'] >= mat['quant'] * quantity.value;
             });
             if (!valid) {
                 swal({
                     title: "<sub class='text-danger'>\
-                                    Warning!!\
-                                </sub>\
-                                <p>Stock is insufficient!</p>",
+                                            Warning!!\
+                                        </sub>\
+                                        <p>Stock is insufficient!</p>",
                     width: "auto",
                     padding: "1em",
                 });
@@ -187,12 +187,7 @@
                     <table id="range-search" class="display table table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th class="checkbox-column">
-                                    {{-- <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                    <input type="checkbox" class="new-control-input todochkbox" id="todoAll">
-                                    <span class="new-control-indicator"></span>
-                                </label> --}}
-                                </th>
+                                <th class="checkbox-column"></th>
                                 <th>Date</th>
                                 <th>Product</th>
                                 <th>Quantity</th>
@@ -237,27 +232,46 @@
                                             <li><a href="{{ route('productions.view', $production->id) }}"
                                                     data-toggle="tooltip" data-placement="top" title="View"><img
                                                         src="icons/view.png" width="25" height="25" alt=""></a></li>
-                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                    title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash-2 text-danger">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                    </svg></a></li>
+                                            <li>
+                                                @php
+                                                    $data = [
+                                                        'id' => $production->id,
+                                                        'label' => 'Production#' . $production->id,
+                                                        'name' => $production->products->name.' x '.$production->quantity,
+                                                        'form_id' => 'productiondeletion' . $production->id,
+                                                    ];
+                                                @endphp
+                                                <form method="POST"
+                                                    action="{{ route('productions.delete', $production->id) }}"
+                                                    id="productiondeletion{{ $production->id }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <a style="background: 0%;border: none;" data-toggle="modal"
+                                                        href="#deletionModal{{ $production->id }}">
+                                                        <svg data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-trash-2 text-danger">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                        </svg>
+                                                    </a>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                @include('modals.deletion_modal', $data)
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>
-                                </th>
+                                <th></th>
                                 <th>Date</th>
                                 <th>Product</th>
                                 <th>Quantity</th>

@@ -139,14 +139,22 @@
                                                         src="icons/view.png" width="25" height="25" alt=""></a>
                                             </li>
                                             <li>
-                                                <form method="POST"
-                                                    action="{{ route('purchases.delete', $purchase->id) }}">
+                                                @php
+                                                    $data = [
+                                                        'id' =>  $purchase->id,
+                                                        'label' =>  'purchase#'.$purchase->id,
+                                                        'name' =>  $purchase->materials->name,
+                                                        'form_id' =>  'purchasesdeletion'.$purchase->id
+                                                    ]
+                                                @endphp
+                                                <form method="POST" action="{{ route('purchases.delete', $purchase->id) }}"
+                                                        id="purchasesdeletion{{ $purchase->id }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button href="javascript:void(0);" data-toggle="tooltip"
-                                                        data-placement="top" style="background: 0%;border: none;"
-                                                        title="Delete" type="submit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    <a style="background: 0%;border: none;" data-toggle="modal"
+                                                        href="#deletionModal{{ $purchase->id }}">
+                                                        <svg data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                             class="feather feather-trash-2 text-danger">
@@ -157,12 +165,13 @@
                                                             <line x1="10" y1="11" x2="10" y2="17"></line>
                                                             <line x1="14" y1="11" x2="14" y2="17"></line>
                                                         </svg>
-                                                    </button>
+                                                    </a>
                                                 </form>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+                                @include('modals.deletion_modal', $data)
                             @endforeach
                         </tbody>
                         <tfoot>
