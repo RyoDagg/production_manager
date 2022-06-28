@@ -9,12 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
-public function materials()
+    public function materials()
     {
-        return $this->belongsToMany(Materials::class, 
-            'product_materials', 'product_id', 'material_id')
-            ->withPivot('quantity');
-
+        return $this->belongsToMany(
+            Materials::class,
+            'product_materials',
+            'product_id',
+            'material_id'
+        )->withPivot('quantity');
     }
 
     public function product_materials()
@@ -30,5 +32,5 @@ public function materials()
     public function sales()
     {
         return $this->hasMany(Sale::class);
-    }    
+    }
 }

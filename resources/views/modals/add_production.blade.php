@@ -47,20 +47,6 @@
                             </div>
                         </div>
                         <div id="materials">
-                            <div class="row">
-                                <div class="col-md-6 card">
-                                    sdfgsfdgsdfgsdfgsdfg
-                                </div>
-                                <div class="col-md-2 card">
-                                    15615 kg
-                                </div>
-                                <div class="col-md-2 card">
-                                    145159565
-                                </div>
-                                <div class="col-md-2 card">
-                                    14515156159565
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -110,7 +110,7 @@
                     </a>
                 </div>
                 <div class="col text-right mx-3">
-                    <button type="submit" class="btn btn-primary mb-2 mr-2 btn-rounded" id="submit">
+                    <button type="submit" class="btn btn-primary mb-2 mr-2 btn-rounded">
                         <strong>Submit</strong>
                     </button>
                 </div>

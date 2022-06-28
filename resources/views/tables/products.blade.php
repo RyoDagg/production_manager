@@ -22,9 +22,8 @@
         var firstUpload = new FileUploadWithPreview('myFirstImage')
         //Second upload
         @foreach ($products as $product)
-            {!! 'var secondUpload = new FileUploadWithPreview("myEditImage'. $product->id .'")' !!}
+            {!! 'var secondUpload ' . $product->id . '= new FileUploadWithPreview("myEditImage' . $product->id . '")' !!}
         @endforeach
-
     </script>
     <script>
         /* Custom filtering function which will search data in column four between two values */
@@ -70,34 +69,32 @@
 
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
-                                                    <div class="form-group mb-4 col-md-8">\
-                                                        <select required class="placeholder required form-control"\
-                                                                data-live-search="true" name="material[]">\
-                                                            <option value="">Material</option>\
-                                                            @foreach ($materials as $material)\
-                                                                <option value="{{ $material->id }}">{{ $material->name }}</option>\
-                                                            @endforeach\
-                                                        </select>\
-                                                    </div>\
-                                                    <div class="form-group col-md-3">\
-                                                        <div class="input-group">\
-                                                            <input required type="number" name="quanity[]" step="0.001" class="form-control"\
-                                                                placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
-                                                            <div class="input-group-append">\
-                                                                <span class="input-group-text" style="background-color: #dccff7;"\
-                                                                    id="basic-addon6"><strong class="unit_append"></strong></span>\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="form-group col-md-1">\
-                                                        <button type="button" id="cancel' + index +
-                '"\
-                                                            style="background: 0%;border: none;" onclick="deleteRow(\'row' +
-                index + '\')">\
-                                                            <img src="icons/cancel.png" width="40" height="40" alt="">\
-                                                        </button>\
-                                                    </div>\
-                                                </div>'
+                                <div class="form-group mb-4 col-md-8">\
+                                    <select required class="placeholder required form-control"\
+                                            data-live-search="true" name="material[]">\
+                                        <option value="">Material</option>\
+                                        @foreach ($materials as $material)\
+                                            <option value="{{ $material->id }}">{{ $material->name }}</option>\
+                                        @endforeach\
+                                    </select>\
+                                </div>\
+                                <div class="form-group col-md-3">\
+                                    <div class="input-group">\
+                                        <input required type="number" name="quanity[]" step="0.001" class="form-control"\
+                                            placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
+                                        <div class="input-group-append">\
+                                            <span class="input-group-text" style="background-color: #dccff7;"\
+                                                id="basic-addon6"><strong class="unit_append"></strong></span>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="form-group col-md-1">\
+                                    <button type="button" id="cancel' + index + '"\
+                                        style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
+                                        <img src="icons/cancel.png" width="40" height="40" alt="">\
+                                    </button>\
+                                </div>\
+                            </div>'
 
             return code
         }
@@ -209,19 +206,16 @@
                                                     //     'form_id' => 'productdeletion' . $product->id,
                                                     // ];
                                                 @endphp
-                                                <form method="POST" action="{{ route('products.delete', $product->id) }}"
-                                                    id="productedit{{ $product->id }}">
-                                                    <a data-toggle="modal" href="#editModal{{ $product->id }}">
-                                                        <svg data-toggle="tooltip" data-placement="top" title="Edit"
-                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                            class="feather feather-edit-2 text-success">
-                                                            <path
-                                                                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                            </path>
-                                                        </svg></a>
-                                                </form>
+
+                                                <a data-toggle="modal" href="#editModal{{ $product->id }}">
+                                                    <svg data-toggle="tooltip" data-placement="top" title="Edit"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-edit-2 text-success">
+                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        </path>
+                                                    </svg></a>
                                             </li>
 
                                             <li>
@@ -257,7 +251,11 @@
                                     </td>
                                 </tr>
                                 @include('modals.deletion_modal', $deletion_data)
-                                @include('modals.edits.edit_product')
+                                <form method="POST" id="edit-form{{ $product->id }}"
+                                    action="{{ route('products.edit', $product->id) }}">
+                                    @csrf
+                                    @include('modals.edits.edit_product')
+                                </form>
                             @endforeach
                         </tbody>
                         <tfoot>

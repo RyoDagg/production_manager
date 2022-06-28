@@ -65,8 +65,8 @@ Route::post('/new_employee', [EmployeeController::class, 'new_employee'])->name(
 //products
 Route::get('/products', [ProductController::class, 'get_products'])->name('products');
 Route::post('/new_product', [ProductController::class, 'new_product'])->name('new_product');
-Route::get('/products/{id}', [ProductController::class, 'edit_product'])->name('products.edit');
-Route::get('/products/{id}', [ProductController::class, 'delete_product'])->name('products.delete');
+Route::post('/products-edit/{id}', [ProductController::class, 'edit_product'])->name('products.edit');
+Route::get('/products-delete/{id}', [ProductController::class, 'delete_product'])->name('products.delete');
 Route::post('/products',[ProductController::class,'store']);
 Route::delete('/products/{id}', [ProductController::class, 'delete_product'])->name('products.delete');
 
