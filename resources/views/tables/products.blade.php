@@ -22,7 +22,7 @@
         var firstUpload = new FileUploadWithPreview('myFirstImage')
         //Second upload
         @foreach ($products as $product)
-            {!! 'var secondUpload ' . $product->id . '= new FileUploadWithPreview("myEditImage' . $product->id . '")' !!}
+        {!! 'var Upload' . $product->id . '  = new FileUploadWithPreview(\'myEditImage' . $product->id . '\')' !!}
         @endforeach
     </script>
     <script>
@@ -65,36 +65,36 @@
         });
     </script>
     <script>
-        index = 1
+        index = 2
 
         function fields(index) {
             let code = '<div class="form-row mb-4" id="row' + index + '">\
-                                <div class="form-group mb-4 col-md-8">\
-                                    <select required class="placeholder required form-control"\
-                                            data-live-search="true" name="material[]">\
-                                        <option value="">Material</option>\
-                                        @foreach ($materials as $material)\
-                                            <option value="{{ $material->id }}">{{ $material->name }}</option>\
-                                        @endforeach\
-                                    </select>\
-                                </div>\
-                                <div class="form-group col-md-3">\
-                                    <div class="input-group">\
-                                        <input required type="number" name="quanity[]" step="0.001" class="form-control"\
-                                            placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
-                                        <div class="input-group-append">\
-                                            <span class="input-group-text" style="background-color: #dccff7;"\
-                                                id="basic-addon6"><strong class="unit_append"></strong></span>\
-                                        </div>\
+                            <div class="form-group mb-4 col-md-8">\
+                                <select required class="placeholder required form-control"\
+                                        data-live-search="true" name="material[]">\
+                                    <option value="">Material</option>\
+                                    @foreach ($materials as $material)\
+                                        <option value="{{ $material->id }}">{{ $material->name }}</option>\
+                                    @endforeach\
+                                </select>\
+                            </div>\
+                            <div class="form-group col-md-3">\
+                                <div class="input-group">\
+                                    <input required type="number" name="quanity[]" step="0.001" class="form-control"\
+                                        placeholder="Quantity" id="inputZip" aria-describedby="basic-addon2">\
+                                    <div class="input-group-append">\
+                                        <span class="input-group-text" style="background-color: #dccff7;"\
+                                            id="basic-addon6"><strong class="unit_append"></strong></span>\
                                     </div>\
                                 </div>\
-                                <div class="form-group col-md-1">\
-                                    <button type="button" id="cancel' + index + '"\
-                                        style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
-                                        <img src="icons/cancel.png" width="40" height="40" alt="">\
-                                    </button>\
-                                </div>\
-                            </div>'
+                            </div>\
+                            <div class="form-group col-md-1">\
+                                <button type="button" id="cancel' + index + '"\
+                                    style="background: 0%;border: none;" onclick="deleteRow(\'row' + index + '\')">\
+                                    <img src="icons/cancel.png" width="40" height="40" alt="">\
+                                </button>\
+                            </div>\
+                        </div>'
 
             return code
         }
@@ -107,10 +107,18 @@
 
 
         var btn = document.getElementById('add_field');
+        var btnEdit = document.getElementById('add_field_edit');
         var rows = document.getElementById('rows');
+        var rowsEdit = document.getElementById('rowsEdit');
+
 
         btn.onclick = function() {
             rows.insertAdjacentHTML("beforeend", fields(index));
+            index++;
+        }
+        
+        btnEdit.onclick = function() {
+            rowsEdit.insertAdjacentHTML("beforeend", fields(index));
             index++;
         }
     </script>
@@ -135,6 +143,15 @@
         @csrf
         @include('modals.add_product')
     </form>
+
+    
+    @foreach ($products as $product)
+        <form method="POST" id="edit-form{{ $product->id }}"
+            action="{{ route('products.edit', $product->id) }}">
+            @csrf
+            @include('modals.edits.edit_product')
+        </form>
+    @endforeach
 
 
     <div class="row layout-top-spacing" id="cancel-row">
@@ -163,6 +180,7 @@
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
+                            </form>
                                 <tr>
                                     <td class="checkbox-column">
                                         <label class="new-control new-checkbox checkbox-primary"
@@ -191,22 +209,13 @@
                                     <td>{{ $product->stock }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">
-                                            <li><a href="   javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                            <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                     title="Shop"><img src="icons/cart.png" width="25" height="25"
                                                         alt=""></a></li>
                                             <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                     title="View"><img src="icons/view.png" width="25" height="25"
                                                         alt=""></a></li>
                                             <li>
-                                                @php
-                                                    // $edit_data = [
-                                                    //     'id' => $product->id,
-                                                    //     'label' => ' this product :',
-                                                    //     'name' => $product->name,
-                                                    //     'form_id' => 'productdeletion' . $product->id,
-                                                    // ];
-                                                @endphp
-
                                                 <a data-toggle="modal" href="#editModal{{ $product->id }}">
                                                     <svg data-toggle="tooltip" data-placement="top" title="Edit"
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -251,11 +260,6 @@
                                     </td>
                                 </tr>
                                 @include('modals.deletion_modal', $deletion_data)
-                                <form method="POST" id="edit-form{{ $product->id }}"
-                                    action="{{ route('products.edit', $product->id) }}">
-                                    @csrf
-                                    @include('modals.edits.edit_product')
-                                </form>
                             @endforeach
                         </tbody>
                         <tfoot>

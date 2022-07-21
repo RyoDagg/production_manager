@@ -30,10 +30,11 @@ class ProductController extends Controller
     }
     public function edit_product(Request $request,Product $product){
 
+        ddd($request->all);
         $product->update($request->all());
 
         return redirect()
-            ->route('tables.products')
+            ->route('products')
             ->withStatus('Product updated successfully.');
     }
 
