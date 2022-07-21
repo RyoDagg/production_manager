@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fournisseur;
 use App\Models\Materials;
 use App\Models\Purchase;
-
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PurchasesController extends Controller
@@ -84,7 +83,48 @@ class PurchasesController extends Controller
     }
 
     public function purchase_reports(){
-
-        return view('reports.purchases');
+            // ddd(Carbon::now()->startOfWeek());
+            $purchase = Purchase::orderBy('created_at', 'DESC')->get();
+            $annualpurchases = $this->getAnnualPurchases();
+            $monthlypurchases = $this->getMonthlypurchases();
+            $weeklypurchases = $this->getWeeklyPurchases();
+            $dailypurchases = $this->getDailyPurchases();
+    
+            return view('reports.purchases', [
+                'purchases'                      => $purchase,
+                'annualpurchases'                => $annualpurchases,
+                'monthlypurchases'              => $monthlypurchases,
+                'weeklypurchases'                => $weeklypurchases,
+                'dailypurchases'              => $dailypurchases
+            ]);
+        }
+        public function getAnnualPurchases()
+        {
+            // $sales = [];
+            // foreach(range(1, 12) as $i) {
+            //     $monthlySalesCount = Sale::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->count();
+    
+            //     array_push($sales, $monthlySalesCount);
+            // }
+            // return "[" . implode(',', $sales) . "]";
+        return Purchase::whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+        }
+    
+        public function getMonthlyPurchases()
+    
+        {
+            //->whereMonth('created_at', '=', Carbon::now()->subMonth()->month
+        return Purchase::whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+        }
+    
+        public function getWeeklyPurchases()
+        {
+        return  Purchase::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+           
+        }
+        public function getDailyPurchases()
+        {
+        return Purchase::whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->get();
+            // dd($d);
+        }
     }
-}

@@ -265,7 +265,7 @@
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th></th>
+                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Materials</th>

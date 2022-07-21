@@ -18,7 +18,8 @@ class ClientFactory extends Factory
             'cin'=>$this->faker->numerify,
             'is_company'=>$this->faker->boolean,
             'email'=>$this->faker->email,
-            'adresse'=>$this->faker->address
+            'adresse'=>$this->faker->address,
+            'tel'=>$this->faker->numerify
         ];
     }
 }

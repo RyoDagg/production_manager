@@ -80,4 +80,12 @@ class ProductController extends Controller
         return redirect()->back()->with('status', 'Material Added Successfully');
 
     }
+
+    //delete product
+    public function delete_product($id) {
+        $product = Product::find($id);
+        $product->delete();
+
+        return back()->with('success', 'Product Deleted!');
+    }
 }

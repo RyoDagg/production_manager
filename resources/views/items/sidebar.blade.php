@@ -186,13 +186,13 @@
         </div>
         <div class="submenu" id="reports">
             <ul class="submenu-list" data-parent-element="#forms">
-                <li class="{{ $active_item == 'sales' ? 'active' : '' }}">
+                <li class="{{ $active_item == 'sales_reports' ? 'active' : '' }}">
                     <a href="{{ route('reports.sales') }}">
                         <span class="icon">
                             <img src="icons/sell.png" width="30" height="30" alt="">
                         </span> Sales Reports</a>
                 </li>
-                <li class="{{ $active_item == 'purchases' ? 'active' : '' }}">
+                <li class="{{ $active_item == 'purchases_reports' ? 'active' : '' }}">
                     <a href="{{ route('reports.purchases') }}">
                         <span class="icon">
                             <img src="icons/buy.png" width="30" height="30" alt="">
