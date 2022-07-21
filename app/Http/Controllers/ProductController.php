@@ -28,23 +28,16 @@ class ProductController extends Controller
             ->route('tables.products')
             ->withStatus('Product successfully registered.');
     }
-    public function edit_product(Request $request,Product $product){
+    public function edit_product(Request $request){
 
-        ddd($request->all);
-        $product->update($request->all());
+        ddd($request->all());
 
         return redirect()
             ->route('products')
             ->withStatus('Product updated successfully.');
     }
 
-    public function delete_product($id)
-    {   
-        $product = Product::find($id);
-        $product->delete();
 
-        return back()->with('Product removed successfully.');
-    }
 
     public function new_product(Request $request)
     {

@@ -18,12 +18,12 @@
                         <div class="form-group mb-2 col-md-12">
                             {{-- <label>Example textarea</label> --}}
                             <input type="text" required class="form-control" value="{{ $product->name }}"
-                                name="name" placeholder="Name">
+                                name="name{{ $product->id }}" placeholder="Name">
                         </div>
                     </div>
 
                     <div class="form-group mb-4">
-                        <textarea class="form-control" name="description" placeholder="Description..." rows="3">{{ $product->description }}</textarea>
+                        <textarea class="form-control" name="description{{ $product->id }}" placeholder="Description..." rows="3">{{ $product->description }}</textarea>
                     </div>
                     <div class="form-row  mb-4">
                         <div class="form-group mb-4">
@@ -81,7 +81,7 @@
                                 <div class="form-group mb-4 col-md-8">
                                     <select id="select{{ $loop->iteration }}" required
                                         class="placeholder required selectpicker form-control" data-live-search="true"
-                                        name="material[]">
+                                        name="material{{ $product->id }}[]">
                                         <option value="{{ $mat }}">{{ $mat->name }}</option>
                                         @foreach ($materials as $material)
                                             <option value="{{ $material->id }}">{{ $material->name }}</option>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <div class="input-group">
-                                        <input required type="number" name="quanity[]" step="0.001"
+                                        <input required type="number" name="quanity{{ $product->id }}[]" step="0.001"
                                             class="form-control" placeholder="Quantity" id="inputZip"
                                             aria-describedby="basic-addon2" value="{{ $mat->pivot->quantity }}">
                                         <div class="input-group-append">

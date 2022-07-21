@@ -180,7 +180,6 @@
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
-                            </form>
                                 <tr>
                                     <td class="checkbox-column">
                                         <label class="new-control new-checkbox checkbox-primary"
