@@ -198,6 +198,12 @@
                             <img src="icons/buy.png" width="30" height="30" alt="">
                         </span> Purchases Reports</a>
                 </li>
+                <li class="{{ $active_item == 'productions_reports' ? 'active' : '' }}">
+                    <a href="{{ route('reports.productions') }}">
+                        <span class="icon">
+                            <img src="icons/gear.png" width="30" height="30" alt="">
+                        </span> Productions Reports</a>
+                </li>
             </ul>
         </div>
     </div>

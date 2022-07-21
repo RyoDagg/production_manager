@@ -43,6 +43,9 @@ Route::get('/productions/{id}', [ProductionController::class, 'view_production']
 Route::delete('/productions/{id}', [ProductionController::class, 'delete_production'])->name('productions.delete');
 Route::post('/production/{id}/{action}', [ProductionController::class, 'validate_production'])->name('production.validate');
 Route::post('/production/{id}', [ProductionController::class, 'complete_production'])->name('production.complete');
+Route::get('/productions_reports', [ProductionController::class, 'productions_reports'])->name('reports.productions');
+Route::get('productions/records', [ProductionController::class, 'records'])->name('productions.records');
+
 
 //clients
 Route::get('/clients', [ClientsController::class, 'get_clients'])->name('clients');
@@ -86,6 +89,7 @@ Route::get('/sales/{id}', [SalesController::class, 'view_sale'])->name('sales.vi
 Route::delete('/sales/{id}', [SalesController::class, 'delete_sale'])->name('sales.delete');
 Route::post('/sale/{id}/{action}', [SalesController::class, 'validate_sale'])->name('sale.validate');
 Route::get('/sale_reports', [SalesController::class, 'sale_reports'])->name('reports.sales');
+Route::get('sales/records', [SalesController::class, 'records'])->name('sales.records');
 
 
 
