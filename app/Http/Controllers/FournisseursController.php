@@ -20,11 +20,21 @@ class FournisseursController extends Controller
 
         $supplier->is_company = $request->input('is_company')? 1 : 0;
 
-        $supplier->email = $request->input('email'); //name
+        $supplier->email = $request->input('email'); 
         $supplier->name = $request->input('name'); //name
-        $supplier->adresse = $request->input('address'); //description
+        $supplier->adresse = $request->input('address');
+        $supplier->tel = $request->input('tel'); 
+
         $supplier->save();
         // redirect to the materials page after saving the record
         return redirect()->back()->with('status', 'Supplier Added Successfully');
+    }
+
+    //delete supplier
+    public function delete_fournisseur($id) {
+        $fournisseur = Fournisseur::find($id);
+        $fournisseur->delete();
+
+        return back()->with('success', 'Supplier Deleted!');
     }
 }

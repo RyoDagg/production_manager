@@ -47,6 +47,8 @@ Route::post('/production/{id}', [ProductionController::class, 'complete_producti
 //clients
 Route::get('/clients', [ClientsController::class, 'get_clients'])->name('clients');
 Route::post('/new_client', [ClientsController::class, 'new_client'])->name('new_client');
+Route::delete('/clients/{id}', [ClientsController::class, 'delete_client'])->name('clients.delete');
+
 
 
 
@@ -98,6 +100,7 @@ Route::get('/purchase_reports', [PurchasesController::class, 'purchase_reports']
 //employees
 Route::get('/employees', [EmployeeController::class, 'get_employees'])->name('employees');
 Route::post('/new_employee', [EmployeeController::class, 'new_employee'])->name('new_employee');
+Route::delete('/employees/{id}', [EmployeeController::class, 'delete_employee'])->name('employees.delete');
 
 //invoices
 Route::get('/invoices', [InvoiceController::class, 'get_invoices'])->name('invoices');
@@ -112,6 +115,8 @@ Route::post('logout',[SessionController::class, 'destroy']);
 //Supplier
 Route::get('/fournisseurs', [FournisseursController::class, 'get_fournisseurs'])->name('fournisseurs');
 Route::post('/new_supplier', [FournisseursController::class, 'new_supplier'])->name('new_supplier');
+Route::delete('/fournisseurs/{id}', [FournisseursController::class, 'delete_fournisseur'])->name('fournisseurs.delete');
+ 
 
 
 //Voyager

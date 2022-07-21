@@ -15,6 +15,7 @@ class ProductController extends Controller
     {
         $product= Product::orderBy('created_at', 'DESC')->get();
         $materials= Materials::all();
+        $units = Unit::all();
         // $units = array();
         foreach ($materials as $material) {
             $units[$material->id] = $material->units->symbole;
@@ -85,5 +86,13 @@ class ProductController extends Controller
         // redirect to the materials page after saving the record
         return redirect()->back()->with('status', 'Material Added Successfully');
 
+    }
+
+    //delete product
+    public function delete_product($id) {
+        $product = Product::find($id);
+        $product->delete();
+
+        return back()->with('success', 'Product Deleted!');
     }
 }

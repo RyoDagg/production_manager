@@ -99,20 +99,22 @@ class SalesController extends Controller
             $sale->products->save();
 
             $sale->save();
-            return redirect()->back()->with('status','Sale '.$action.' successfully!!');
+            return redirect()->back()->with('status', 'Sale ' . $action . ' successfully!!');
         }
         return redirect()->back()->with('fail');
     }
-    public function sale_reports(){
-
-        $anualsales = $this->getAnnualSales();
+    public function sale_reports()
+    {
+        // ddd(Carbon::now()->startOfWeek());
+        $sale = Sale::orderBy('created_at', 'DESC')->get();
+        $annualsales = $this->getAnnualSales();
         $monthlysales = $this->getMonthlySales();
         $weeklysales = $this->getWeeklySales();
         $dailysales = $this->getDailySales();
 
-        return view('reports.sales',[
-
-            'anualsales'                => $anualsales,
+        return view('reports.sales', [
+            'sales'                      => $sale,
+            'annualsales'                => $annualsales,
             'monthlysales'              => $monthlysales,
             'weeklysales'                => $weeklysales,
             'dailysales'              => $dailysales
@@ -120,26 +122,31 @@ class SalesController extends Controller
     }
     public function getAnnualSales()
     {
-        $sales = [];
-        foreach(range(1, 12) as $i) {
-            $monthlySalesCount = Sale::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->count();
+        // $sales = [];
+        // foreach(range(1, 12) as $i) {
+        //     $monthlySalesCount = Sale::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->count();
 
-            array_push($sales, $monthlySalesCount);
-        }
-        return "[" . implode(',', $sales) . "]";
+        //     array_push($sales, $monthlySalesCount);
+        // }
+        // return "[" . implode(',', $sales) . "]";
+        return Sale::whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
     }
 
     public function getMonthlySales()
+
     {
-       
+        //->whereMonth('created_at', '=', Carbon::now()->subMonth()->month
+        return Sale::whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
     }
-    
+
     public function getWeeklySales()
     {
-
+       return Sale::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+       
     }
     public function getDailySales()
     {
-
+      return Sale::whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->get();
+        
     }
 }

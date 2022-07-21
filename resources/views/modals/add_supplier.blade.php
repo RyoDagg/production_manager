@@ -30,7 +30,10 @@
                             {{-- <label>Example textarea</label> --}}
                             <input type="email" class="form-control" name="email" placeholder="Email">
                         </div>
-
+                         <div class="form-group mb-4 col-md-6">
+                                            {{-- <label>Example textarea</label> --}}
+                                            <input type="number" class="form-control" name="tel" placeholder="Phone Number">
+                                        </div>
                         <div class="form-group col-md-3">
                             <label>
                                 <strong style="color: #1b55e2 ">Is Company?</strong>

@@ -15,10 +15,12 @@ class EmployeeFactory extends Factory
     {
         return [
             'photo'=>$this->faker->image,
-            'name'=>$this->faker->word,
+            'name'=>$this->faker->name,
             'cin'=>$this->faker->numerify,
             'email'=>$this->faker->email,
-            'adresse'=>$this->faker->address
+            'adresse'=>$this->faker->address,
+            'tel'=>$this->faker->numerify,
+
         ];
     }
 }

@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="dashboard-analytics">
+<body class="dashboard-analytics" onload="triggerbtnClick()">
 
     <!-- BEGIN LOADER -->
     <div id="load_screen">
@@ -59,7 +59,7 @@
                 {{-- Footer --}}
                 <div class="footer-wrapper">
                     <div class="footer-section f-section-1">
-                        <p class="">Copyright © 2022 <a class="text-primary" target="_blank"
+                        <p class="">Copyright © {{date('Y')}} <a class="text-primary" target="_blank"
                                 href="https://mih.tn/">Make It Happen</a>, All rights reserved.</p>
                     </div>
                     <div class="footer-section f-section-2">

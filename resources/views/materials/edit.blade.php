@@ -71,6 +71,7 @@
 
 @section('content')
 <?php $active_menu = 'production'; ?>
+<?php $active_item = 'materials'; ?>
 
 
                 <h3> {{$material->name}} </h3>
