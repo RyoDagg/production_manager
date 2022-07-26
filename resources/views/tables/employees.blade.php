@@ -245,6 +245,8 @@
                             </td>
                         </tr>
                         @endforeach
+                        </tbody>
+                        <tfoot>
                         <tr>
                             <th class="checkbox-column">
                                 <label class="new-control new-checkbox checkbox-primary" style="height: 18px; margin: 0 auto;">

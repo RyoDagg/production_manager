@@ -243,13 +243,13 @@
             <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src={{ auth()->user()->photo }} alt="admin-profile" class="img-fluid">
+                    <img src={{ asset('storage/' . auth()->user()->avatar) }} alt="admin-profile" class="img-fluid">
                 </a>
                 <div class="dropdown-menu position-absolute animated fadeInUp"
                     aria-labelledby="userProfileDropdown">
                     <div class="user-profile-section">
                         <div class="media mx-auto">
-                            <img src="{{ asset('storage/materials/' . auth()->user()->photo) }}" class="img-fluid mr-2" alt="avatar">
+                            <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="img-fluid mr-2" alt="avatar">
                             <div class="media-body">
                                 <h5>{{ auth()->user()->name }}</h5>
                                 {{-- <p></p> role --}}

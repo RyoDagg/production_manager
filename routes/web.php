@@ -34,6 +34,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/profile', [ProfileController::class, 'view_profile'])->name('profile.view');
 Route::get('/settings', [ProfileController::class, 'edit_profile'])->name('profile.edit');
+Route::put('/profileupdate', [ProfileController::class, 'updateProfile'])->name('profile.update');
+
 Route::post('logout',[SessionController::class, 'destroy']);
 
 //Production
