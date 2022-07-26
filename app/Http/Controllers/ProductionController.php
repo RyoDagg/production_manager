@@ -87,7 +87,7 @@ class ProductionController extends Controller
         $dailyproductions = $this->getDailyProductions();
 
         return view('reports.productions', [
-            'production'                      => $production,
+            'productions'                      => $production,
             'annualproductions'                => $annualproductions,
             'dailyproductions'              => $monthlyproductions,
             'dailyproductions'                => $weeklyproductions,
