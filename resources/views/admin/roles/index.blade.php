@@ -1,0 +1,133 @@
+@extends('layouts.dashboard')
+@section('head')
+<title>Roles</title>
+<link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
+<link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
+<link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/tables/table-basic.css" rel="stylesheet" type="text/css" />
+@endsection
+
+@section('script')
+<script src="assets/js/scrollspyNav.js"></script>
+
+<script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+
+<script>
+    //First upload
+    var firstUpload = new FileUploadWithPreview('myFirstImage')
+    //Second upload
+    var secondUpload = new FileUploadWithPreview('mySecondImage')
+
+</script>
+<script src="plugins/table/datatable/datatables.js"></script>
+<script>
+    /* Custom filtering function which will search data in column four between two values */
+    $.fn.dataTable.ext.search.push(
+        function(settings, data, dataIndex) {
+            var min = parseInt($('#min').val(), 10);
+            var max = parseInt($('#max').val(), 10);
+            var age = parseFloat(data[3]) || 0; // use data for the age column
+
+            if ((isNaN(min) && isNaN(max)) ||
+                (isNaN(min) && age <= max) ||
+                (min <= age && isNaN(max)) ||
+                (min <= age && age <= max)) {
+                return true;
+            }
+            return false;
+        }
+    );
+    $(document).ready(function() {
+        var table = $('#range-search').DataTable({
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>'
+                    , "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+                }
+                , "sInfo": "Showing page _PAGE_ of _PAGES_"
+                , "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>'
+                , "sSearchPlaceholder": "Search..."
+                , "sLengthMenu": "Results :  _MENU_"
+            , }
+            , "stripeClasses": []
+            , "lengthMenu": [7, 10, 20, 50]
+            , "pageLength": 7
+        });
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#min, #max').keyup(function() {
+            table.draw();
+        });
+    });
+
+</script>
+@endsection
+
+@section('content')
+<?php $active_menu = ''; ?>
+
+<?php $active_item = ''; ?>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <div class="flex flex-col mt-8">
+                    <div class="d-print-none with-border mb-8">
+                        <a href="{{ route('role.create') }}" class="btn btn btn-secondary mb-2 mr-2 btn-rounded">{{ __('Add Role') }}</a>
+                    </div>
+                    <div class="py-2">
+                        @if(session()->has('message'))
+                        <div class="mb-8 text-green-400 font-bold">
+                            {{ session()->get('message') }}
+                        </div>
+                        @endif
+                        <div class="min-w-full border-b border-gray-200 shadow">
+                            <table class="border-collapse table-auto w-full text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left">
+                                            {{ __('Name') }}
+                                        </th>
+                                        <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light text-left">
+                                            {{ __('Actions') }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-slate-800">
+                                    @foreach($roles as $role)
+                                    <tr>
+                                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                            <div class="text-sm text-gray-900">
+                                                <a href="{{route('role.show', $role->id)}}" class="no-underline hover:underline text-cyan-600 dark:text-cyan-400">{{ $role->name }}</a>
+                                            </div>
+                                        </td>
+                                        {{-- <td>
+                                            @foreach($role->$permissions as $permission)
+                                                <button class="btn btn-warning" role="button"><i class="fas fa-shield-alt"></i>{{$permission->name}}
+                                            @endforeach
+                                        </td> --}}
+                                        <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                            <form action="{{ route('role.destroy', $role->id) }}" method="POST">
+                                                <a href="{{route('role.edit', $role->id)}}" class="btn btn btn-secondary mb-2 mr-2">
+                                                    {{ __('Edit') }}
+                                                </a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn btn-secondary mb-2 mr-2 bg-red-600">
+                                                    {{ __('Delete') }}
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
